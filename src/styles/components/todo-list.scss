@@ -1,0 +1,157 @@
+// todo list
+.todo-list {
+  position: relative;
+
+  &.sm {
+    width: 350px;
+    min-width: 350px;
+    margin-right: 5rem;
+
+    h2 {
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+// todo item
+.todo-item {
+  height: auto;
+  border-radius: 30px;
+  background-color: white;
+  box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.111);
+  transform: translateY(30px); // animation
+
+  div:nth-child(2) {
+    width: 20px; // giving it a fixed width won't allow
+    margin-right: 1rem; // the div to move when checkbox is clicked
+  }
+
+  .type-bar {
+    display: inline-block;
+    width: 5px;
+    height: 35px;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+    background-color: $purple;
+
+    &.blue {
+      background-color: $blue;
+    }
+
+    &.pink {
+      background-color: $pink;
+    }
+    &.orange {
+      background-color: $orange;
+    }
+  }
+
+  .checkbox {
+    border: 1px solid #c1c3c6;
+    width: 17px;
+    height: 17px;
+    margin-right: 1rem;
+    border-radius: 35%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.05s linear;
+
+    &.completed {
+      background-color: $purple;
+      background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M13.613%2027.068l-7.94-7.28q-.285-.267-.442-.613t-.172-.7.11-.71.394-.638q.52-.583%201.3-.614T8.225%2017l6.13%205.626%208.79-17q.363-.693%201.104-.93t1.433.118.93%201.103-.126%201.442L16.56%2026.55q-.204.394-.558.654t-.78.34q-.063.015-.118.023t-.11.008-.102%200q-.74%200-1.276-.504z%22%20fill%3D%22%23FFF%22/%3E%3C/svg%3E);
+      border: none;
+      background-size: 10px; // default
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  }
+
+  .task {
+    font-weight: bold;
+    word-break: break-all;
+    line-height: 1.4rem;
+  }
+
+  .more {
+    margin-left: auto;
+    display: flex;
+    cursor: pointer;
+
+    .bin {
+      margin: 0 1rem;
+      transition: background-color 0.08s ease-in-out;
+
+      &:hover {
+        background-color: rgb(255, 171, 171);
+      }
+    }
+  }
+
+  &.sm {
+    min-height: 25px;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1.1rem;
+
+    .type-bar {
+      height: 25px;
+    }
+
+    .checkbox {
+      width: 17px;
+      height: 17px;
+    }
+
+    .task {
+      font-size: 0.85rem;
+    }
+  }
+
+  &.md {
+    min-height: 40px;
+    max-width: 700px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+
+    .type-bar {
+      height: 30px;
+      margin-right: 0.7rem;
+    }
+
+    .checkbox {
+      width: 20px;
+      height: 20px;
+
+      &.completed {
+        background-size: 16px;
+      }
+    }
+  }
+
+  &.lg {
+    height: 130px;
+    border-radius: 40px;
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.07);
+    padding-left: 2rem;
+    margin-bottom: 4rem;
+
+    .type-bar {
+      height: 40px;
+      margin-right: 1rem;
+    }
+
+    .checkbox {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.popup-more-action {
+  width: 100px;
+  height: 60px;
+  background-color: white;
+  @include popup-box-shadow;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}

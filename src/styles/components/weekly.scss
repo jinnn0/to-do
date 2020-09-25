@@ -1,0 +1,29 @@
+.weekly {
+  position: relative;
+
+  .main-display {
+    .weekly-list {
+      width: calc(100% - 26%);
+      min-height: 600px;
+      display: flex;
+      padding-bottom: 3rem;
+      position: absolute;
+      overflow-x: scroll;
+
+      section {
+        height: inherit;
+        margin-left: -20px;
+
+        div {
+          width: 10px;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+// make horizontal scroll bar transparent
+::-webkit-scrollbar {
+  display: none;
+}

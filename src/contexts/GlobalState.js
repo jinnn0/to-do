@@ -7,7 +7,7 @@ export const GlobalContextProvider = (props) => {
   const today = {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
-    date: new Date().getDate()
+    date: new Date().getDate(),
   };
 
   // todolist state
@@ -18,9 +18,45 @@ export const GlobalContextProvider = (props) => {
       dateInfo: {
         year: today.year,
         month: today.month,
-        date: today.date
-      }
-    }
+        date: today.date,
+      },
+    },
+    {
+      task: "New task tomorrow",
+      type: "pink",
+      dateInfo: {
+        year: today.year,
+        month: today.month,
+        date: today.date + 1,
+      },
+    },
+    {
+      task: "Weekly plan",
+      type: "pink",
+      dateInfo: {
+        year: today.year,
+        month: today.month,
+        date: today.date + 2,
+      },
+    },
+    {
+      task: "2 hours study session",
+      type: "blue",
+      dateInfo: {
+        year: today.year,
+        month: today.month,
+        date: today.date,
+      },
+    },
+    {
+      task: "Learn web dev",
+      type: "blue",
+      dateInfo: {
+        year: today.year,
+        month: today.month,
+        date: today.date + 3,
+      },
+    },
   ];
 
   const [todoList, setTodoList] = useState(initialTodoList);
@@ -74,6 +110,22 @@ export const GlobalContextProvider = (props) => {
     setSortValue(newSort);
   };
 
+  // add new todo button state
+  const [addButtonClicked, setAddButtonClicked] = useState(false);
+  const handleClickAddButton = () => {
+    setAddButtonClicked(!addButtonClicked);
+  };
+  const handleClickOutsideAddButton = (e) => {
+    if (
+      addButtonClicked &&
+      e.target.nodeName !== "svg" &&
+      e.target.nodeName !== "FORM" &&
+      e.target.nodeName !== "INPUT"
+    ) {
+      setAddButtonClicked(!addButtonClicked);
+    }
+  };
+
   // sort list
   let sortedTodoList = todoList.filter((todo) => {
     if (
@@ -102,7 +154,11 @@ export const GlobalContextProvider = (props) => {
     updateSelectedView,
     sortValue,
     updateSortValue,
-    sortedTodoList
+    addButtonClicked,
+    setAddButtonClicked,
+    handleClickAddButton,
+    handleClickOutsideAddButton,
+    sortedTodoList,
   };
 
   return (

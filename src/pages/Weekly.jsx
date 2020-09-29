@@ -5,6 +5,7 @@ import { GlobalContext } from "../contexts/GlobalState";
 
 function Weekly() {
   const { today } = useContext(GlobalContext);
+  const { handleClickOutsideAddButton } = useContext(GlobalContext);
 
   let thisWeek = [];
   let counter = 0;
@@ -19,7 +20,7 @@ function Weekly() {
       year: nextDayConstructor.getFullYear(),
       month: nextDayConstructor.getMonth(),
       date: nextDayConstructor.getDate(),
-      day: nextDayConstructor.toLocaleString("default", { weekday: "long" })
+      day: nextDayConstructor.toLocaleString("default", { weekday: "long" }),
     };
 
     counter++;
@@ -30,7 +31,7 @@ function Weekly() {
   thisWeek[1].day = "Tomorrow";
 
   return (
-    <div className="weekly">
+    <div className="weekly" onClick={handleClickOutsideAddButton}>
       <div className="main-display container">
         <HeaderShared title={"Weekly"} />
         <div className="weekly-list">

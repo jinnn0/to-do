@@ -18,11 +18,36 @@ function TodoList({ today, weekly }) {
     todoListAnimation();
   }, [sortedTodoList]);
 
+  const getOrdinalNum = function (today) {
+    if (today.date > 3 && today.date < 21) return "th";
+    switch (today.date % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  };
+
+  for (let i = 0; i < 31; i++) {
+    // console.log("hello ", i, "->", i % 10)
+  }
+
   return (
-    <ul className={"todo-list" + (weekly ? " sm" : " md")}>
-      {weekly ? <h2>{today.day}</h2> : ""}
-      {todoForToday.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} weekly={weekly} />
+    <ul className={"todo-list" + (weekly ? " sm" : "")}>
+      {weekly ? (
+        <h2>
+          {today.day} <span className="date">{today.date}</span>
+          <span className="date-ordinal">{getOrdinalNum(today)}</span>{" "}
+        </h2>
+      ) : (
+        ""
+      )}
+      {todoForToday.map((todo, index) => (
+        <TodoItem key={index} todo={todo} weekly={weekly} />
       ))}
     </ul>
   );

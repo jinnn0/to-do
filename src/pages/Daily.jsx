@@ -5,9 +5,10 @@ import { GlobalContext } from "../contexts/GlobalState";
 
 function Daily() {
   const { today } = useContext(GlobalContext);
+  const { handleClickOutsideAddButton } = useContext(GlobalContext);
 
   return (
-    <div className="daily">
+    <div className="daily" onClick={handleClickOutsideAddButton}>
       <div className="main-display container">
         <HeaderShared title={"Today"} />
         <TodoList today={today} />

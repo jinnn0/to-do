@@ -1,16 +1,31 @@
+// .home {
+//   background-color: aquamarine;
+// }
+
+// .time-display {
+//   background-color: yellow;
+// }
+
+// .home-main-container {
+//   background-color: bisque;
+// }
+
 .home {
   height: 100vh;
-  padding: 50px;
   padding-top: 72px;
   position: relative;
-  background-color: white;
+  // background-color: white;
 
   .time-display {
     height: 50px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
+
+    @media (min-width: 750px) {
+      font-size: 1.5rem;
+    }
 
     .time {
       margin-right: 15px;
@@ -29,10 +44,16 @@
   .home-main-container {
     width: 100%;
     height: 100%;
-    flex-direction: column;
-    position: absolute;
+    // position: absolute;
     top: 0;
     left: 0;
+    padding: 0 20px;
+
+    // background-color: rgb(167, 255, 226);
+
+    @media (min-width: 900px) {
+      padding: 0 50px;
+    }
 
     .home-main {
       width: 100%;
@@ -43,13 +64,18 @@
       transform: translateY(10%);
       opacity: 0;
 
-      @media (min-width: 500px) {
+      @media (min-width: 750px) {
         width: 70%;
       }
 
       .title {
+        font-size: 1.3rem;
         color: $title;
         margin-bottom: 1rem;
+
+        @media (min-width: 750px) {
+          font-size: 2rem;
+        }
       }
 
       .arrows {

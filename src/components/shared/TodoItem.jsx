@@ -27,7 +27,7 @@ function TodoItem({ todo, weekly }) {
   }
 
   const checkBoxCompleted = {
-    backgroundColor: todo.completed ? checkBoxColor : ""
+    backgroundColor: todo.completed ? checkBoxColor : "",
   };
 
   return (

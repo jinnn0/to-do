@@ -6,8 +6,8 @@ import HomeMain from "../components/home/HomeMain";
 function Home() {
   useEffect(() => {
     homeAnimation();
-  }, []);
-
+  }, []); 
+ 
   return (
     <div className="home container">
       <TimeDisplay />

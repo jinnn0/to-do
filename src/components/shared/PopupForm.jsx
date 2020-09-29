@@ -3,10 +3,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { GlobalContext } from "../../contexts/GlobalState";
 
-function PopupForm({ addButtonClicked, setAddButtonClicked }) {
+function PopupForm() {
   let d = new Date();
 
   const { addTodo } = useContext(GlobalContext);
+  const { addButtonClicked, setAddButtonClicked } = useContext(GlobalContext);
   const [startDate, setStartDate] = useState(new Date());
   const [todo, setTodo] = useState({
     task: "",
@@ -16,8 +17,8 @@ function PopupForm({ addButtonClicked, setAddButtonClicked }) {
       month: d.getMonth(),
       year: d.getFullYear(),
       hour: d.getHours(),
-      minute: d.getMinutes()
-    }
+      minute: d.getMinutes(),
+    },
   });
 
   const handleInputChange = (e) => {
@@ -25,7 +26,7 @@ function PopupForm({ addButtonClicked, setAddButtonClicked }) {
 
     setTodo({
       ...todo,
-      [e.target.name]: value
+      [e.target.name]: value,
     });
   };
 
@@ -41,8 +42,8 @@ function PopupForm({ addButtonClicked, setAddButtonClicked }) {
         month: todo.dateInfo.month,
         year: todo.dateInfo.year,
         hour: todo.dateInfo.hour,
-        minute: todo.dateInfo.minute
-      }
+        minute: todo.dateInfo.minute,
+      },
     };
 
     addTodo(newTodo);
@@ -58,8 +59,8 @@ function PopupForm({ addButtonClicked, setAddButtonClicked }) {
         month: e.getMonth(),
         year: e.getFullYear(),
         hour: e.getHours(),
-        minute: e.getMinutes()
-      }
+        minute: e.getMinutes(),
+      },
     });
   };
 
@@ -79,7 +80,9 @@ function PopupForm({ addButtonClicked, setAddButtonClicked }) {
         handleDateChange={handleDateChange}
         handleDateSelect={handleDateSelect}
       />
-      <button type="submit">Add new task</button>
+      <button className="submit" type="submit">
+        Add new task
+      </button>
     </form>
   );
 }

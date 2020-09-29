@@ -3,12 +3,22 @@
 
   .main-display {
     .weekly-list {
-      width: calc(100% - 26%);
-      min-height: 600px;
-      display: flex;
-      padding-bottom: 3rem;
-      position: absolute;
-      overflow-x: scroll;
+      width: 100%;
+      height: calc(100vh - (var(--nav-height-sm) + var(--header-height)));
+      overflow-y: scroll;
+      padding: 0 4.5px; // to prevent box-shadow cut off on the left/right edge due to position absolute
+
+      @media (min-width: 750px) {
+        height: calc(100vh - (var(--nav-height-bg) + var(--header-height)));
+        flex-basis: 25%;
+      }
+
+      @media (min-width: 900px) {
+        display: flex;
+        position: absolute;
+        overflow-x: scroll;
+        width: calc(75% - 50px);
+      }
 
       section {
         height: inherit;

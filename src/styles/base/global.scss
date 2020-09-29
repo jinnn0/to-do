@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --nav-height-sm: 60px;
+  --nav-height-bg: 72px;
+  --header-height: 120px;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -25,6 +31,10 @@ body {
   }
 }
 
+.app {
+  min-width: 350px;
+}
+
 .flex {
   display: flex;
 
@@ -40,9 +50,4 @@ body {
 
 ul {
   list-style-type: none;
-}
-
-.content-title {
-  font-size: 2.5rem;
-  letter-spacing: 2px;
 }

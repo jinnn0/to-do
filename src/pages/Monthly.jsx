@@ -5,6 +5,7 @@ import { GlobalContext } from "../contexts/GlobalState";
 
 function Monthly() {
   const { today } = useContext(GlobalContext);
+  const { handleClickOutsideAddButton } = useContext(GlobalContext);
 
   // prettier-ignore
   const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September","October","November","December"];
@@ -29,7 +30,7 @@ function Monthly() {
   };
 
   return (
-    <div className="monthly">
+    <div className="monthly" onClick={handleClickOutsideAddButton}>
       <div className="main-display container">
         <HeaderMonthly
           currentMonthName={currentMonthName}

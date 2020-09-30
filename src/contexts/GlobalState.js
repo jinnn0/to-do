@@ -7,56 +7,56 @@ export const GlobalContextProvider = (props) => {
   const today = {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
-    date: new Date().getDate(),
+    date: new Date().getDate()
   };
 
   // todolist state
   const initialTodoList = JSON.parse(localStorage.getItem("todo-list-app")) || [
     {
       task: "What is your todo today ?",
-      type: "purple",
+      type: "important",
       dateInfo: {
         year: today.year,
         month: today.month,
-        date: today.date,
-      },
+        date: today.date
+      }
     },
     {
       task: "New task tomorrow",
-      type: "pink",
+      type: "work",
       dateInfo: {
         year: today.year,
         month: today.month,
-        date: today.date + 1,
-      },
+        date: today.date + 1
+      }
     },
     {
       task: "Weekly plan",
-      type: "pink",
+      type: "study",
       dateInfo: {
         year: today.year,
         month: today.month,
-        date: today.date + 2,
-      },
+        date: today.date + 2
+      }
     },
     {
       task: "2 hours study session",
-      type: "blue",
+      type: "other",
       dateInfo: {
         year: today.year,
         month: today.month,
-        date: today.date,
-      },
+        date: today.date
+      }
     },
     {
       task: "Learn web dev",
-      type: "blue",
+      type: "important",
       dateInfo: {
         year: today.year,
         month: today.month,
-        date: today.date + 3,
-      },
-    },
+        date: today.date + 3
+      }
+    }
   ];
 
   const [todoList, setTodoList] = useState(initialTodoList);
@@ -158,7 +158,7 @@ export const GlobalContextProvider = (props) => {
     setAddButtonClicked,
     handleClickAddButton,
     handleClickOutsideAddButton,
-    sortedTodoList,
+    sortedTodoList
   };
 
   return (

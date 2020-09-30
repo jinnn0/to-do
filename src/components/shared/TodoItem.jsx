@@ -7,33 +7,33 @@ function TodoItem({ todo, weekly }) {
   const { removeTodo, toggleComplete } = useContext(GlobalContext);
 
   let typeBar;
-  if (todo.type === "blue") {
-    typeBar = "blue";
-  } else if (todo.type === "pink") {
-    typeBar = "pink";
-  } else if (todo.type === "orange") {
-    typeBar = "orange";
-  }
-
   let checkBoxColor;
-  if (todo.type === "blue") {
-    checkBoxColor = "#75cdff";
-  } else if (todo.type === "purple") {
+  if (todo.type === "important") {
+    typeBar = "#6966ff";
     checkBoxColor = "#6966ff";
-  } else if (todo.type === "pink") {
+  } else if (todo.type === "work") {
+    typeBar = "#75cdff";
+    checkBoxColor = "#75cdff";
+  } else if (todo.type === "study") {
+    typeBar = "#ffb8c0";
     checkBoxColor = "#ffb8c0";
-  } else if (todo.type === "orange") {
+  } else if (todo.type === "other") {
+    typeBar = "#ffaf75";
     checkBoxColor = "#ffaf75";
   }
 
+  const typeBarColor = {
+    backgroundColor: typeBar
+  };
+
   const checkBoxCompleted = {
-    backgroundColor: todo.completed ? checkBoxColor : "",
+    backgroundColor: todo.completed ? checkBoxColor : ""
   };
 
   return (
     <li className={"todo-item flex v-center" + (weekly ? " sm" : " md")}>
       <div>
-        <span className={"type-bar " + typeBar}></span>
+        <span className="type-bar" style={typeBarColor}></span>
       </div>
       <div>
         <span

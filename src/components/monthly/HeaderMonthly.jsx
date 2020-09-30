@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ReactComponent as Add } from "../../assets/icons/add.svg";
 import SelectView from "../shared/SelectView";
-import PopupForm from "../shared/PopupForm.jsx";
+import AddNewTodoForm from "../shared/AddNewTodoForm.jsx";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { GlobalContext } from "../../contexts/GlobalState";
@@ -39,7 +39,7 @@ function HeaderMonthly({
 
       <div className="row-2-col-2">
         <Add onClick={handleClickAddButton} />
-        <PopupForm />
+        <AddNewTodoForm />
       </div>
 
       <div className="row-2-col-1">

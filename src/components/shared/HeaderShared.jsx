@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { ReactComponent as Add } from "../../assets/icons/add.svg";
-import PopupForm from "./PopupForm";
+import { FiPlus } from "react-icons/fi";
+
+import AddNewTodoForm from "./AddNewTodoForm";
 import SelectView from "./SelectView";
 import SelectSort from "./SelectSort";
 import { GlobalContext } from "../../contexts/GlobalState";
@@ -25,8 +26,8 @@ function HeaderShared({ title }) {
       </div>
 
       <div className="row-2-col-2">
-        <Add onClick={handleClickAddButton} />
-        <PopupForm />
+        <FiPlus className="add-icon" onClick={handleClickAddButton} />
+        <AddNewTodoForm />
       </div>
     </div>
   );

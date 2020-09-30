@@ -1,17 +1,29 @@
 import React, { useState, useContext } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import NewTodo from "../AddNewTodoForm/NewTodo";
+import DateInput from "../AddNewTodoForm/DateInput";
 import { GlobalContext } from "../../contexts/GlobalState";
 
-function PopupForm() {
+function AddNewTodoForm() {
   let d = new Date();
+
+  const [colorBoxClicked, setColorBoxClicked] = useState(false);
+  const [defaultColorType, setDefaultColorType] = useState("important");
+
+  const handleDefaultSelect = () => {
+    setColorBoxClicked(!colorBoxClicked);
+  };
+
+  const handleSelectType = (e) => {
+    setDefaultColorType(e.target.dataset.colorType);
+    setColorBoxClicked(!colorBoxClicked);
+  };
 
   const { addTodo } = useContext(GlobalContext);
   const { addButtonClicked, setAddButtonClicked } = useContext(GlobalContext);
   const [startDate, setStartDate] = useState(new Date());
   const [todo, setTodo] = useState({
     task: "",
-    type: "purple",
+    type: defaultColorType,
     dateInfo: {
       date: d.getDate(),
       month: d.getMonth(),
@@ -36,7 +48,7 @@ function PopupForm() {
       id: Date.now(),
       task: todo.task,
       completed: false,
-      type: todo.type,
+      type: defaultColorType,
       dateInfo: {
         date: todo.dateInfo.date,
         month: todo.dateInfo.month,
@@ -72,14 +84,22 @@ function PopupForm() {
     <form
       action=""
       onSubmit={handleSubmit}
-      className={"popup-form" + (addButtonClicked ? " show-form" : "")}
+      className={"add-new-todo-form" + (addButtonClicked ? " show-form" : "")}
     >
-      <NewTask handleInputChange={handleInputChange} todo={todo} />
+      <NewTodo
+        handleInputChange={handleInputChange}
+        todo={todo}
+        colorBoxClicked={colorBoxClicked}
+        defaultColorType={defaultColorType}
+        handleDefaultSelect={handleDefaultSelect}
+        handleSelectType={handleSelectType}
+      />
       <DateInput
         startDate={startDate}
         handleDateChange={handleDateChange}
         handleDateSelect={handleDateSelect}
       />
+
       <button className="submit" type="submit">
         Add new task
       </button>
@@ -87,53 +107,4 @@ function PopupForm() {
   );
 }
 
-export default PopupForm;
-
-function NewTask({ handleInputChange, todo }) {
-  return (
-    <div className="new-task-box flex v-center">
-      <input
-        type="text"
-        onChange={handleInputChange}
-        value={todo.task}
-        placeholder="New task"
-        className="text-input"
-        name="task"
-      />
-
-      <select
-        className="select-type"
-        onChange={handleInputChange}
-        value={todo.type}
-        name="type"
-      >
-        <option value="blue">blue</option>
-        <option value="purple">purple</option>
-        <option value="pink">pink</option>
-        <option value="orange">orange</option>
-      </select>
-
-      {/* <ul className="select-type">
-        <li className="type flex v-center">
-          <span className="color-box"></span>
-        </li>
-      </ul> */}
-    </div>
-  );
-}
-
-function DateInput({ startDate, handleDateSelect, handleDateChange }) {
-  return (
-    <div>
-      <DatePicker
-        selected={startDate}
-        onChange={handleDateChange}
-        onSelect={handleDateSelect}
-        showTimeInput
-        showWeekNumbers
-        shouldCloseOnSelect={false}
-        timeInputLabel="Time:"
-      />
-    </div>
-  );
-}
+export default AddNewTodoForm;

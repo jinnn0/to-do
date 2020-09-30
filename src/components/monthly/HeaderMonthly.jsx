@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { ReactComponent as Add } from "../../assets/icons/add.svg";
 import SelectView from "../shared/SelectView";
 import PopupForm from "../shared/PopupForm.jsx";
@@ -10,7 +10,7 @@ function HeaderMonthly({
   currentMonthName,
   selectedYear,
   moveToPrevMonth,
-  moveToNextMonth,
+  moveToNextMonth
 }) {
   const { handleClickAddButton } = useContext(GlobalContext);
 

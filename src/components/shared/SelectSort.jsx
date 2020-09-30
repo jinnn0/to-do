@@ -8,18 +8,18 @@ function SelectSort() {
   };
 
   return (
-    <div className="select-sort">
+    <div className="select-sort-container">
       <span className="sort-by-text">sort by</span>
       <select
-        className="select-dropdown"
+        className="select-sort"
         value={sortValue}
         onChange={handleSelectedSortChange}
       >
-        <option value="recent">By recent</option>
-        <option value="tag">By tag</option>
-        <option value="oldest">By oldest</option>
-        <option value="completed">By completed</option>
-        <option value="active">By active</option>
+        <option value="recent">recent</option>
+        <option value="tag">tag</option>
+        <option value="oldest">oldest</option>
+        <option value="completed">completed</option>
+        <option value="active">active</option>
       </select>
     </div>
   );

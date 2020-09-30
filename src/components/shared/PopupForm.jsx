@@ -17,8 +17,8 @@ function PopupForm() {
       month: d.getMonth(),
       year: d.getFullYear(),
       hour: d.getHours(),
-      minute: d.getMinutes(),
-    },
+      minute: d.getMinutes()
+    }
   });
 
   const handleInputChange = (e) => {
@@ -26,7 +26,7 @@ function PopupForm() {
 
     setTodo({
       ...todo,
-      [e.target.name]: value,
+      [e.target.name]: value
     });
   };
 
@@ -42,8 +42,8 @@ function PopupForm() {
         month: todo.dateInfo.month,
         year: todo.dateInfo.year,
         hour: todo.dateInfo.hour,
-        minute: todo.dateInfo.minute,
-      },
+        minute: todo.dateInfo.minute
+      }
     };
 
     addTodo(newTodo);
@@ -59,8 +59,8 @@ function PopupForm() {
         month: e.getMonth(),
         year: e.getFullYear(),
         hour: e.getHours(),
-        minute: e.getMinutes(),
-      },
+        minute: e.getMinutes()
+      }
     });
   };
 
@@ -96,13 +96,17 @@ function NewTask({ handleInputChange, todo }) {
         type="text"
         onChange={handleInputChange}
         value={todo.task}
-        type="text"
         placeholder="New task"
         className="text-input"
         name="task"
       />
 
-      <select onChange={handleInputChange} value={todo.type} name="type">
+      <select
+        className="select-type"
+        onChange={handleInputChange}
+        value={todo.type}
+        name="type"
+      >
         <option value="blue">blue</option>
         <option value="purple">purple</option>
         <option value="pink">pink</option>
@@ -129,7 +133,6 @@ function DateInput({ startDate, handleDateSelect, handleDateChange }) {
         showWeekNumbers
         shouldCloseOnSelect={false}
         timeInputLabel="Time:"
-        showTimeInput
       />
     </div>
   );

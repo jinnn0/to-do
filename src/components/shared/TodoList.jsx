@@ -32,10 +32,6 @@ function TodoList({ today, weekly }) {
     }
   };
 
-  for (let i = 0; i < 31; i++) {
-    // console.log("hello ", i, "->", i % 10)
-  }
-
   return (
     <ul className={"todo-list" + (weekly ? " sm" : "")}>
       {weekly ? (

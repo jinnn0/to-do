@@ -99,13 +99,18 @@
     display: flex;
     cursor: pointer;
 
-    .bin {
+    // bin / more icons
+    svg {
       margin: 0 1rem;
-      transition: background-color 0.08s ease-in-out;
+    }
 
-      &:hover {
-        background-color: rgb(255, 171, 171);
-      }
+    svg:hover {
+      color: $purple;
+      transition: background-color 0.08s ease-in-out;
+    }
+
+    svg:last-child {
+      margin: 0;
     }
   }
 

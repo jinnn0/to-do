@@ -14,7 +14,7 @@
   height: 100vh;
   padding-top: 72px;
   position: relative;
-  // background-color: white;
+  background-color: white;
 
   .time-display {
     height: 50px;
@@ -84,10 +84,12 @@
 
         .arrow {
           cursor: pointer;
+          font-size: 1.5rem;
+          color: rgba(0, 0, 0, 0.233);
         }
 
         .arrow-back {
-          margin-right: 1.3rem;
+          margin-right: 0.2rem;
         }
       }
     }

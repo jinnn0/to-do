@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
-import { ReactComponent as List } from "../../assets/icons/list.svg";
-import { ReactComponent as Inbox } from "../../assets/icons/inbox.svg";
-import { ReactComponent as Star } from "../../assets/icons/star.svg";
 import { ReactComponent as Adjust } from "../../assets/icons/adjust.svg";
-import { ReactComponent as Search } from "../../assets/icons/search.svg";
+import * as AiIcons from "react-icons/ai";
+import { FiInbox } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalState";
 
@@ -13,13 +11,13 @@ function Nav() {
   const Links = [
     {
       path: `/${selectedView}`,
-      icon: <List />
+      icon: <AiIcons.AiOutlineUnorderedList />
     },
     {
       path: "/inbox",
-      icon: <Inbox />
+      icon: <FiInbox />
     },
-    { path: "/", icon: <Star /> }
+    { path: "/", icon: <AiIcons.AiOutlineStar /> }
   ];
 
   return (
@@ -57,7 +55,7 @@ function Nav() {
             className="icon flex center"
             activeClassName=" selected"
           >
-            <Search />
+            <AiIcons.AiOutlineSearch />
           </NavLink>
         </li>
       </ul>

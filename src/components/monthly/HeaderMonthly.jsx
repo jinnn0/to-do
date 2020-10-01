@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import { ReactComponent as Add } from "../../assets/icons/add.svg";
 import SelectView from "../shared/SelectView";
 import AddNewTodoForm from "../shared/AddNewTodoForm.jsx";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import { MdKeyboardArrowRight } from "react-icons/md";
+import * as MdIcons from "react-icons/md";
 import { GlobalContext } from "../../contexts/GlobalState";
 
 function HeaderMonthly({
@@ -22,11 +21,11 @@ function HeaderMonthly({
         </div>
 
         <div className="row-1__2 arrows">
-          <MdKeyboardArrowLeft
+          <MdIcons.MdKeyboardArrowLeft
             className="arrow arrow-back"
             onClick={moveToPrevMonth}
           />
-          <MdKeyboardArrowRight
+          <MdIcons.MdKeyboardArrowRight
             className="arrow arrow-next"
             onClick={moveToNextMonth}
           />

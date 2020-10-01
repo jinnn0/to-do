@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { ReactComponent as More } from "../../assets/icons/more.svg";
-import { ReactComponent as Bin } from "../../assets/icons/bin.svg";
+import { CgTrash } from "react-icons/cg";
+import { AiOutlineMore } from "react-icons/ai";
 import { GlobalContext } from "../../contexts/GlobalState";
 
 function TodoItem({ todo, weekly }) {
@@ -46,8 +46,8 @@ function TodoItem({ todo, weekly }) {
         <span className="task">{todo.task}</span>
       </div>
       <div className="more">
-        <Bin className="bin" onClick={() => removeTodo(todo.id)} />
-        <More />
+        <CgTrash onClick={() => removeTodo(todo.id)} />
+        <AiOutlineMore />
       </div>
     </li>
   );

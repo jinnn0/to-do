@@ -12,8 +12,6 @@ function Home() {
     <div className="home container">
       <TimeDisplay />
       <HomeMain />
-      {/* <div className="background-circle one"></div>
-      <div className="background-circle two"></div> */}
     </div>
   );
 }

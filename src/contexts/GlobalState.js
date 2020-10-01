@@ -86,7 +86,7 @@ export const GlobalContextProvider = (props) => {
 
   // view state (daily / weekly / monthly)
   const initialViewValue =
-    JSON.parse(localStorage.getItem("selected-view")) || "/daily";
+    JSON.parse(localStorage.getItem("selected-view")) || "daily";
   const [selectedView, setSelectedView] = useState(initialViewValue);
 
   useEffect(() => {

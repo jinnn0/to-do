@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
-import { FiPlus } from "react-icons/fi";
-
 import AddNewTodoForm from "./AddNewTodoForm";
 import SelectView from "./SelectView";
 import SelectSort from "./SelectSort";
 import { GlobalContext } from "../../contexts/GlobalState";
+import { FiPlus } from "react-icons/fi";
 
 function HeaderShared({ title }) {
-  const { handleClickAddButton } = useContext(GlobalContext);
+  const { handleClickAddNewTodoButton } = useContext(GlobalContext);
 
   return (
     <div className="header">
@@ -26,7 +25,7 @@ function HeaderShared({ title }) {
       </div>
 
       <div className="row-2-col-2">
-        <FiPlus className="add-icon" onClick={handleClickAddButton} />
+        <FiPlus className="add-icon" onClick={handleClickAddNewTodoButton} />
         <AddNewTodoForm />
       </div>
     </div>

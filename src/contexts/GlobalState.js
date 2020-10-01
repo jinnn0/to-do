@@ -84,9 +84,9 @@ export const GlobalContextProvider = (props) => {
     setTodoList(updatedTodo);
   };
 
-  // view state
+  // view state (daily / weekly / monthly)
   const initialViewValue =
-    JSON.parse(localStorage.getItem("selected-view")) || "daily";
+    JSON.parse(localStorage.getItem("selected-view")) || "/daily";
   const [selectedView, setSelectedView] = useState(initialViewValue);
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export const GlobalContextProvider = (props) => {
 
   // add new todo button state
   const [addButtonClicked, setAddButtonClicked] = useState(false);
-  const handleClickAddButton = () => {
+  const handleClickAddNewTodoButton = () => {
     setAddButtonClicked(!addButtonClicked);
   };
   const handleClickOutsideAddButton = (e) => {
@@ -156,7 +156,7 @@ export const GlobalContextProvider = (props) => {
     updateSortValue,
     addButtonClicked,
     setAddButtonClicked,
-    handleClickAddButton,
+    handleClickAddNewTodoButton,
     handleClickOutsideAddButton,
     sortedTodoList
   };

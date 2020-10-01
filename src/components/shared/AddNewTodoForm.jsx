@@ -25,9 +25,9 @@ function AddNewTodoForm() {
     task: "",
     type: defaultColorType,
     dateInfo: {
-      date: d.getDate(),
-      month: d.getMonth(),
       year: d.getFullYear(),
+      month: d.getMonth(),
+      date: d.getDate(),
       hour: d.getHours(),
       minute: d.getMinutes()
     }
@@ -50,9 +50,9 @@ function AddNewTodoForm() {
       completed: false,
       type: defaultColorType,
       dateInfo: {
-        date: todo.dateInfo.date,
-        month: todo.dateInfo.month,
         year: todo.dateInfo.year,
+        month: todo.dateInfo.month,
+        date: todo.dateInfo.date,
         hour: todo.dateInfo.hour,
         minute: todo.dateInfo.minute
       }
@@ -67,9 +67,9 @@ function AddNewTodoForm() {
     setTodo({
       ...todo,
       dateInfo: {
-        date: e.getDate(),
-        month: e.getMonth(),
         year: e.getFullYear(),
+        month: e.getMonth(),
+        date: e.getDate(),
         hour: e.getHours(),
         minute: e.getMinutes()
       }

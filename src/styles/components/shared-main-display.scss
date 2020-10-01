@@ -198,7 +198,6 @@
   }
 
   // select color type
-
   .select-container {
     width: 43px;
     width: 63px;
@@ -236,14 +235,18 @@
     }
 
     .select-ul {
-      width: 160px;
+      width: 130px;
       position: absolute;
       top: -100%;
-      left: 50px;
+      left: -20px;
       background: white;
       border-radius: 5px;
       border: 1px solid rgba(0, 0, 0, 0.062);
       display: none;
+
+      @media (min-width: 500px) {
+        left: 50px;
+      }
 
       li {
         width: 100%;

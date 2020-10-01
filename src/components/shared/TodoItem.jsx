@@ -1,44 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import todoListAnimation from "../../animations/todoListAnimation";
 import { CgTrash } from "react-icons/cg";
 import { AiOutlineMore } from "react-icons/ai";
 import { GlobalContext } from "../../contexts/GlobalState";
 
-function TodoItem({ todo, weekly }) {
+function TodoItem({ todo, size }) {
   const { removeTodo, toggleComplete } = useContext(GlobalContext);
 
-  let typeBar;
-  let checkBoxColor;
-  if (todo.type === "important") {
-    typeBar = "#6966ff";
-    checkBoxColor = "#6966ff";
-  } else if (todo.type === "work") {
-    typeBar = "#75cdff";
-    checkBoxColor = "#75cdff";
-  } else if (todo.type === "study") {
-    typeBar = "#ffb8c0";
-    checkBoxColor = "#ffb8c0";
-  } else if (todo.type === "other") {
-    typeBar = "#ffaf75";
-    checkBoxColor = "#ffaf75";
-  }
-
-  const typeBarColor = {
-    backgroundColor: typeBar
-  };
-
-  const checkBoxCompleted = {
-    backgroundColor: todo.completed ? checkBoxColor : ""
-  };
+  useEffect(() => {
+    todoListAnimation();
+  }, [todo]);
 
   return (
-    <li className={"todo-item flex v-center" + (weekly ? " sm" : " md")}>
+    <li className={"todo-item flex v-center " + size}>
       <div>
-        <span className="type-bar" style={typeBarColor}></span>
+        <span className={"type-bar " + todo.type}></span>
       </div>
       <div>
         <span
-          className={"checkbox" + (todo.completed ? " completed" : "")}
-          style={checkBoxCompleted}
+          className={
+            "checkbox " + (todo.completed ? "completed " + todo.type : "")
+          }
           onClick={() => toggleComplete(todo.id)}
         ></span>
       </div>

@@ -10,59 +10,43 @@ export const GlobalContextProvider = (props) => {
     date: new Date().getDate()
   };
 
-  // todolist state
-  const initialTodoList = JSON.parse(localStorage.getItem("todo-list-app")) || [
-    {
-      task: "What is your todo today ?",
-      type: "important",
-      dateInfo: {
-        year: today.year,
-        month: today.month,
-        date: today.date
-      }
-    },
-    {
-      task: "New task tomorrow",
-      type: "work",
-      dateInfo: {
-        year: today.year,
-        month: today.month,
-        date: today.date + 1
-      }
-    },
-    {
-      task: "Weekly plan",
-      type: "study",
-      dateInfo: {
-        year: today.year,
-        month: today.month,
-        date: today.date + 2
-      }
-    },
-    {
-      task: "2 hours study session",
-      type: "other",
-      dateInfo: {
-        year: today.year,
-        month: today.month,
-        date: today.date
-      }
-    },
-    {
-      task: "Learn web dev",
-      type: "important",
-      dateInfo: {
-        year: today.year,
-        month: today.month,
-        date: today.date + 3
-      }
+  // sample todoList
+  // prettier-ignore
+  const sampleTasks = ["Get groceries for dinner", "Daily web development", "Home exercise at 6pm", "Call Daniel for meeting", "House cleaning", "Tennis practice", "Do lundary", "Email Noah for update", "Finish monthly growth report", "Send in cacenllation letter", "Figure our vacation destination", "Fill in scholarship application" ]
+  const todoTypes = ["important", "work", "study", "other"];
+
+  const sampleTodoList = sampleTasks.map((task, index) => {
+    let randomDate;
+    let randomType;
+    if (index < 2) {
+      randomDate = today.date;
+      randomType = todoTypes[0];
+    } else {
+      randomDate = today.date * (Math.floor(Math.random() * 7) + 1);
+      randomType = todoTypes[Math.floor(Math.random() * 4)];
     }
-  ];
+
+    return {
+      id: task,
+      task: task,
+      completed: Math.random() >= 0.5,
+      type: randomType,
+      dateInfo: {
+        year: today.year,
+        month: today.month,
+        date: randomDate
+      }
+    };
+  });
+
+  // todoList state
+  const initialTodoList =
+    JSON.parse(localStorage.getItem("to-do-list")) || sampleTodoList;
 
   const [todoList, setTodoList] = useState(initialTodoList);
 
   useEffect(() => {
-    localStorage.setItem("todo-list-app", JSON.stringify(todoList));
+    localStorage.setItem("to-do-list", JSON.stringify(todoList));
   }, [todoList]);
 
   const addTodo = (newTodo) => {
@@ -97,7 +81,7 @@ export const GlobalContextProvider = (props) => {
     setSelectedView(newValue);
   };
 
-  // sort state
+  // sort state (recent / tag / oldest / completed / active)
   const initialSortValue =
     JSON.parse(localStorage.getItem("sort-value")) || "recent";
   const [sortValue, setSortValue] = useState(initialSortValue);
@@ -126,7 +110,7 @@ export const GlobalContextProvider = (props) => {
     }
   };
 
-  // sort list
+  // sorted list
   let sortedTodoList = todoList.filter((todo) => {
     if (
       sortValue === "recent" ||

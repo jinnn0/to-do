@@ -17,7 +17,7 @@ function SelectView({ history, location }) {
   useEffect(() => {
     const currentView = location.pathname.slice(1, location.pathname.length);
     updateSelectedView(currentView);
-  }, [selectedView]);
+  }, []);
 
   return (
     <select

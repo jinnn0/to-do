@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import todoListAnimation from "../../animations/todoListAnimation";
+import React, { useContext } from "react";
 import TodoItem from "./TodoItem.jsx";
 import { GlobalContext } from "../../contexts/GlobalState";
 
-function TodoList({ today, weekly }) {
+function TodoList({ today, size }) {
   const { sortedTodoList } = useContext(GlobalContext);
 
   const todoForToday = sortedTodoList.filter((todo) => {
@@ -13,10 +12,6 @@ function TodoList({ today, weekly }) {
       todo.dateInfo.date === today.date
     );
   });
-
-  useEffect(() => {
-    todoListAnimation();
-  }, [sortedTodoList]);
 
   const getOrdinalNum = function (today) {
     if (today.date > 3 && today.date < 21) return "th";
@@ -33,8 +28,8 @@ function TodoList({ today, weekly }) {
   };
 
   return (
-    <ul className={"todo-list" + (weekly ? " sm" : "")}>
-      {weekly ? (
+    <ul className={"todo-list " + size}>
+      {size === "sm" ? (
         <h2>
           {today.day} <span className="date">{today.date}</span>
           <span className="date-ordinal">{getOrdinalNum(today)}</span>{" "}
@@ -43,7 +38,7 @@ function TodoList({ today, weekly }) {
         ""
       )}
       {todoForToday.map((todo, index) => (
-        <TodoItem key={index} todo={todo} weekly={weekly} />
+        <TodoItem key={index} todo={todo} size={size} />
       ))}
     </ul>
   );

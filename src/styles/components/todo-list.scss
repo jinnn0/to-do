@@ -11,7 +11,7 @@
     width: 100%;
 
     @media (min-width: 750px) {
-      min-width: 350px;
+      min-width: 360px;
     }
 
     @media (min-width: 900px) {
@@ -76,15 +76,31 @@
     display: inline-block;
     cursor: pointer;
     transition: background-color 0.05s linear;
+  }
 
-    &.completed {
-      background-color: $purple;
-      background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M13.613%2027.068l-7.94-7.28q-.285-.267-.442-.613t-.172-.7.11-.71.394-.638q.52-.583%201.3-.614T8.225%2017l6.13%205.626%208.79-17q.363-.693%201.104-.93t1.433.118.93%201.103-.126%201.442L16.56%2026.55q-.204.394-.558.654t-.78.34q-.063.015-.118.023t-.11.008-.102%200q-.74%200-1.276-.504z%22%20fill%3D%22%23FFF%22/%3E%3C/svg%3E);
-      border: none;
-      background-size: 10px; // default
-      background-repeat: no-repeat;
-      background-position: center center;
-    }
+  .completed {
+    background-color: $purple;
+    background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M13.613%2027.068l-7.94-7.28q-.285-.267-.442-.613t-.172-.7.11-.71.394-.638q.52-.583%201.3-.614T8.225%2017l6.13%205.626%208.79-17q.363-.693%201.104-.93t1.433.118.93%201.103-.126%201.442L16.56%2026.55q-.204.394-.558.654t-.78.34q-.063.015-.118.023t-.11.008-.102%200q-.74%200-1.276-.504z%22%20fill%3D%22%23FFF%22/%3E%3C/svg%3E);
+    border: none;
+    background-size: 10px; // default
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .important {
+    background-color: $purple;
+  }
+
+  .work {
+    background-color: $blue;
+  }
+
+  .study {
+    background-color: $pink;
+  }
+
+  .other {
+    background-color: $orange;
   }
 
   .task {
@@ -112,6 +128,10 @@
     svg:last-child {
       margin: 0;
     }
+  }
+
+  &.sm {
+    max-width: 520px;
   }
 
   &.md {

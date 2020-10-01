@@ -11,7 +11,7 @@ function Daily() {
     <div className="daily" onClick={handleClickOutsideAddButton}>
       <div className="main-display container">
         <HeaderShared title={"Today"} />
-        <TodoList today={today} />
+        <TodoList today={today} size="md" />
       </div>
       <div className="side-display"></div>
     </div>

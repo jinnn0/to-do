@@ -20,7 +20,7 @@ function Weekly() {
       year: nextDayConstructor.getFullYear(),
       month: nextDayConstructor.getMonth(),
       date: nextDayConstructor.getDate(),
-      day: nextDayConstructor.toLocaleString("default", { weekday: "long" }),
+      day: nextDayConstructor.toLocaleString("default", { weekday: "long" })
     };
 
     counter++;
@@ -36,7 +36,7 @@ function Weekly() {
         <HeaderShared title={"Weekly"} />
         <div className="weekly-list">
           {thisWeek.map((today) => (
-            <TodoList key={today.date} today={today} weekly />
+            <TodoList key={today.date} today={today} size="sm" />
           ))}
 
           {/* needed for extra space at the end of weekly-list */}

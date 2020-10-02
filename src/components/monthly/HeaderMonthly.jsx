@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { ReactComponent as Add } from "../../assets/icons/add.svg";
 import SelectView from "../shared/SelectView";
 import AddNewTodoForm from "../shared/AddNewTodoForm.jsx";
 import * as MdIcons from "react-icons/md";
+import { FiPlus } from "react-icons/fi";
 import { GlobalContext } from "../../contexts/GlobalState";
 
 function HeaderMonthly({
@@ -11,7 +11,7 @@ function HeaderMonthly({
   moveToPrevMonth,
   moveToNextMonth
 }) {
-  const { handleClickAddButton } = useContext(GlobalContext);
+  const { handleClickAddNewTodoButton } = useContext(GlobalContext);
 
   return (
     <div className="header">
@@ -37,7 +37,7 @@ function HeaderMonthly({
       </div>
 
       <div className="row-2-col-2">
-        <Add onClick={handleClickAddButton} />
+        <FiPlus className="add-icon" onClick={handleClickAddNewTodoButton} />
         <AddNewTodoForm />
       </div>
 

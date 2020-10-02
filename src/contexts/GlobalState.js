@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
+import { RiDivideFill } from "react-icons/ri";
 
 export const GlobalContext = createContext();
 
@@ -96,19 +97,15 @@ export const GlobalContextProvider = (props) => {
 
   // add new todo button state
   const [addButtonClicked, setAddButtonClicked] = useState(false);
+
   const handleClickAddNewTodoButton = () => {
     setAddButtonClicked(!addButtonClicked);
   };
+
   const handleClickOutsideAddButton = (e) => {
-    if (
-      addButtonClicked &&
-      e.target.className !== "svg" &&
-      e.target.nodeName !== "FORM" &&
-      e.target.nodeName !== "INPUT"
-    ) {
+    if (addButtonClicked) {
       setAddButtonClicked(!addButtonClicked);
     }
-    setAddButtonClicked(!addButtonClicked);
   };
 
   // sorted list

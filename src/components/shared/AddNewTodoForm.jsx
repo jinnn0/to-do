@@ -84,6 +84,9 @@ function AddNewTodoForm() {
     <form
       action=""
       onSubmit={handleSubmit}
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
       className={"add-new-todo-form" + (addButtonClicked ? " show-form" : "")}
     >
       <NewTodo

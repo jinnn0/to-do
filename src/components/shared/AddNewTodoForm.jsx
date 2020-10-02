@@ -19,7 +19,7 @@ function AddNewTodoForm() {
   };
 
   const { addTodo } = useContext(GlobalContext);
-  const { addButtonClicked, setAddButtonClicked } = useContext(GlobalContext);
+  const { addNewTodoButtonClicked, setAddNewTodoButtonClicked } = useContext(GlobalContext);
   const [startDate, setStartDate] = useState(new Date());
   const [todo, setTodo] = useState({
     task: '',
@@ -60,7 +60,7 @@ function AddNewTodoForm() {
 
     addTodo(newTodo);
     setTodo({ ...todo, task: '' });
-    setAddButtonClicked(!addButtonClicked);
+    setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
   };
 
   const handleDateChange = (e) => {
@@ -87,7 +87,7 @@ function AddNewTodoForm() {
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={'add-new-todo-form' + (addButtonClicked ? ' show-form' : '')}
+      className={'add-new-todo-form' + (addNewTodoButtonClicked ? ' show-add-new-todo-form' : '')}
     >
       <NewTodo
         handleInputChange={handleInputChange}

@@ -12,7 +12,7 @@
     height: var(--nav-height-bg);
   }
 
-  // nav link icons
+  /* nav link icons */
   svg {
     color: black;
     font-size: 1.1rem;
@@ -38,7 +38,7 @@
         margin-right: 0;
       }
       &.selected::before {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         width: 100%;

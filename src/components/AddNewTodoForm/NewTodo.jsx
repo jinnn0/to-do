@@ -23,8 +23,8 @@ function NewTodo({
         name="task"
       />
 
-      <div className="select-container">
-        <ul className="default-option" onClick={handleDefaultSelect}>
+      <div className="select-type-container">
+        <ul className="select-type-default-ul" onClick={handleDefaultSelect}>
           <li>
             <span className={'color-box ' + defaultColorType}></span>
             <span className="arrow-down">
@@ -33,7 +33,10 @@ function NewTodo({
           </li>
         </ul>
 
-        <ul className={'select-ul ' + (colorBoxClicked ? 'show-dropdown' : '')} onClick={handleSelectType}>
+        <ul
+          className={'select-type-dropdown-ul ' + (colorBoxClicked ? 'show-dropdown' : '')}
+          onClick={handleSelectType}
+        >
           {colorTypeList.map((colorType) => (
             <SelectColorTypeList key={colorType} defaultColorType={defaultColorType} colorType={colorType} />
           ))}

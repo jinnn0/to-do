@@ -1,4 +1,4 @@
-// todo list
+/* todo list */
 .todo-list {
   position: relative;
   padding: 2.5rem 0;
@@ -39,7 +39,7 @@
   }
 }
 
-// todo item
+/* todo item */
 .todo-item {
   min-height: 25px;
   margin-bottom: 1rem;
@@ -47,11 +47,11 @@
   border-radius: 30px;
   background-color: white;
   box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.111);
-  transform: translateY(30px); // animation
+  transform: translateY(30px); /* animation */
 
   div:nth-child(2) {
-    width: 20px; // giving it a fixed width won't allow
-    margin-right: 0.5rem; // the div to move when checkbox is clicked
+    width: 20px; /* giving it a fixed width won't allow */
+    margin-right: 0.5rem; /* the div to move when checkbox is clicked */
 
     @media (min-width: 750px) {
       margin-right: 1rem;
@@ -82,7 +82,7 @@
     background-color: $purple;
     background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M13.613%2027.068l-7.94-7.28q-.285-.267-.442-.613t-.172-.7.11-.71.394-.638q.52-.583%201.3-.614T8.225%2017l6.13%205.626%208.79-17q.363-.693%201.104-.93t1.433.118.93%201.103-.126%201.442L16.56%2026.55q-.204.394-.558.654t-.78.34q-.063.015-.118.023t-.11.008-.102%200q-.74%200-1.276-.504z%22%20fill%3D%22%23FFF%22/%3E%3C/svg%3E);
     border: none;
-    background-size: 10px; // default
+    background-size: 10px; /* default */
     background-repeat: no-repeat;
     background-position: center center;
   }
@@ -115,7 +115,7 @@
     display: flex;
     cursor: pointer;
 
-    // bin / more icons
+    /* bin / more icons */
     svg {
       margin: 0 1rem;
     }

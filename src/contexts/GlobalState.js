@@ -1,5 +1,4 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { RiDivideFill } from 'react-icons/ri';
 
 export const GlobalContext = createContext();
 
@@ -93,15 +92,15 @@ export const GlobalContextProvider = (props) => {
   };
 
   // add new todo button state
-  const [addButtonClicked, setAddButtonClicked] = useState(false);
+  const [addNewTodoButtonClicked, setAddNewTodoButtonClicked] = useState(false);
 
   const handleClickAddNewTodoButton = () => {
-    setAddButtonClicked(!addButtonClicked);
+    setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
   };
 
-  const handleClickOutsideAddButton = (e) => {
-    if (addButtonClicked) {
-      setAddButtonClicked(!addButtonClicked);
+  const handleClickOutsideAddButton = () => {
+    if (addNewTodoButtonClicked) {
+      setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
     }
   };
 
@@ -129,8 +128,8 @@ export const GlobalContextProvider = (props) => {
     updateSelectedView,
     sortValue,
     updateSortValue,
-    addButtonClicked,
-    setAddButtonClicked,
+    addNewTodoButtonClicked,
+    setAddNewTodoButtonClicked,
     handleClickAddNewTodoButton,
     handleClickOutsideAddButton,
     sortedTodoList

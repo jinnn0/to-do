@@ -1,6 +1,4 @@
-// shared styles
-// select input, add new todo form
-// select default styles
+/* default styles for select-view and select-sort */
 select {
   width: 70px;
   border: 1px solid #aaa;
@@ -12,7 +10,7 @@ select {
   -webkit-appearance: none;
   outline: none;
   background-color: white;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
   background-position: right 0.7rem top 50%;
   background-size: 0.65em auto, 100%;
@@ -23,12 +21,10 @@ select::-ms-expand {
   display: none;
 }
 
-// add-icon
-.add-icon {
-  cursor: pointer;
-}
-
-// add-new-todo-form
+/*
+ add-new-todo-form
+ shred between pages (home, daily, weekly, monthly)
+*/
 .add-new-todo-form {
   width: 250px;
   height: 250px;
@@ -45,7 +41,7 @@ select::-ms-expand {
   z-index: 1;
   display: none;
 
-  &.show-form {
+  &.show-add-new-todo-form {
     display: flex;
   }
 
@@ -75,6 +71,87 @@ select::-ms-expand {
     }
   }
 
+  /* select color type */
+  .select-type-container {
+    width: 43px;
+    width: 63px;
+    height: 20px;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.247);
+    border-radius: 3px;
+
+    .color-box {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      margin-right: 3px;
+    }
+
+    .color-box.important {
+      background-color: $purple;
+    }
+
+    .color-box.work {
+      background-color: $blue;
+    }
+
+    .color-box.study {
+      background-color: $pink;
+    }
+
+    .color-box.other {
+      background-color: $orange;
+    }
+
+    .select-type-default-ul {
+      padding-left: 5px;
+    }
+
+    .select-type-dropdown-ul {
+      width: 130px;
+      position: absolute;
+      top: -100%;
+      left: -20px;
+      background: white;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.062);
+      display: none;
+
+      @media (min-width: 500px) {
+        left: 50px;
+      }
+
+      li {
+        width: 100%;
+        height: 24px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        background-color: white;
+        cursor: pointer;
+
+        .checked-icon-container {
+          display: inline-block;
+          width: 30px;
+          text-align: center;
+        }
+
+        span {
+          pointer-events: none;
+        }
+
+        &:hover {
+          background: #00000009;
+        }
+      }
+    }
+
+    .show-dropdown {
+      display: block;
+    }
+  }
+
   .submit {
     margin-top: auto;
     background-color: white;
@@ -90,101 +167,20 @@ select::-ms-expand {
       color: white;
     }
   }
-}
 
-// small tail on the right border
-.add-new-todo-form:before {
-  content: "";
-  display: block;
-  width: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: -15px;
-  border-color: rgba(0, 0, 0, 0) $form-bg;
-  border-style: solid;
-  border-width: 15px;
-  border-right-width: 0;
-}
-
-// select color type
-.select-container {
-  width: 43px;
-  width: 63px;
-  height: 20px;
-  position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.247);
-  border-radius: 3px;
-
-  .color-box {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-    margin-right: 3px;
-  }
-
-  .color-box.important {
-    background-color: $purple;
-  }
-
-  .color-box.work {
-    background-color: $blue;
-  }
-
-  .color-box.study {
-    background-color: $pink;
-  }
-
-  .color-box.other {
-    background-color: $orange;
-  }
-
-  .default-option {
-    padding-left: 5px;
-  }
-
-  .select-ul {
-    width: 130px;
-    position: absolute;
-    top: -100%;
-    left: -20px;
-    background: white;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.062);
-    display: none;
-
-    @media (min-width: 500px) {
-      left: 50px;
-    }
-
-    li {
-      width: 100%;
-      height: 24px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      background-color: white;
-      cursor: pointer;
-
-      .checked-icon-container {
-        display: inline-block;
-        width: 30px;
-        text-align: center;
-      }
-
-      span {
-        pointer-events: none;
-      }
-
-      &:hover {
-        background: #00000009;
-      }
-    }
-  }
-
-  .show-dropdown {
+  /* small tail on the right border */
+  &:before {
+    content: '';
     display: block;
+    width: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -15px;
+    border-color: rgba(0, 0, 0, 0) $form-bg;
+    border-style: solid;
+    border-width: 15px;
+    border-right-width: 0;
   }
 }
 
@@ -195,7 +191,7 @@ select::-ms-expand {
   padding-top: var(--nav-height-sm);
   display: flex;
   background-color: white;
-  // opacity: 0;
+  /* opacity: 0; */
 
   @media (min-width: 750px) {
     padding-top: var(--nav-height-bg);
@@ -208,17 +204,21 @@ select::-ms-expand {
       flex-basis: 75%;
     }
 
-    // header items layout
+    /* header items layout */
     .header {
       height: var(--header-height);
       position: relative;
       display: flex;
       flex-wrap: wrap;
-      // (header-height (120px) - flex-1 height(51.88px) /2)
-      padding-top: 34.06px;
+      padding-top: 34.06px; /* (header-height (120px) - flex-1 height(51.88px) /2) */
 
       @media (min-width: 550px) {
         padding-top: 0;
+      }
+
+      .title {
+        margin-right: 1rem;
+        font-size: 2rem;
       }
 
       .row-1,
@@ -258,12 +258,10 @@ select::-ms-expand {
           flex-basis: auto;
         }
       }
-    }
 
-    // title
-    .title {
-      margin-right: 1rem;
-      font-size: 2rem;
+      .add-new-todo-icon {
+        cursor: pointer;
+      }
     }
 
     .select-sort-container {
@@ -282,7 +280,7 @@ select::-ms-expand {
     }
   }
 
-  // side display
+  /* side display */
   .side-display {
     height: calc(100vh - var(--nav-height-sm));
     background-color: rgb(250, 250, 250);

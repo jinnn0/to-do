@@ -1,15 +1,3 @@
-// .home {
-//   background-color: aquamarine;
-// }
-
-// .time-display {
-//   background-color: yellow;
-// }
-
-// .home-main-container {
-//   background-color: bisque;
-// }
-
 .home {
   height: 100vh;
   padding-top: 72px;
@@ -48,8 +36,6 @@
     top: 0;
     left: 0;
     padding: 0 20px;
-
-    // background-color: rgb(167, 255, 226);
 
     @media (min-width: 900px) {
       padding: 0 50px;
@@ -97,9 +83,8 @@
           width: 500px;
         }
 
-        // remove box tail on home page
         &:before {
-          display: none;
+          display: none; /* remove box tail on home page */
         }
       }
 

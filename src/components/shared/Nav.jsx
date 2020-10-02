@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { ReactComponent as Adjust } from '../../assets/icons/adjust.svg';
 import * as AiIcons from 'react-icons/ai';
 import { FiInbox } from 'react-icons/fi';
-import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function Nav() {

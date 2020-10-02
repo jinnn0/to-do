@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { HashRouter } from "react-router-dom";
-import { GlobalContextProvider } from "./contexts/GlobalState";
-import * as serviceWorker from "./serviceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { HashRouter } from 'react-router-dom';
+import { GlobalContextProvider } from './contexts/GlobalState';
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <HashRouter basename="/">
@@ -11,7 +11,7 @@ ReactDOM.render(
       <App />
     </GlobalContextProvider>
   </HashRouter>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

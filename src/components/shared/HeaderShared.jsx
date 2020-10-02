@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import AddNewTodoForm from "./AddNewTodoForm";
-import SelectView from "./SelectView";
-import SelectSort from "./SelectSort";
-import { GlobalContext } from "../../contexts/GlobalState";
-import { FiPlus } from "react-icons/fi";
+import React, { useContext } from 'react';
+import AddNewTodoForm from './AddNewTodoForm';
+import SelectView from './SelectView';
+import SelectSort from './SelectSort';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { FiPlus } from 'react-icons/fi';
 
 function HeaderShared({ title }) {
   const { handleClickAddNewTodoButton } = useContext(GlobalContext);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 function TimeDisplay() {
   let [currentTime, setCurrentTime] = useState({
@@ -14,9 +14,8 @@ function TimeDisplay() {
   }, [currentTime.minute]);
 
   const updateCurrentTime = () => {
-    // prettier-ignore
-    let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     let d = new Date();
     let current = {
@@ -33,10 +32,7 @@ function TimeDisplay() {
   return (
     <div className="time-display">
       <div className="time">
-        {currentTime.hour}:
-        {currentTime.minute < 10
-          ? "0" + currentTime.minute
-          : currentTime.minute}
+        {currentTime.hour}:{currentTime.minute < 10 ? '0' + currentTime.minute : currentTime.minute}
       </div>
       <div className="day">
         {currentTime.day}, {currentTime.month}

@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import TodoList from "../components/shared/TodoList.jsx";
-import HeaderShared from "../components/shared/HeaderShared";
-import { GlobalContext } from "../contexts/GlobalState";
+import React, { useContext } from 'react';
+import TodoList from '../components/shared/TodoList.jsx';
+import HeaderShared from '../components/shared/HeaderShared';
+import { GlobalContext } from '../contexts/GlobalState';
 
 function Daily() {
   const { today } = useContext(GlobalContext);
@@ -10,7 +10,7 @@ function Daily() {
   return (
     <div className="daily" onClick={handleClickOutsideAddButton}>
       <div className="main-display container">
-        <HeaderShared title={"Today"} />
+        <HeaderShared title={'Today'} />
         <TodoList today={today} size="md" />
       </div>
       <div className="side-display"></div>

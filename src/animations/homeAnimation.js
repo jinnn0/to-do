@@ -1,11 +1,11 @@
-import gsap from "gsap";
+import gsap from 'gsap';
 
 const homeAnimation = () => {
   const tl = gsap.timeline();
 
-  tl.to(".home-main", {
+  tl.to('.home-main', {
     duration: 0.8,
-    ease: "back.out",
+    ease: 'back.out',
     opacity: 1,
     y: -50
   });

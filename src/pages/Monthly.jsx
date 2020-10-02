@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
-import HeaderMonthly from "../components/monthly/HeaderMonthly";
-import Calendar from "../components/monthly/Calendar";
-import { GlobalContext } from "../contexts/GlobalState";
+import React, { useState, useContext } from 'react';
+import HeaderMonthly from '../components/monthly/HeaderMonthly';
+import Calendar from '../components/monthly/Calendar';
+import { GlobalContext } from '../contexts/GlobalState';
 
 function Monthly() {
   const { today } = useContext(GlobalContext);

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import homeAnimation from "../animations/homeAnimation";
-import TimeDisplay from "../components/home/TimeDisplay";
-import HomeMain from "../components/home/HomeMain";
+import React, { useEffect } from 'react';
+import homeAnimation from '../animations/homeAnimation';
+import TimeDisplay from '../components/home/TimeDisplay';
+import HomeMain from '../components/home/HomeMain';
 
 function Home() {
   useEffect(() => {

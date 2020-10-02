@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { withRouter } from "react-router-dom";
-import { GlobalContext } from "../../contexts/GlobalState";
+import React, { useContext, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function SelectView({ history, location }) {
   const { selectedView, updateSelectedView } = useContext(GlobalContext);
@@ -20,11 +20,7 @@ function SelectView({ history, location }) {
   }, []);
 
   return (
-    <select
-      className="select-view"
-      value={selectedView}
-      onChange={handleSelectedViewChange}
-    >
+    <select className="select-view" value={selectedView} onChange={handleSelectedViewChange}>
       <option value="daily">Day</option>
       <option value="weekly">Week</option>
       <option value="monthly">Month</option>

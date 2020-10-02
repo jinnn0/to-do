@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
-import AddNewTodoForm from "../shared/AddNewTodoForm";
-import * as MdIcons from "react-icons/md";
-import TodoItem from "../shared/TodoItem";
-import { GlobalContext } from "../../contexts/GlobalState";
+import React, { useState, useContext } from 'react';
+import AddNewTodoForm from '../shared/AddNewTodoForm';
+import * as MdIcons from 'react-icons/md';
+import TodoItem from '../shared/TodoItem';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function HomeMain() {
   const { todoList, today } = useContext(GlobalContext);
@@ -30,11 +30,7 @@ function HomeMain() {
           {focusOnThisTodo ? (
             <>
               <h1 className="title">Focus on this now</h1>
-              <TodoItem
-                key={focusOnThisTodo.id}
-                todo={focusOnThisTodo}
-                size="lg"
-              />
+              <TodoItem key={focusOnThisTodo.id} todo={focusOnThisTodo} size="lg" />
               <div className="arrows flex">
                 <MdIcons.MdKeyboardArrowLeft className="arrow arrow-back" />
                 <MdIcons.MdKeyboardArrowRight className="arrow arrow-next" />

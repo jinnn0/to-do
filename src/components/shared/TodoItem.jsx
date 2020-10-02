@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import todoListAnimation from "../../animations/todoListAnimation";
-import { CgTrash } from "react-icons/cg";
-import { AiOutlineMore } from "react-icons/ai";
-import { GlobalContext } from "../../contexts/GlobalState";
+import React, { useContext, useEffect } from 'react';
+import todoListAnimation from '../../animations/todoListAnimation';
+import { CgTrash } from 'react-icons/cg';
+import { AiOutlineMore } from 'react-icons/ai';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function TodoItem({ todo, size }) {
   const { removeTodo, toggleComplete } = useContext(GlobalContext);
@@ -12,15 +12,13 @@ function TodoItem({ todo, size }) {
   }, [todo]);
 
   return (
-    <li className={"todo-item flex v-center " + size}>
+    <li className={'todo-item flex v-center ' + size}>
       <div>
-        <span className={"type-bar " + todo.type}></span>
+        <span className={'type-bar ' + todo.type}></span>
       </div>
       <div>
         <span
-          className={
-            "checkbox " + (todo.completed ? "completed " + todo.type : "")
-          }
+          className={'checkbox ' + (todo.completed ? 'completed ' + todo.type : '')}
           onClick={() => toggleComplete(todo.id)}
         ></span>
       </div>

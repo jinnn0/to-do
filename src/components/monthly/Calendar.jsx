@@ -1,6 +1,6 @@
-import React from "react";
-import CalendarMain from "./CalendarMain";
-import { showCalendar } from "../../utils/calendarHelper";
+import React from 'react';
+import CalendarMain from './CalendarMain';
+import { showCalendar } from '../../utils/calendarHelper';
 
 function Calendar({ selectedYear, selectedMonth }) {
   return (

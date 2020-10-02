@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import TodoItem from "./TodoItem.jsx";
-import { GlobalContext } from "../../contexts/GlobalState";
+import React, { useContext } from 'react';
+import TodoItem from './TodoItem.jsx';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function TodoList({ today, size }) {
   const { sortedTodoList } = useContext(GlobalContext);
@@ -14,28 +14,28 @@ function TodoList({ today, size }) {
   });
 
   const getOrdinalNum = function (today) {
-    if (today.date > 3 && today.date < 21) return "th";
+    if (today.date > 3 && today.date < 21) return 'th';
     switch (today.date % 10) {
       case 1:
-        return "st";
+        return 'st';
       case 2:
-        return "nd";
+        return 'nd';
       case 3:
-        return "rd";
+        return 'rd';
       default:
-        return "th";
+        return 'th';
     }
   };
 
   return (
-    <ul className={"todo-list " + size}>
-      {size === "sm" ? (
+    <ul className={'todo-list ' + size}>
+      {size === 'sm' ? (
         <h2>
           {today.day} <span className="date">{today.date}</span>
-          <span className="date-ordinal">{getOrdinalNum(today)}</span>{" "}
+          <span className="date-ordinal">{getOrdinalNum(today)}</span>{' '}
         </h2>
       ) : (
-        ""
+        ''
       )}
       {todoForToday.map((todo, index) => (
         <TodoItem key={index} todo={todo} size={size} />

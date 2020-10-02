@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
-import NewTodo from "../AddNewTodoForm/NewTodo";
-import DateInput from "../AddNewTodoForm/DateInput";
-import { GlobalContext } from "../../contexts/GlobalState";
+import React, { useState, useContext } from 'react';
+import NewTodo from '../AddNewTodoForm/NewTodo';
+import DateInput from '../AddNewTodoForm/DateInput';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function AddNewTodoForm() {
   let d = new Date();
 
   const [colorBoxClicked, setColorBoxClicked] = useState(false);
-  const [defaultColorType, setDefaultColorType] = useState("important");
+  const [defaultColorType, setDefaultColorType] = useState('important');
 
   const handleDefaultSelect = () => {
     setColorBoxClicked(!colorBoxClicked);
@@ -22,7 +22,7 @@ function AddNewTodoForm() {
   const { addButtonClicked, setAddButtonClicked } = useContext(GlobalContext);
   const [startDate, setStartDate] = useState(new Date());
   const [todo, setTodo] = useState({
-    task: "",
+    task: '',
     type: defaultColorType,
     dateInfo: {
       year: d.getFullYear(),
@@ -59,7 +59,7 @@ function AddNewTodoForm() {
     };
 
     addTodo(newTodo);
-    setTodo({ ...todo, task: "" });
+    setTodo({ ...todo, task: '' });
     setAddButtonClicked(!addButtonClicked);
   };
 
@@ -87,7 +87,7 @@ function AddNewTodoForm() {
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={"add-new-todo-form" + (addButtonClicked ? " show-form" : "")}
+      className={'add-new-todo-form' + (addButtonClicked ? ' show-form' : '')}
     >
       <NewTodo
         handleInputChange={handleInputChange}

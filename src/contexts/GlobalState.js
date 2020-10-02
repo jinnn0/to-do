@@ -1,5 +1,5 @@
-import React, { useState, useEffect, createContext } from "react";
-import { RiDivideFill } from "react-icons/ri";
+import React, { useState, useEffect, createContext } from 'react';
+import { RiDivideFill } from 'react-icons/ri';
 
 export const GlobalContext = createContext();
 
@@ -14,7 +14,7 @@ export const GlobalContextProvider = (props) => {
   // sample todoList
   // prettier-ignore
   const sampleTasks = ["Daily web development", "Get groceries for dinner", "Home exercise at 6pm", "Call Daniel for meeting", "House cleaning", "Tennis practice", "Do lundary", "Email Noah for update", "Finish monthly growth report", "Send in cacenllation letter", "Figure our vacation destination", "Fill in scholarship application" ]
-  const todoTypes = ["important", "work", "study", "other"];
+  const todoTypes = ['important', 'work', 'study', 'other'];
 
   const sampleTodoList = sampleTasks.map((task, index) => {
     let randomDate;
@@ -41,13 +41,12 @@ export const GlobalContextProvider = (props) => {
   });
 
   // todoList state
-  const initialTodoList =
-    JSON.parse(localStorage.getItem("to-do-list")) || sampleTodoList;
+  const initialTodoList = JSON.parse(localStorage.getItem('to-do-list')) || sampleTodoList;
 
   const [todoList, setTodoList] = useState(initialTodoList);
 
   useEffect(() => {
-    localStorage.setItem("to-do-list", JSON.stringify(todoList));
+    localStorage.setItem('to-do-list', JSON.stringify(todoList));
   }, [todoList]);
 
   const addTodo = (newTodo) => {
@@ -70,12 +69,11 @@ export const GlobalContextProvider = (props) => {
   };
 
   // view state (daily / weekly / monthly)
-  const initialViewValue =
-    JSON.parse(localStorage.getItem("selected-view")) || "daily";
+  const initialViewValue = JSON.parse(localStorage.getItem('selected-view')) || 'daily';
   const [selectedView, setSelectedView] = useState(initialViewValue);
 
   useEffect(() => {
-    localStorage.setItem("selected-view", JSON.stringify(selectedView));
+    localStorage.setItem('selected-view', JSON.stringify(selectedView));
   }, [selectedView]);
 
   const updateSelectedView = (newValue) => {
@@ -83,12 +81,11 @@ export const GlobalContextProvider = (props) => {
   };
 
   // sort state (recent / tag / oldest / completed / active)
-  const initialSortValue =
-    JSON.parse(localStorage.getItem("sort-value")) || "recent";
+  const initialSortValue = JSON.parse(localStorage.getItem('sort-value')) || 'recent';
   const [sortValue, setSortValue] = useState(initialSortValue);
 
   useEffect(() => {
-    localStorage.setItem("sort-value", JSON.stringify(sortValue));
+    localStorage.setItem('sort-value', JSON.stringify(sortValue));
   }, [sortValue]);
 
   const updateSortValue = (newSort) => {
@@ -110,15 +107,11 @@ export const GlobalContextProvider = (props) => {
 
   // sorted list
   let sortedTodoList = todoList.filter((todo) => {
-    if (
-      sortValue === "recent" ||
-      sortValue === "tag" ||
-      sortValue === "oldest"
-    ) {
+    if (sortValue === 'recent' || sortValue === 'tag' || sortValue === 'oldest') {
       return todo;
-    } else if (sortValue === "completed") {
+    } else if (sortValue === 'completed') {
       return todo.completed;
-    } else if (sortValue === "active") {
+    } else if (sortValue === 'active') {
       return !todo.completed;
     }
 
@@ -143,9 +136,5 @@ export const GlobalContextProvider = (props) => {
     sortedTodoList
   };
 
-  return (
-    <GlobalContext.Provider value={value}>
-      {props.children}
-    </GlobalContext.Provider>
-  );
+  return <GlobalContext.Provider value={value}>{props.children}</GlobalContext.Provider>;
 };

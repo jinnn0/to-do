@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
+import useUnmount from '../utils/useUnmount';
 import HeaderMonthly from '../components/monthly/HeaderMonthly';
 import Calendar from '../components/monthly/Calendar';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Monthly() {
-  const { today } = useContext(GlobalContext);
-  const { handleClickOutsideAddButton } = useContext(GlobalContext);
+  const { today, handleClickOutsideForm } = useContext(GlobalContext);
 
   // prettier-ignore
   const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September","October","November","December"];
@@ -29,8 +29,10 @@ function Monthly() {
     setSelectedMonth((prev) => (prev + 1) % 12);
   };
 
+  useUnmount();
+
   return (
-    <div className="monthly" onClick={handleClickOutsideAddButton}>
+    <div className="monthly" onClick={handleClickOutsideForm}>
       <div className="main-display container">
         <HeaderMonthly
           currentMonthName={currentMonthName}

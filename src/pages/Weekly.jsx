@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
+import useUnmount from '../utils/useUnmount';
 import HeaderShared from '../components/shared/HeaderShared';
 import TodoList from '../components/shared/TodoList.jsx';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today } = useContext(GlobalContext);
-  const { handleClickOutsideAddButton } = useContext(GlobalContext);
+  const { today, handleClickOutsideForm } = useContext(GlobalContext);
 
   let thisWeek = [];
   let counter = 0;
@@ -26,8 +26,10 @@ function Weekly() {
   thisWeek[0].day = 'Today';
   thisWeek[1].day = 'Tomorrow';
 
+  useUnmount();
+
   return (
-    <div className="weekly" onClick={handleClickOutsideAddButton}>
+    <div className="weekly" onClick={handleClickOutsideForm}>
       <div className="main-display container">
         <HeaderShared title={'Weekly'} />
         <div className="weekly-list">

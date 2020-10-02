@@ -1,12 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import AddNewTodoForm from '../shared/AddNewTodoForm';
 import * as MdIcons from 'react-icons/md';
 import TodoItem from '../shared/TodoItem';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function HomeMain() {
-  const { todoList, today } = useContext(GlobalContext);
-  const [isTextClicked, setIsTextClicked] = useState(false);
+  const {
+    today,
+    todoList,
+    addNewTodoButtonClicked,
+    handleClickAddNewTodoButton,
+    handleClickOutsideForm
+  } = useContext(GlobalContext);
 
   const focusOnThisTodo = todoList.filter(
     (todo) =>
@@ -14,14 +19,6 @@ function HomeMain() {
       todo.dateInfo.month === today.month &&
       todo.dateInfo.date === today.date
   )[0];
-
-  const showAddNewTodoform = () => {
-    setIsTextClicked(!isTextClicked);
-  };
-
-  const closeAddNewTodoForm = () => {
-    setIsTextClicked(!isTextClicked);
-  };
 
   return (
     <>
@@ -38,10 +35,10 @@ function HomeMain() {
             </>
           ) : (
             <>
-              <h1 className="title center" onClick={showAddNewTodoform}>
+              <h1 className="title center" onClick={handleClickAddNewTodoButton}>
                 What's your todo today?
               </h1>
-              {isTextClicked ? (
+              {addNewTodoButtonClicked ? (
                 <>
                   <AddNewTodoForm />
                 </>
@@ -51,8 +48,8 @@ function HomeMain() {
         </div>
       </div>
 
-      {isTextClicked && !focusOnThisTodo ? (
-        <div className="overlay" onClick={closeAddNewTodoForm}></div>
+      {addNewTodoButtonClicked && !focusOnThisTodo ? (
+        <div className="overlay" onClick={handleClickOutsideForm}></div>
       ) : null}
     </>
   );

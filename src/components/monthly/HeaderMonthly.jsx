@@ -26,7 +26,7 @@ function HeaderMonthly({ currentMonthName, selectedYear, moveToPrevMonth, moveTo
       </div>
 
       <div className="row-2-col-2">
-        <FiPlus className="add-icon" onClick={handleClickAddNewTodoButton} />
+        <FiPlus className="add-new-todo-icon" onClick={handleClickAddNewTodoButton} />
         <AddNewTodoForm />
       </div>
 

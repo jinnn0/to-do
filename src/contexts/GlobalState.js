@@ -98,7 +98,7 @@ export const GlobalContextProvider = (props) => {
     setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
   };
 
-  const handleClickOutsideAddButton = () => {
+  const handleClickOutsideForm = () => {
     if (addNewTodoButtonClicked) {
       setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
     }
@@ -131,7 +131,7 @@ export const GlobalContextProvider = (props) => {
     addNewTodoButtonClicked,
     setAddNewTodoButtonClicked,
     handleClickAddNewTodoButton,
-    handleClickOutsideAddButton,
+    handleClickOutsideForm,
     sortedTodoList
   };
 

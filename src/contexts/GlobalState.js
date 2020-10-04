@@ -127,14 +127,16 @@ export const GlobalContextProvider = (props) => {
   const [homeMainDivTouching, setHomeMainDivTouching] = useState(false);
 
   useEffect(() => {
-    const currentTop = homeMainDivRef.current.getBoundingClientRect().top;
-    // nav-height-bg 72px + time-display 50px = 130
-    // set the div to display block so that
-    // it stays below time display when shrinking small
-    if (currentTop < 130) {
-      setHomeMainDivTouching(true);
-      if (windowSize.height > 544) {
-        setHomeMainDivTouching(false);
+    if (homeMainDivRef.current) {
+      const currentTop = homeMainDivRef.current.getBoundingClientRect().top;
+      // nav-height-bg 72px + time-display 50px = 130
+      // set the div to display block so that
+      // it stays below time display when shrinking small
+      if (currentTop < 130) {
+        setHomeMainDivTouching(true);
+        if (windowSize.height > 544) {
+          setHomeMainDivTouching(false);
+        }
       }
     }
 

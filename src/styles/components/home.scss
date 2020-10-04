@@ -14,6 +14,8 @@
     justify-content: flex-end;
     align-items: center;
     font-size: 1rem;
+    position: relative;
+    z-index: 2;
 
     @media (min-width: 750px) {
       font-size: 1.5rem;
@@ -52,7 +54,7 @@
       flex-direction: column;
       align-items: stretch;
       margin: 0 auto;
-      z-index: 2;
+      position: relative;
 
       @media (min-width: 500px) {
         width: 80vw;
@@ -72,8 +74,9 @@
           font-size: 1.5em;
         }
 
-        &.center {
+        &.center.animation-title {
           text-align: center;
+          transform: translateY(30px); /* animation */
           cursor: pointer;
         }
       }
@@ -110,6 +113,10 @@
         }
       }
     }
+
+    .z-index {
+      z-index: 4;
+    }
   }
 }
 
@@ -120,5 +127,5 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.249);
-  z-index: 1;
+  z-index: 3;
 }

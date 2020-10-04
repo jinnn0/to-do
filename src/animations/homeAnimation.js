@@ -3,11 +3,11 @@ import gsap from 'gsap';
 const homeAnimation = () => {
   const tl = gsap.timeline();
 
-  tl.to('.home-main', {
+  tl.to('.animation-title', {
     duration: 0.8,
-    ease: 'back.out',
-    opacity: 1,
-    y: 0
+    ease: 'power4.out',
+    y: 0,
+    opacity: 1
   });
 };
 

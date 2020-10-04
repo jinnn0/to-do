@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AddNewTodoForm from '../shared/AddNewTodoForm';
 import * as MdIcons from 'react-icons/md';
 import TodoItem from '../shared/TodoItem';
+import homeAnimation from '../../animations/homeAnimation';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function HomeMain() {
@@ -29,11 +30,15 @@ function HomeMain() {
     transform: 'translate(-50%, -50%)'
   };
 
+  useEffect(() => {
+    homeAnimation();
+  }, [focusOnThisTodo]);
+
   return (
     <>
       <div className="home-main-container">
         <div
-          className="home-main flex center"
+          className={'home-main flex center ' + (addNewTodoButtonClicked ? 'z-index' : '')}
           ref={homeMainDivRef}
           style={homeMainDivTouching ? null : absoluteCenter}
         >
@@ -48,9 +53,7 @@ function HomeMain() {
             </>
           ) : (
             <>
-              <h1 className="title center" onClick={handleClickAddNewTodoButton}>
-                What's your todo today?
-              </h1>
+              <HomeAnimationTitle handleClickAddNewTodoButton={handleClickAddNewTodoButton} />
               {addNewTodoButtonClicked ? (
                 <>
                   <AddNewTodoForm />
@@ -69,3 +72,15 @@ function HomeMain() {
 }
 
 export default HomeMain;
+
+function HomeAnimationTitle({ handleClickAddNewTodoButton }) {
+  useEffect(() => {
+    homeAnimation();
+  }, []);
+
+  return (
+    <h1 className="title center animation-title" onClick={handleClickAddNewTodoButton}>
+      What's your todo today?
+    </h1>
+  );
+}

@@ -38,7 +38,6 @@ select::-ms-expand {
   border-radius: 8px;
   @include popup-box-shadow;
   outline: none;
-  z-index: 1;
   display: none;
 
   &.show-add-new-todo-form {
@@ -187,11 +186,10 @@ select::-ms-expand {
 .daily,
 .weekly,
 .monthly {
-  min-height: 100vh;
-  padding-top: var(--nav-height-sm);
+  height: calc(var(--mobile-100vh-fix) - var(--nav-height));
+  margin-top: var(--nav-height);
   display: flex;
   background-color: white;
-  /* opacity: 0; */
 
   @media (min-width: 750px) {
     padding-top: var(--nav-height-bg);

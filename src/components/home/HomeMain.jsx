@@ -30,10 +30,6 @@ function HomeMain() {
     transform: 'translate(-50%, -50%)'
   };
 
-  useEffect(() => {
-    homeAnimation();
-  }, [focusOnThisTodo]);
-
   return (
     <>
       <div className="home-main-container">

@@ -22,7 +22,7 @@ export const GlobalContextProvider = (props) => {
       randomDate = today.date;
       randomType = todoTypes[0];
     } else {
-      randomDate = today.date * (Math.floor(Math.random() * 7) + 1);
+      randomDate = today.date + Math.floor(Math.random() * 7);
       randomType = todoTypes[Math.floor(Math.random() * 4)];
     }
 

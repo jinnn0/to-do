@@ -1,11 +1,15 @@
 .home {
-  height: 100vh;
-  padding-top: 72px;
-  position: relative;
+  height: calc(var(--mobile-100vh-fix) - var(--nav-height));
+  margin-top: var(--nav-height);
   background-color: white;
 
+  @media (min-width: 750px) {
+    height: calc(var(--mobile-100vh-fix) - var(--nav-height));
+    margin-top: var(--nav-height);
+  }
+
   .time-display {
-    height: 50px;
+    height: var(--time-display-height);
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -30,39 +34,42 @@
   }
 
   .home-main-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0 20px;
+    height: calc(100% - var(--time-display-height));
+
+    @media (min-width: 500px) {
+      padding: 0 20px;
+    }
 
     @media (min-width: 900px) {
       padding: 0 50px;
     }
 
     .home-main {
-      width: 100%;
+      width: calc(100vw - (var(--container-padding) * 2));
+      min-width: 280px;
       max-width: 700px;
       height: 300px;
       flex-direction: column;
       align-items: stretch;
-      transform: translateY(10%);
-      position: relative;
-      opacity: 0;
+      margin: 0 auto;
       z-index: 2;
 
-      @media (min-width: 750px) {
-        width: 70%;
+      @media (min-width: 500px) {
+        width: 80vw;
       }
 
       .title {
-        font-size: 1.3rem;
+        font-size: 1em;
         color: $title;
-        margin-bottom: 1rem;
+        margin-bottom: 1.4rem;
+        padding-left: 15px;
 
         @media (min-width: 750px) {
-          font-size: 2rem;
+          font-size: 1.3em;
+        }
+
+        @media (min-width: 1500px) {
+          font-size: 1.5em;
         }
 
         &.center {

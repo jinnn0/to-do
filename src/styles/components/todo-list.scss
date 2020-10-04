@@ -41,39 +41,33 @@
 
 /* todo item */
 .todo-item {
-  min-height: 25px;
   margin-bottom: 1rem;
   padding: 0.5rem 1.1rem;
   border-radius: 30px;
   background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.038);
   box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.111);
   transform: translateY(30px); /* animation */
+  font-size: 16px;
 
-  div:nth-child(2) {
-    width: 20px; /* giving it a fixed width won't allow */
-    margin-right: 0.5rem; /* the div to move when checkbox is clicked */
-
-    @media (min-width: 750px) {
-      margin-right: 1rem;
-    }
+  span {
+    display: block;
   }
 
   .type-bar {
-    display: inline-block;
-    width: 5px;
-    height: 25px;
-    border-radius: 5px;
-    margin-right: 0.5rem;
+    width: 0.31em;
+    height: 1.56em;
+    border-radius: 0.31em;
+    margin-right: 0.5em;
     background-color: $purple;
   }
 
   .checkbox {
     border: 1px solid #c1c3c6;
-    width: 17px;
-    height: 17px;
-    margin-right: 1rem;
-    border-radius: 35%;
-    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.35em;
+    margin-right: 0.5em;
     cursor: pointer;
     transition: background-color 0.05s linear;
   }
@@ -82,7 +76,7 @@
     background-color: $purple;
     background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M13.613%2027.068l-7.94-7.28q-.285-.267-.442-.613t-.172-.7.11-.71.394-.638q.52-.583%201.3-.614T8.225%2017l6.13%205.626%208.79-17q.363-.693%201.104-.93t1.433.118.93%201.103-.126%201.442L16.56%2026.55q-.204.394-.558.654t-.78.34q-.063.015-.118.023t-.11.008-.102%200q-.74%200-1.276-.504z%22%20fill%3D%22%23FFF%22/%3E%3C/svg%3E);
     border: none;
-    background-size: 10px; /* default */
+    background-size: 0.625em; /* default */
     background-repeat: no-repeat;
     background-position: center center;
   }
@@ -104,10 +98,9 @@
   }
 
   .task {
-    font-size: 0.85rem;
+    font-size: 0.75em;
     font-weight: bold;
     word-break: break-all;
-    line-height: 1.4rem;
   }
 
   .more {
@@ -139,35 +132,20 @@
   }
 
   &.lg {
-    height: 60px;
-    border-radius: 40px;
+    height: 3.2em;
+    border-radius: 3.16em;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.07);
     padding-left: 1.1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
+
+    @media (min-width: 500px) {
+      height: 4em;
+    }
 
     @media (min-width: 750px) {
-      height: 130px;
-      padding-left: 2rem;
-    }
-
-    .type-bar {
-      height: 28px;
-      margin-right: 0.7rem;
-
-      @media (min-width: 750px) {
-        height: 40px;
-        margin-right: 1rem;
-      }
-    }
-
-    .checkbox {
-      width: 18px;
-      height: 18px;
-
-      @media (min-width: 750px) {
-        width: 24px;
-        height: 24px;
-      }
+      font-size: 18px;
+      padding-left: 1.2em;
+      margin-bottom: 2rem;
     }
   }
 }

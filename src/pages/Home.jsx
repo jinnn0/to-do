@@ -5,7 +5,7 @@ import homeAnimation from '../animations/homeAnimation';
 
 function Home() {
   useEffect(() => {
-    homeAnimation();
+    // homeAnimation();
   }, []);
 
   return (

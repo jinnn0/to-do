@@ -5,15 +5,24 @@
 }
 
 :root {
-  --nav-height-sm: 60px;
-  --nav-height-bg: 72px;
+  --nav-height: 60px;
   --header-height: 120px;
+  --time-display-height: 50px;
+  --mobile-100vh-fix: calc(var(--vh, 1vh) * 100);
+  --container-padding: 20px;
+
+  @media (min-width: 750px) {
+    --nav-height: 72px;
+  }
+
+  @media (min-width: 900px) {
+    --container-padding: 50px;
+  }
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -21,18 +30,12 @@ body {
 }
 
 .container {
-  padding-left: 20px;
-  padding-right: 20px;
-  min-width: 310px;
-
-  @media (min-width: 900px) {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
 }
 
 .app {
-  min-width: 350px;
+  min-width: 320px;
 }
 
 .flex {

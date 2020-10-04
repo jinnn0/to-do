@@ -10,7 +10,9 @@ function HomeMain() {
     todoList,
     addNewTodoButtonClicked,
     handleClickAddNewTodoButton,
-    handleClickOutsideForm
+    handleClickOutsideForm,
+    homeMainDivRef,
+    homeMainDivTouching
   } = useContext(GlobalContext);
 
   const focusOnThisTodo = todoList.filter(
@@ -20,10 +22,21 @@ function HomeMain() {
       todo.dateInfo.date === today.date
   )[0];
 
+  const absoluteCenter = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  };
+
   return (
     <>
-      <div className="home-main-container flex center">
-        <div className="home-main flex center">
+      <div className="home-main-container">
+        <div
+          className="home-main flex center"
+          ref={homeMainDivRef}
+          style={homeMainDivTouching ? null : absoluteCenter}
+        >
           {focusOnThisTodo ? (
             <>
               <h1 className="title">Focus on this now</h1>

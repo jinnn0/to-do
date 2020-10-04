@@ -7,7 +7,7 @@ const homeAnimation = () => {
     duration: 0.8,
     ease: 'back.out',
     opacity: 1,
-    y: -50
+    y: 0
   });
 };
 

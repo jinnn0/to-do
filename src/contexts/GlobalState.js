@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useRef } from 'react';
 
 export const GlobalContext = createContext();
 
@@ -117,6 +117,44 @@ export const GlobalContextProvider = (props) => {
     return todo;
   });
 
+  // window resize for all pages
+  let [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  const homeMainDivRef = useRef();
+  const [homeMainDivTouching, setHomeMainDivTouching] = useState(false);
+
+  useEffect(() => {
+    const currentTop = homeMainDivRef.current.getBoundingClientRect().top;
+    // nav-height-bg 72px + time-display 50px = 130
+    // set the div to display block so that
+    // it stays below time display when shrinking small
+    if (currentTop < 130) {
+      setHomeMainDivTouching(true);
+      if (windowSize.height > 544) {
+        setHomeMainDivTouching(false);
+      }
+    }
+
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+
+    let vh = windowSize.height * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [windowSize]);
+
   // global states
   const value = {
     today,
@@ -132,6 +170,8 @@ export const GlobalContextProvider = (props) => {
     setAddNewTodoButtonClicked,
     handleClickAddNewTodoButton,
     handleClickOutsideForm,
+    homeMainDivRef,
+    homeMainDivTouching,
     sortedTodoList
   };
 

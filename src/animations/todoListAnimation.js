@@ -3,7 +3,6 @@ import gsap from 'gsap';
 const todoListAnimation = () => {
   const tl = gsap.timeline();
 
-  tl.to('.daily', { duration: 0.8, opacity: 1 });
   tl.to(
     '.todo-item',
     {

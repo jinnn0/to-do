@@ -15,3 +15,4 @@ In the project directory, you can run:
 - [ ] Drag & move to change the order of the list
 - [ ] Edit the task
 - [ ] Statistic dashboard on side display
+- [ ] Finger swipe motion on Home to navigate previous or next todo item on mobile

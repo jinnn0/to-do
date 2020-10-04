@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AddNewTodoForm from '../shared/AddNewTodoForm';
 import TodoItem from '../shared/TodoItem';
 import * as MdIcons from 'react-icons/md';
@@ -17,12 +17,15 @@ function HomeMain() {
     homeMainDivTouching
   } = useContext(GlobalContext);
 
-  const focusOnThisTodo = todoList.filter(
+  const [todoIndex, setTodoIndex] = useState(0);
+  const todoToday = todoList.filter(
     (todo) =>
       todo.dateInfo.year === today.year &&
       todo.dateInfo.month === today.month &&
       todo.dateInfo.date === today.date
-  )[0];
+  );
+
+  const focusOnThisTodo = todoToday[todoIndex];
 
   const absoluteCenter = {
     position: 'absolute',
@@ -30,6 +33,18 @@ function HomeMain() {
     left: '50%',
     transform: 'translate(-50%, -50%)'
   };
+
+  const getPrevTodo = () => {
+    setTodoIndex((prev) => mod(prev - 1, todoToday.length));
+  };
+
+  const getNextTodo = () => {
+    setTodoIndex((prev) => (prev + 1) % todoToday.length);
+  };
+
+  function mod(n, m) {
+    return ((n % m) + m) % m;
+  }
 
   return (
     <>
@@ -44,8 +59,8 @@ function HomeMain() {
               <h1 className="title">Focus on this now</h1>
               <TodoItem key={focusOnThisTodo.id} todo={focusOnThisTodo} size="lg" />
               <div className="arrows flex">
-                <MdIcons.MdKeyboardArrowLeft className="arrow arrow-back" />
-                <MdIcons.MdKeyboardArrowRight className="arrow arrow-next" />
+                <MdIcons.MdKeyboardArrowLeft className="arrow arrow-back" onClick={getPrevTodo} />
+                <MdIcons.MdKeyboardArrowRight className="arrow arrow-next" onClick={getNextTodo} />
               </div>
             </>
           ) : (

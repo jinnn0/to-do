@@ -73,11 +73,28 @@
         @media (min-width: 1500px) {
           font-size: 1.5em;
         }
+      }
 
-        &.center.animation-title {
-          text-align: center;
-          transform: translateY(30px); /* animation */
-          cursor: pointer;
+      .initial-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: translateY(30px); /* animation */
+        cursor: pointer;
+
+        .point-up-icon {
+          opacity: 0;
+          animation: hi 0.5s ease-in-out infinite alternate;
+          margin-bottom: 1.5rem;
+        }
+
+        @keyframes hi {
+          0% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
         }
       }
 

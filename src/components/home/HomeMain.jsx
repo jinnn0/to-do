@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import AddNewTodoForm from '../shared/AddNewTodoForm';
-import * as MdIcons from 'react-icons/md';
 import TodoItem from '../shared/TodoItem';
+import * as MdIcons from 'react-icons/md';
+import { FaRegHandPointDown } from 'react-icons/fa';
 import homeAnimation from '../../animations/homeAnimation';
 import { GlobalContext } from '../../contexts/GlobalState';
 
@@ -49,7 +50,7 @@ function HomeMain() {
             </>
           ) : (
             <>
-              <HomeAnimationTitle handleClickAddNewTodoButton={handleClickAddNewTodoButton} />
+              <InitialMessage handleClickAddNewTodoButton={handleClickAddNewTodoButton} />
               {addNewTodoButtonClicked ? (
                 <>
                   <AddNewTodoForm />
@@ -69,14 +70,17 @@ function HomeMain() {
 
 export default HomeMain;
 
-function HomeAnimationTitle({ handleClickAddNewTodoButton }) {
+function InitialMessage({ handleClickAddNewTodoButton }) {
   useEffect(() => {
     homeAnimation();
   }, []);
 
   return (
-    <h1 className="title center animation-title" onClick={handleClickAddNewTodoButton}>
-      What's your todo today?
-    </h1>
+    <div className="initial-message">
+      <FaRegHandPointDown className="point-up-icon" />
+      <h1 className="title message" onClick={handleClickAddNewTodoButton}>
+        What's your todo today?
+      </h1>
+    </div>
   );
 }

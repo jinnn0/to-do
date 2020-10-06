@@ -21,6 +21,27 @@
         scrollbar-width: none; // fix for firefox
       }
 
+      .list {
+        h2 {
+          margin-bottom: 2.3rem;
+
+          @media (min-width: 750px) {
+            margin-bottom: 3rem;
+          }
+
+          span {
+            font-weight: lighter;
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.171);
+            margin-left: 0.4rem;
+          }
+
+          .date-ordinal {
+            margin-left: 0;
+          }
+        }
+      }
+
       section {
         height: inherit;
         margin-left: -20px;

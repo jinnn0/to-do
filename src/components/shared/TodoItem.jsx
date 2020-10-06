@@ -4,7 +4,7 @@ import { CgTrash } from 'react-icons/cg';
 import { AiOutlineMore } from 'react-icons/ai';
 import { GlobalContext } from '../../contexts/GlobalState';
 
-function TodoItem({ todo, size }) {
+function TodoItem({ todo }) {
   const { removeTodo, toggleComplete } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function TodoItem({ todo, size }) {
   }, [todo]);
 
   return (
-    <li className={'todo-item flex v-center ' + size}>
+    <li className="todo-item flex v-center">
       <div>
         <span className={'type-bar ' + todo.type}></span>
       </div>

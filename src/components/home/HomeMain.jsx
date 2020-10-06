@@ -57,7 +57,7 @@ function HomeMain() {
           {focusOnThisTodo ? (
             <>
               <h1 className="title">Focus on this now</h1>
-              <TodoItem key={focusOnThisTodo.id} todo={focusOnThisTodo} size="lg" />
+              <TodoItem key={focusOnThisTodo.id} todo={focusOnThisTodo} />
               <div className="arrows flex">
                 <MdIcons.MdKeyboardArrowLeft className="arrow arrow-back" onClick={getPrevTodo} />
                 <MdIcons.MdKeyboardArrowRight className="arrow arrow-next" onClick={getNextTodo} />

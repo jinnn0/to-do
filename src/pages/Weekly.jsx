@@ -5,26 +5,49 @@ import TodoList from '../components/shared/TodoList.jsx';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today, handleClickOutsideForm } = useContext(GlobalContext);
+  const { today, handleClickOutsideForm, sortedTodoList } = useContext(GlobalContext);
 
   let thisWeek = [];
-  let counter = 0;
   for (let i = 0; i < 7; i++) {
-    let nextDayConstructor = new Date(today.year, today.month, today.date + counter);
+    const nextDayConstructor = new Date(today.year, today.month, today.date + i);
 
-    let nextDay = {
-      year: nextDayConstructor.getFullYear(),
-      month: nextDayConstructor.getMonth(),
-      date: nextDayConstructor.getDate(),
-      day: nextDayConstructor.toLocaleString('default', { weekday: 'long' })
+    const TodosForEachDay = sortedTodoList.filter((todo) => {
+      return (
+        todo.dateInfo.year === today.year &&
+        todo.dateInfo.month === today.month &&
+        todo.dateInfo.date === today.date + i
+      );
+    });
+
+    const eachDay = {
+      dateInfo: {
+        year: nextDayConstructor.getFullYear(),
+        month: nextDayConstructor.getMonth(),
+        date: nextDayConstructor.getDate(),
+        day: nextDayConstructor.toLocaleString('default', { weekday: 'long' })
+      },
+      todos: TodosForEachDay
     };
 
-    counter++;
-    thisWeek.push(nextDay);
+    thisWeek.push(eachDay);
   }
 
-  thisWeek[0].day = 'Today';
-  thisWeek[1].day = 'Tomorrow';
+  thisWeek[0].dateInfo.day = 'Today';
+  thisWeek[1].dateInfo.day = 'Tomorrow';
+
+  const getOrdinalNum = function (eachDay) {
+    if (eachDay.dateInfo > 3 && eachDay.dateInfo < 21) return 'th';
+    switch (eachDay.dateInfo % 10) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  };
 
   useUnmount();
 
@@ -32,16 +55,27 @@ function Weekly() {
     <div className="weekly" onClick={handleClickOutsideForm}>
       <div className="main-display container">
         <HeaderShared title={'Weekly'} />
-        <div className="weekly-list">
-          {thisWeek.map((today) => (
-            <TodoList key={today.date} today={today} size="sm" />
-          ))}
 
-          {/* needed for extra space at the end of weekly-list */}
-          <section>
-            <div></div>
-          </section>
+        <div className="weekly-list">
+          {thisWeek.map((eachDay, index) => (
+            <div key={index} className="list sm">
+              <h2>
+                {eachDay.dateInfo.day} <span className="date">{eachDay.dateInfo.date}</span>
+                <span className="date-ordinal">{getOrdinalNum(eachDay.dateInfo)}</span>
+              </h2>
+              {eachDay.todos.length ? (
+                <TodoList key={index} today={today} todoForToday={eachDay.todos} />
+              ) : (
+                <span className="no-todo-message">There's no todo</span>
+              )}
+            </div>
+          ))}
         </div>
+
+        {/* needed for extra space at the end of weekly-list */}
+        <section>
+          <div></div>
+        </section>
       </div>
 
       <div className="side-display"></div>

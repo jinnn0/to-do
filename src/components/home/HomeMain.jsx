@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import AddNewTodoForm from '../shared/AddNewTodoForm';
 import TodoItem from '../shared/TodoItem';
 import * as MdIcons from 'react-icons/md';
@@ -12,27 +12,20 @@ function HomeMain() {
     todoList,
     addNewTodoButtonClicked,
     handleClickAddNewTodoButton,
-    handleClickOutsideForm,
-    homeMainDivRef,
-    homeMainDivTouching
+    handleClickOutsideForm
   } = useContext(GlobalContext);
 
   const [todoIndex, setTodoIndex] = useState(0);
+  const homeMainDivRef = useRef();
+  const [homeMainDivTouching, setHomeMainDivTouching] = useState(false);
+
   const todoToday = todoList.filter(
     (todo) =>
       todo.dateInfo.year === today.year &&
       todo.dateInfo.month === today.month &&
       todo.dateInfo.date === today.date
   );
-
   const focusOnThisTodo = todoToday[todoIndex];
-
-  const absoluteCenter = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)'
-  };
 
   const getPrevTodo = () => {
     setTodoIndex((prev) => mod(prev - 1, todoToday.length));
@@ -45,6 +38,28 @@ function HomeMain() {
   function mod(n, m) {
     return ((n % m) + m) % m;
   }
+
+  const absoluteCenter = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  };
+
+  useEffect(() => {
+    if (homeMainDivRef.current) {
+      const currentTop = homeMainDivRef.current.getBoundingClientRect().top;
+      // nav-height-bg 72px + time-display 50px = 130
+      // set the div to display block so that
+      // it stays below time display when shrinking small
+      if (currentTop < 130) {
+        setHomeMainDivTouching(true);
+        if (window.innerHeight > 544) {
+          setHomeMainDivTouching(false);
+        }
+      }
+    }
+  });
 
   return (
     <>

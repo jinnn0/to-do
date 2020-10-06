@@ -87,7 +87,7 @@ function AddNewTodoForm() {
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={'add-new-todo-form' + (addNewTodoButtonClicked ? ' show-add-new-todo-form' : '')}
+      className={`add-new-todo-form ${addNewTodoButtonClicked ? ' show-add-new-todo-form' : ''}`}
     >
       <NewTodo
         handleInputChange={handleInputChange}

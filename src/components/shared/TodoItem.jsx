@@ -14,11 +14,11 @@ function TodoItem({ todo }) {
   return (
     <li className="todo-item flex v-center">
       <div>
-        <span className={'type-bar ' + todo.type}></span>
+        <span className={`type-bar ${todo.type}`}></span>
       </div>
       <div>
         <span
-          className={'checkbox ' + (todo.completed ? 'completed ' + todo.type : '')}
+          className={`checkbox ${todo.completed ? 'completed ' + todo.type : ''}`}
           onClick={() => toggleComplete(todo.id)}
         ></span>
       </div>

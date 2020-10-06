@@ -66,6 +66,7 @@ function HomeMain() {
       <div className="home-main-container">
         <div
           className={'home-main flex center ' + (addNewTodoButtonClicked ? 'z-index' : '')}
+          className={`home-main flex center ${addNewTodoButtonClicked ? 'z-index' : ''}`}
           ref={homeMainDivRef}
           style={homeMainDivTouching ? null : absoluteCenter}
         >

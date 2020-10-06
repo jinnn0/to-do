@@ -10,7 +10,7 @@ In the project directory, you can run:
 
 ## Possible **features** to add
 
-- [ ] Show a friendly message when there's no todo
+- [x] Show a friendly message when there's no todo
 - [ ] Show an animation for horizontal scroll navigation gesture on weekly todo list
 - [ ] Drag & move to change the order of the list
 - [ ] Edit the task

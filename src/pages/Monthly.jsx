@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import useUnmount from '../utils/useUnmount';
 import HeaderMonthly from '../components/monthly/HeaderMonthly';
+import MonthlyList from '../components/monthly/MonthlyList';
 import Calendar from '../components/monthly/Calendar';
 import { GlobalContext } from '../contexts/GlobalState';
 
@@ -40,7 +41,14 @@ function Monthly() {
           moveToPrevMonth={moveToPrevMonth}
           moveToNextMonth={moveToNextMonth}
         />
-        <Calendar selectedYear={selectedYear} selectedMonth={selectedMonth} />
+        <div className="flex-row">
+          <Calendar selectedYear={selectedYear} selectedMonth={selectedMonth} />
+          <MonthlyList
+            currentMonthName={currentMonthName}
+            selectedYear={selectedYear}
+            selectedMonth={selectedMonth}
+          />
+        </div>
       </div>
       <div className="side-display"></div>
     </div>

@@ -8,6 +8,11 @@
       overflow-y: scroll;
       padding: 0 4.5px; /* to prevent box-shadow cut off on the left/right edge due to position absolute */
 
+      /* make horizontal scroll bar transparent */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
       @media (min-width: 750px) {
         height: calc(100vh - (var(--nav-height-bg) + var(--header-height)));
         flex-basis: 25%;
@@ -53,9 +58,4 @@
       }
     }
   }
-}
-
-/* make horizontal scroll bar transparent */
-::-webkit-scrollbar {
-  display: none;
 }

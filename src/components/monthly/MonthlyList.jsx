@@ -7,21 +7,28 @@ import { GlobalContext } from '../../contexts/GlobalState';
 function MonthlyList({ currentMonthName, selectedYear, selectedMonth }) {
   const { todoList } = useContext(GlobalContext);
 
-  const sortedByDateOrder = todoList.sort((a, b) => {
-    const dateA = new Date(a.dateInfo.year, a.dateInfo.month, a.dateInfo.date);
-    const dateB = new Date(b.dateInfo.year, b.dateInfo.month, b.dateInfo.date);
-    return dateA - dateB;
-  });
-  const todosByYear = _.groupBy(sortedByDateOrder, 'dateInfo.year');
+  const todosByYear = _.groupBy(todoList, 'dateInfo.year');
   const todoThisMonth = todosByYear[`${selectedYear}`].filter(
     (todo) => todo.dateInfo.month === selectedMonth
   );
-  const todosByDate = _.groupBy(todoThisMonth, 'dateInfo.date');
 
-  let todosByDateArray = [];
-  for (let x in todosByDate) {
-    todosByDateArray.push(todosByDate[x]);
-  }
+  const todosEachDay = Object.values(
+    todoThisMonth.reduce((acc, current) => {
+      if (acc[current.dateInfo.date]) {
+        acc[current.dateInfo.date].push(current);
+      } else {
+        acc[current.dateInfo.date] = [current];
+      }
+      return acc;
+    }, {})
+  );
+
+  //or
+  //   const todosByDate = _.groupBy(todoThisMonth, 'dateInfo.date');
+  //   let todosEachDay = [];
+  //   for (let x in todosByDate) {
+  //     todosEachDay.push(todosByDate[x]);
+  //   }
 
   return (
     <div className="monthly-list">
@@ -36,7 +43,7 @@ function MonthlyList({ currentMonthName, selectedYear, selectedMonth }) {
       </h2>
 
       <ul className="outer-ul">
-        {todosByDateArray.map((eachDay) => (
+        {todosEachDay.map((eachDay) => (
           <OuterList key={eachDay[0].id} eachDay={eachDay} />
         ))}
       </ul>

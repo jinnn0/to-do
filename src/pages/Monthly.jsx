@@ -41,7 +41,7 @@ function Monthly() {
           moveToPrevMonth={moveToPrevMonth}
           moveToNextMonth={moveToNextMonth}
         />
-        <div className="flex-row">
+        <div className="main">
           <Calendar selectedYear={selectedYear} selectedMonth={selectedMonth} />
           <MonthlyList
             currentMonthName={currentMonthName}

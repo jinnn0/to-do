@@ -5,7 +5,7 @@ import * as MdIcons from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 import { GlobalContext } from '../../contexts/GlobalState';
 
-function HeaderMonthly({ currentMonthName, selectedYear, moveToPrevMonth, moveToNextMonth }) {
+function HeaderMonthly({ currentMonthName, selectedYear, moveToPrevMonth, moveToNextMonth, goBackToToday }) {
   const { handleClickAddNewTodoButton } = useContext(GlobalContext);
 
   return (
@@ -32,6 +32,9 @@ function HeaderMonthly({ currentMonthName, selectedYear, moveToPrevMonth, moveTo
 
       <div className="row-2-col-1">
         <span className="this-year">{selectedYear}</span>
+        <button className="today-btn" onClick={goBackToToday}>
+          today
+        </button>
       </div>
     </div>
   );

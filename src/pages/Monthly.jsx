@@ -29,6 +29,11 @@ function Monthly() {
     setSelectedMonth((prev) => (prev + 1) % 12);
   };
 
+  const goBackToToday = () => {
+    setSelectedYear(today.year);
+    setSelectedMonth(today.month);
+  };
+
   useUnmount();
 
   return (
@@ -39,6 +44,7 @@ function Monthly() {
           selectedYear={selectedYear}
           moveToPrevMonth={moveToPrevMonth}
           moveToNextMonth={moveToNextMonth}
+          goBackToToday={goBackToToday}
         />
         <div className="main">
           <Calendar selectedYear={selectedYear} selectedMonth={selectedMonth} />

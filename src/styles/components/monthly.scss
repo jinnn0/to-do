@@ -7,6 +7,12 @@
   // border: 1px solid rgba(0, 0, 0, 0.151);
 }
 
+.row-1,
+.row-2-col-1,
+.row-2-col-2 {
+  // border: 1px solid rgba(0, 0, 0, 0.151);
+}
+
 .monthly {
   height: auto;
 
@@ -57,6 +63,21 @@
 
         @media (min-width: 550px) {
           flex-basis: 100%;
+        }
+
+        .today-btn {
+          margin-left: 2.5em;
+          background-color: transparent;
+          padding: 0.1em 0.5em 0.1em 0.5em;
+          border-radius: 8px;
+          border: 1px solid rgba(0, 0, 0, 0.253);
+          outline: none;
+          font-size: 0.9em;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+          }
         }
       }
 

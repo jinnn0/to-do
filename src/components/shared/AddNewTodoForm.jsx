@@ -4,32 +4,21 @@ import DateInput from '../AddNewTodoForm/DateInput';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function AddNewTodoForm() {
-  let d = new Date();
-
+  const { today, addNewTodoButtonClicked, setAddNewTodoButtonClicked, addTodo } = useContext(GlobalContext);
   const [colorBoxClicked, setColorBoxClicked] = useState(false);
   const [defaultColorType, setDefaultColorType] = useState('important');
-
-  const handleDefaultSelect = () => {
-    setColorBoxClicked(!colorBoxClicked);
-  };
-
-  const handleSelectType = (e) => {
-    setDefaultColorType(e.target.dataset.colorType);
-    setColorBoxClicked(!colorBoxClicked);
-  };
-
-  const { addTodo } = useContext(GlobalContext);
-  const { addNewTodoButtonClicked, setAddNewTodoButtonClicked } = useContext(GlobalContext);
   const [startDate, setStartDate] = useState(new Date());
   const [todo, setTodo] = useState({
     task: '',
     type: defaultColorType,
+    completed: false,
     dateInfo: {
-      year: d.getFullYear(),
-      month: d.getMonth(),
-      date: d.getDate(),
-      hour: d.getHours(),
-      minute: d.getMinutes()
+      year: today.year,
+      month: today.month,
+      date: today.date,
+      day: today.day,
+      hour: today.hour,
+      minute: today.minute
     }
   });
 
@@ -45,22 +34,23 @@ function AddNewTodoForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTodo = {
+      ...todo,
       id: Date.now(),
-      task: todo.task,
-      completed: false,
-      type: defaultColorType,
-      dateInfo: {
-        year: todo.dateInfo.year,
-        month: todo.dateInfo.month,
-        date: todo.dateInfo.date,
-        hour: todo.dateInfo.hour,
-        minute: todo.dateInfo.minute
-      }
+      task: todo.task
     };
 
     addTodo(newTodo);
     setTodo({ ...todo, task: '' });
     setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
+  };
+
+  const handleDefaultSelect = () => {
+    setColorBoxClicked(!colorBoxClicked);
+  };
+
+  const handleSelectType = (e) => {
+    setDefaultColorType(e.target.dataset.colorType);
+    setColorBoxClicked(!colorBoxClicked);
   };
 
   const handleDateChange = (e) => {
@@ -70,6 +60,7 @@ function AddNewTodoForm() {
         year: e.getFullYear(),
         month: e.getMonth(),
         date: e.getDate(),
+        day: e.toLocaleString('default', { weekday: 'long' }),
         hour: e.getHours(),
         minute: e.getMinutes()
       }

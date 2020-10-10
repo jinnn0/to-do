@@ -9,10 +9,9 @@ function Monthly() {
   const { today, handleClickOutsideForm } = useContext(GlobalContext);
 
   // prettier-ignore
-  const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September","October","November","December"];
   const [selectedYear, setSelectedYear] = useState(today.year);
   const [selectedMonth, setSelectedMonth] = useState(today.month);
-  const currentMonthName = monthsArray[selectedMonth];
+  const currentMonthName = new Date(today.year, selectedMonth).toLocaleString('default', { month: 'long' });
 
   const moveToPrevMonth = () => {
     if (selectedMonth === 0) {

@@ -3,17 +3,20 @@ import React, { useState, useEffect, createContext } from 'react';
 export const GlobalContext = createContext();
 
 export const GlobalContextProvider = (props) => {
-  // date state
-  const today = {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
-    date: new Date().getDate()
-  };
-
   // sample todoList
   // prettier-ignore
   const sampleTasks = ["Daily web development", "Get groceries for dinner", "Home exercise at 6pm", "Call Daniel for meeting", "House cleaning", "Tennis practice", "Do lundary", "Email Noah for update", "Finish monthly growth report", "Send in cacenllation letter", "Figure out vacation destination", "Fill in scholarship application" ]
   const todoTypes = ['important', 'work', 'study', 'other'];
+
+  // date state
+  const today = {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    date: new Date().getDate(),
+    day: new Date().toLocaleString('default', { weekday: 'long' }),
+    hour: new Date().getHours(),
+    minute: new Date().getMinutes()
+  };
 
   const sampleTodoList = sampleTasks.map((task, index) => {
     let randomDate;
@@ -34,7 +37,8 @@ export const GlobalContextProvider = (props) => {
       dateInfo: {
         year: today.year,
         month: today.month,
-        date: randomDate
+        date: randomDate,
+        day: new Date(today.year, today.month, randomDate).toLocaleString('default', { weekday: 'long' })
       }
     };
   });

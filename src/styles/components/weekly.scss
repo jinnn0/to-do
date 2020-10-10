@@ -1,5 +1,10 @@
 .weekly {
   position: relative;
+  height: auto;
+
+  @media (min-width: 900px) {
+    height: calc(var(--mobile-100vh-fix) - var(--nav-height));
+  }
 
   .main-display {
     .weekly-list {
@@ -28,7 +33,12 @@
 
       .list {
         h2 {
+          font-size: 1em;
           margin-bottom: 2.3rem;
+
+          @media (min-width: 550px) {
+            font-size: 1.5em;
+          }
 
           @media (min-width: 750px) {
             margin-bottom: 3rem;

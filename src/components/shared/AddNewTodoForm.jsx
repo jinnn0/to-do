@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import shortid from 'shortid';
 import NewTodo from '../AddNewTodoForm/NewTodo';
 import DateInput from '../AddNewTodoForm/DateInput';
 import { GlobalContext } from '../../contexts/GlobalState';
@@ -34,12 +35,14 @@ function AddNewTodoForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTodo = {
-      ...todo,
-      id: Date.now(),
-      task: todo.task
+      id: shortid.generate(),
+      task: todo.task,
+      ...todo
     };
 
-    addTodo(newTodo);
+    if (todo.task.trim()) {
+      addTodo(newTodo);
+    }
     setTodo({ ...todo, task: '' });
     setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
   };

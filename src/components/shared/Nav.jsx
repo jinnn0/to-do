@@ -23,8 +23,8 @@ function Nav() {
   return (
     <nav className="nav container flex">
       <ul className="left flex">
-        {Links.map((link, index) => (
-          <li key={index}>
+        {Links.map((link) => (
+          <li key={link.path}>
             <NavLink exact to={link.path} className="icon flex center" activeClassName=" selected">
               {link.icon}
             </NavLink>

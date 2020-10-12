@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
+import shortid from 'shortid';
 
 export const GlobalContext = createContext();
 
@@ -30,10 +31,10 @@ export const GlobalContextProvider = (props) => {
     }
 
     return {
-      id: task,
+      id: shortid.generate(),
       task: task,
-      completed: Math.random() >= 0.5,
       type: randomType,
+      completed: Math.random() >= 0.5,
       dateInfo: {
         year: today.year,
         month: today.month,

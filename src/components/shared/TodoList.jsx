@@ -4,8 +4,8 @@ import TodoItem from './TodoItem.jsx';
 function TodoList({ size, todoForToday }) {
   return (
     <ul className="todo-list">
-      {todoForToday.map((todo, index) => (
-        <TodoItem key={index} todo={todo} size={size} />
+      {todoForToday.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} size={size} />
       ))}
     </ul>
   );

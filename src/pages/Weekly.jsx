@@ -57,14 +57,14 @@ function Weekly() {
         <HeaderShared title={'Weekly'} />
 
         <div className="weekly-list">
-          {thisWeek.map((eachDay, index) => (
-            <div key={index} className="list sm">
+          {thisWeek.map((eachDay) => (
+            <div key={eachDay.dateInfo.date} className="list sm">
               <h2>
                 {eachDay.dateInfo.day} <span className="date">{eachDay.dateInfo.date}</span>
                 <span className="date-ordinal">{getOrdinalNum(eachDay.dateInfo)}</span>
               </h2>
               {eachDay.todos.length ? (
-                <TodoList key={index} today={today} todoForToday={eachDay.todos} />
+                <TodoList today={today} todoForToday={eachDay.todos} />
               ) : (
                 <span className="no-todo-message">There's no todo</span>
               )}

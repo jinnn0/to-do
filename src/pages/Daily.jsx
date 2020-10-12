@@ -5,7 +5,7 @@ import HeaderShared from '../components/shared/HeaderShared';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Daily() {
-  const { today, handleClickOutsideForm, sortedTodoList } = useContext(GlobalContext);
+  const { today, handleClickOutsideForm, sortedTodoList, sortValue } = useContext(GlobalContext);
   const TodosForEachDay = sortedTodoList.filter((todo) => {
     return (
       todo.dateInfo.year === today.year &&
@@ -16,6 +16,17 @@ function Daily() {
 
   useUnmount();
 
+  function showNoTodoMessage(todos) {
+    let message = 'Add new todo at the top right';
+    if (sortValue === 'completed' && !todos.length) {
+      message = 'No completed todos yet';
+    } else if (sortValue === 'active' && !todos.length) {
+      message = 'No active todo';
+    }
+
+    return message;
+  }
+
   return (
     <div className="daily" onClick={handleClickOutsideForm}>
       <div className="main-display container">
@@ -24,7 +35,7 @@ function Daily() {
           {TodosForEachDay.length ? (
             <TodoList today={today} todoForToday={TodosForEachDay} />
           ) : (
-            <span className="no-todo-message">Add new todo at the top right</span>
+            <span className="no-todo-message">{showNoTodoMessage(TodosForEachDay)}</span>
           )}
         </div>
       </div>

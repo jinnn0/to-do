@@ -109,17 +109,23 @@ export const GlobalContextProvider = (props) => {
   };
 
   // sorted list
-  let sortedTodoList = todoList.filter((todo) => {
-    if (sortValue === 'recent' || sortValue === 'tag' || sortValue === 'oldest') {
-      return todo;
-    } else if (sortValue === 'completed') {
-      return todo.completed;
-    } else if (sortValue === 'active') {
-      return !todo.completed;
+  let sortedTodoList = todoList;
+  if (sortValue === 'newest') {
+    sortedTodoList = todoList.reverse();
+  } else if (sortValue === 'tag') {
+    const ordering = {};
+    const sortOrder = ['important', 'work', 'study', 'other'];
+    for (let i = 0; i < sortOrder.length; i++) {
+      ordering[sortOrder[i]] = i;
     }
-
-    return todo;
-  });
+    sortedTodoList = todoList.sort((a, b) => {
+      return ordering[a.type] - ordering[b.type];
+    });
+  } else if (sortValue === 'completed') {
+    sortedTodoList = todoList.filter((todo) => todo.completed);
+  } else if (sortValue === 'active') {
+    sortedTodoList = todoList.filter((todo) => !todo.completed);
+  }
 
   // global states
   const value = {

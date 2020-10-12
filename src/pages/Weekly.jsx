@@ -5,7 +5,7 @@ import TodoList from '../components/shared/TodoList.jsx';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today, handleClickOutsideForm, sortedTodoList } = useContext(GlobalContext);
+  const { today, handleClickOutsideForm, sortedTodoList, sortValue } = useContext(GlobalContext);
 
   let thisWeek = [];
   for (let i = 0; i < 7; i++) {
@@ -51,6 +51,17 @@ function Weekly() {
 
   useUnmount();
 
+  function showNoTodoMessage(todos) {
+    let message = "There's no todo";
+    if (sortValue === 'completed' && !todos.length) {
+      message = 'No completed todos yet';
+    } else if (sortValue === 'active' && !todos.length) {
+      message = 'No active todo';
+    }
+
+    return message;
+  }
+
   return (
     <div className="weekly" onClick={handleClickOutsideForm}>
       <div className="main-display container">
@@ -66,7 +77,7 @@ function Weekly() {
               {eachDay.todos.length ? (
                 <TodoList today={today} todoForToday={eachDay.todos} />
               ) : (
-                <span className="no-todo-message">There's no todo</span>
+                <span className="no-todo-message">{showNoTodoMessage(eachDay)}</span>
               )}
             </div>
           ))}

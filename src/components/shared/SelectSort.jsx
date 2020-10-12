@@ -11,9 +11,9 @@ function SelectSort() {
     <div className="select-sort-container">
       <span className="sort-by-text">sort by</span>
       <select className="select-sort" value={sortValue} onChange={handleSelectedSortChange}>
-        <option value="recent">recent</option>
-        <option value="tag">tag</option>
         <option value="oldest">oldest</option>
+        <option value="newest">newest</option>
+        <option value="tag">tag</option>
         <option value="completed">completed</option>
         <option value="active">active</option>
       </select>

@@ -6,8 +6,8 @@ function CalendarMain({ showCalendar }) {
   return (
     <div className="calendar-main">
       <div className="days">
-        {daysArray.map((day) => (
-          <span key={day}>{day}</span>
+        {daysArray.map((day, index) => (
+          <span key={index}>{day}</span>
         ))}
       </div>
 

@@ -32,11 +32,11 @@
 /* todo item */
 .todo-item {
   margin-bottom: 1rem;
-  padding: 0.5rem 1.1rem;
+  padding: 0.7rem 1.1rem;
   border-radius: 30px;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.038);
-  box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.111);
+  box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.03);
   transform: translateY(30px); /* animation */
   font-size: 16px;
   opacity: 0;
@@ -46,8 +46,8 @@
   }
 
   .type-bar {
-    width: 0.31em;
-    height: 1.56em;
+    width: 0.3em;
+    height: 1em;
     border-radius: 0.31em;
     margin-right: 0.5em;
     background-color: $purple;
@@ -55,8 +55,8 @@
 
   .checkbox {
     border: 1px solid #c1c3c6;
-    width: 1em;
-    height: 1em;
+    width: 0.9em;
+    height: 0.9em;
     border-radius: 0.35em;
     margin-right: 0.5em;
     cursor: pointer;
@@ -89,8 +89,8 @@
   }
 
   .task {
-    font-size: 0.75em;
-    font-weight: bold;
+    font-size: 0.73em;
+    font-weight: 600;
     word-break: break-all;
   }
 
@@ -102,6 +102,7 @@
     /* bin / more icons */
     svg {
       margin: 0 1rem;
+      color: rgba(0, 0, 0, 0.699);
     }
 
     svg:hover {
@@ -121,10 +122,6 @@
   box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.07);
   padding-left: 1.1rem;
   margin-bottom: 1.3rem;
-
-  @media (min-width: 500px) {
-    height: 4em;
-  }
 
   @media (min-width: 750px) {
     font-size: 18px;

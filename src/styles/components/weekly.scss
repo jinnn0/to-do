@@ -28,7 +28,7 @@
         position: absolute;
         overflow-x: scroll;
         width: calc(75% - 50px);
-        scrollbar-width: none; // fix for firefox
+        scrollbar-width: none; /* fix for firefox */
       }
 
       .list {
@@ -36,11 +36,8 @@
           font-size: 1em;
           margin-bottom: 2.3rem;
 
-          @media (min-width: 550px) {
+          @media (min-width: 900px) {
             font-size: 1.5em;
-          }
-
-          @media (min-width: 750px) {
             margin-bottom: 3rem;
           }
 

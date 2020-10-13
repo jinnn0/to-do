@@ -24,21 +24,22 @@
       display: flex;
       flex-wrap: wrap;
       padding-top: 34.06px; /* (header-height (120px) - flex-1 height(51.88px) /2) */
-      margin-bottom: 2.5em;
+      margin-bottom: 1.8em;
 
       @media (min-width: 550px) {
         padding-top: 0;
       }
 
       @media (min-width: 750px) {
-        margin-bottom: 4.5em;
       }
 
       .title {
         margin-right: 1rem;
         font-size: 1.4rem;
 
-        @media (min-width: 550px) {
+        font-size: 1.6rem;
+
+        @media (min-width: 900px) {
           font-size: 2rem;
         }
       }

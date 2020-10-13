@@ -7,6 +7,7 @@
   // border: 1px solid rgba(0, 0, 0, 0.151);
 }
 
+/* HeaderMonthly */
 .row-1,
 .row-2-col-1,
 .row-2-col-2 {
@@ -16,12 +17,12 @@
 .monthly {
   height: auto;
 
-  @media (min-width: 1300px) {
+  @media (min-width: 1100px) {
     height: calc(var(--mobile-100vh-fix) - var(--nav-height));
   }
 
-  // when min-width is greater than 1300px but in short landscape mode
-  @media (min-width: 1300px) and (max-height: 750px) {
+  /* when min-width is greater than 1300px but in short landscape mode */
+  @media (min-width: 1100px) and (max-height: 750px) {
     height: auto;
   }
 
@@ -60,6 +61,7 @@
       .row-2-col-1 {
         flex-basis: 50%;
         justify-content: flex-start;
+        font-size: 0.75em;
 
         @media (min-width: 550px) {
           flex-basis: 100%;
@@ -68,11 +70,10 @@
         .today-btn {
           margin-left: 2.5em;
           background-color: transparent;
-          padding: 0.1em 0.5em 0.1em 0.5em;
+          padding: 0.15em 0.5em 0.15em 0.5em;
           border-radius: 8px;
           border: 1px solid rgba(0, 0, 0, 0.253);
           outline: none;
-          font-size: 0.9em;
           cursor: pointer;
 
           &:hover {
@@ -106,34 +107,37 @@
     .main {
       padding: 0 0.5em;
       height: 1100px;
+      max-width: 1300px;
       display: flex;
       flex-direction: column;
 
-      @media (min-width: 1300px) {
+      @media (min-width: 1100px) {
         height: 60vh;
         flex-direction: row;
         padding: 0;
       }
 
-      @media (min-width: 1300px) and (max-height: 750px) {
-        min-height: 450px; // prevents from 60vh in short landscape mode
+      @media (min-width: 1100px) and (max-height: 750px) {
+        min-height: 450px; /* prevents from 60vh in short landscape mode */
         margin-bottom: 5em;
       }
 
       .calendar-container {
         flex: 1;
-        max-height: 350px; // locks the calendar height from flex:1
+        max-height: 350px; /* ocks the calendar height from flex:1 */
 
-        @media (min-width: 1300px) {
+        @media (min-width: 1100px) {
           flex: 1.7;
           max-height: inherit;
           margin-right: 3rem;
+
+          flex: 1;
         }
 
         .calendar-main {
           height: 100%;
 
-          @media (min-width: 1300px) {
+          @media (min-width: 1100px) {
             height: 100%;
           }
 
@@ -146,7 +150,6 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            transition: all 0.2s linear;
             cursor: pointer;
 
             font-size: 0.9em;
@@ -161,16 +164,21 @@
               position: absolute;
               width: 32px;
               height: 32px;
-              background-color: #6966ff6b;
+              background-color: #00000005;
               border-radius: 50%;
+
+              @media (min-width: 900px) {
+                width: 50px;
+                height: 50px;
+              }
             }
           }
 
           .days,
           .week {
             width: 100%;
-            height: 15%;
-            font-weight: bold;
+            height: 14.5%;
+            font-weight: 500;
             display: flex;
             justify-content: space-between;
           }
@@ -185,7 +193,7 @@
           }
 
           .today {
-            background-color: rgb(255, 235, 205);
+            background-color: rgba(255, 227, 184, 0.411);
           }
 
           .weekend {
@@ -199,29 +207,36 @@
         margin-top: 6rem;
         position: relative;
 
-        @media (min-width: 1300px) {
+        @media (min-width: 1100px) {
           flex: 1;
           border-left: 1px solid rgba(0, 0, 0, 0.118);
           margin-top: 0;
           padding-left: 3rem;
           padding-right: 1rem;
+
+          flex: 1;
         }
 
         form {
-          width: 100%;
-          height: 35px;
+          width: 96%;
+          height: var(--monthly-list-form-height);
           display: flex;
           align-items: center;
-          padding: 0 1em;
+          padding-left: 0.4em;
+          margin-bottom: var(--monthly-list-form-mg-bottom);
           background-color: rgb(241, 241, 243);
           border-radius: 5px;
-          margin-bottom: 2rem;
           position: relative;
 
           .search-icon {
             position: absolute;
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
+
+            @media (min-width: 1550px) {
+              width: 16px;
+              height: 16px;
+            }
           }
 
           input {
@@ -231,13 +246,29 @@
             border: none;
             background-color: transparent;
             outline: none;
+            padding-bottom: 2px;
+
+            &::placeholder {
+              font-size: 1em;
+              line-height: 17px;
+
+              @media (min-width: 550px) {
+                font-size: 0.8em;
+                line-height: 20px;
+              }
+            }
           }
         }
 
         .title {
           color: rgba(0, 0, 0, 0.781);
-          font-size: 1.2em;
-          margin-bottom: 2em;
+          font-size: 1em;
+          margin-bottom: var(--monthly-list-title-mg-bottom);
+          height: var(--monthly-list-title-height);
+
+          @media (min-width: 1550px) {
+            font-size: 1.5em;
+          }
 
           .todos-length {
             margin-left: 5px;
@@ -250,12 +281,24 @@
           overflow-y: scroll;
           -webkit-overflow-scrolling: touch;
 
-          @media (min-width: 1300px) {
-            height: 70%;
+          @media (min-width: 1100px) {
+            height: calc(
+              100% -
+                (
+                  var(--monthly-list-form-height) + var(--monthly-list-form-mg-bottom) +
+                    var(--monthly-list-title-height) + var(--monthly-list-title-mg-bottom)
+                )
+            );
           }
 
-          @media (min-width: 1300px) and (min-height: 950px) {
-            height: 77%;
+          @media (min-width: 1550px) {
+            height: calc(
+              100% -
+                (
+                  var(--monthly-list-form-height) + var(--monthly-list-form-mg-bottom) +
+                    var(--monthly-list-title-height) + var(--monthly-list-title-mg-bottom)
+                )
+            );
           }
 
           &__list {
@@ -266,10 +309,15 @@
               margin-bottom: 1em;
 
               .date {
-                font-size: 1.5em;
+                font-size: 1.2em;
                 font-weight: bold;
-                line-height: 25px;
+                line-height: 15px;
                 flex-basis: 13%;
+
+                @media (min-width: 1550px) {
+                  font-size: 1.5em;
+                  line-height: 23px;
+                }
               }
 
               .day {
@@ -294,6 +342,10 @@
                   padding-left: 0.1em;
                   transform: translateY(0);
                   background-color: transparent;
+
+                  @media (min-width: 1550px) {
+                    font-size: 1.1em;
+                  }
 
                   .checkbox {
                     border: none;

@@ -38,7 +38,7 @@ select::-ms-expand {
   border-radius: 8px;
   @include popup-box-shadow;
   outline: none;
-  z-index: 2; // otherwise it will be placed underneath todo item
+  z-index: 2; /* otherwise it will be placed underneath todo item */
   display: none;
 
   &.show-add-new-todo-form {

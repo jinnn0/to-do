@@ -17,10 +17,6 @@
     position: relative;
     z-index: 2;
 
-    @media (min-width: 750px) {
-      font-size: 1.5rem;
-    }
-
     .time {
       margin-right: 15px;
     }
@@ -38,14 +34,6 @@
   .home-main-container {
     height: calc(100% - var(--time-display-height));
 
-    @media (min-width: 500px) {
-      padding: 0 20px;
-    }
-
-    @media (min-width: 900px) {
-      padding: 0 50px;
-    }
-
     .home-main {
       width: calc(100vw - (var(--container-padding) * 2));
       min-width: 280px;
@@ -60,18 +48,18 @@
         width: 80vw;
       }
 
+      @media (min-width: 750px) {
+        padding: 2em;
+      }
+
       .title {
-        font-size: 1em;
+        font-size: 1.1em;
         color: $title;
         margin-bottom: 1.4rem;
         padding-left: 15px;
 
-        @media (min-width: 750px) {
+        @media (min-width: 1550px) {
           font-size: 1.3em;
-        }
-
-        @media (min-width: 1500px) {
-          font-size: 1.5em;
         }
       }
 
@@ -82,13 +70,13 @@
         transform: translateY(30px); /* animation */
         cursor: pointer;
 
-        .point-up-icon {
+        .point-down-icon {
           opacity: 0;
-          animation: hi 0.5s ease-in-out infinite alternate;
+          animation: pointDown 0.5s ease-in-out infinite alternate;
           margin-bottom: 1.5rem;
         }
 
-        @keyframes hi {
+        @keyframes pointDown {
           0% {
             transform: translateY(-10px);
           }

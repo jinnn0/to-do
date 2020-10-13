@@ -8,7 +8,7 @@ const homeAnimation = () => {
     ease: 'power4.out',
     y: 0,
     opacity: 1
-  }).to('.point-up-icon', {
+  }).to('.point-down-icon', {
     duration: 0.5,
     opacity: 1,
     delay: -0.5

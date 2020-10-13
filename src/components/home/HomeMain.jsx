@@ -108,7 +108,7 @@ function InitialMessage({ handleClickAddNewTodoButton }) {
 
   return (
     <div className="initial-message">
-      <FaRegHandPointDown className="point-up-icon" />
+      <FaRegHandPointDown className="point-down-icon" />
       <h1 className="title message" onClick={handleClickAddNewTodoButton}>
         What's your todo today?
       </h1>

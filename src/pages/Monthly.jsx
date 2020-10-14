@@ -11,7 +11,7 @@ function Monthly() {
   // prettier-ignore
   const [selectedYear, setSelectedYear] = useState(today.year);
   const [selectedMonth, setSelectedMonth] = useState(today.month);
-  const currentMonthName = new Date(today.year, selectedMonth).toLocaleString('default', { month: 'long' });
+  const currentMonthName = new Date(selectedYear, selectedMonth).toLocaleString('default', { month: 'long' });
 
   const moveToPrevMonth = () => {
     if (selectedMonth === 0) {

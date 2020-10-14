@@ -1,42 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function TimeDisplay() {
-  let [currentTime, setCurrentTime] = useState({
-    hour: null,
-    minute: null,
-    day: null,
-    month: null,
-    date: null
+  const { today } = useContext(GlobalContext);
+  const [currentTime, setCurrentTime] = useState({
+    hour: new Date().getHours(),
+    minute: new Date().getMinutes()
   });
 
   useEffect(() => {
-    updateCurrentTime();
-  }, [currentTime.minute]);
+    let timeId = setTimeout(() => {
+      setCurrentTime({
+        hour: new Date().getHours(),
+        minute: new Date().getMinutes()
+      });
+    }, 60000 - 1000 * new Date().getSeconds());
 
-  const updateCurrentTime = () => {
-    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-    let d = new Date();
-    let current = {
-      hour: d.getHours(),
-      minute: d.getMinutes(),
-      day: days[d.getDay()],
-      month: months[d.getMonth()],
-      date: d.getDate()
+    return () => {
+      clearTimeout(timeId);
     };
-
-    setCurrentTime(current);
-  };
+  }, [currentTime.minute]);
 
   return (
     <div className="time-display">
       <div className="time">
-        {currentTime.hour}:{currentTime.minute < 10 ? '0' + currentTime.minute : currentTime.minute}
+        {`${currentTime.hour < 10 ? '0' + currentTime.hour : currentTime.hour}:${
+          currentTime.minute < 10 ? '0' + currentTime.minute : currentTime.minute
+        }`}
       </div>
       <div className="day">
-        {currentTime.day}, {currentTime.month}
-        <span className="date">{currentTime.date}</span>
+        {today.day}, {today.monthName}
+        <span className="date">{today.date}</span>
       </div>
     </div>
   );

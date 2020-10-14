@@ -8,9 +8,8 @@ function MonthlyList({ currentMonthName, selectedYear, selectedMonth }) {
   const { todoList } = useContext(GlobalContext);
 
   const todosByYear = _.groupBy(todoList, 'dateInfo.year');
-  const todoThisMonth = todosByYear[`${selectedYear}`].filter(
-    (todo) => todo.dateInfo.month === selectedMonth
-  );
+  const todosThisYear = todosByYear[`${selectedYear}`] || [];
+  const todoThisMonth = todosThisYear.filter((todo) => todo.dateInfo.month === selectedMonth);
 
   const todosEachDay = Object.values(
     todoThisMonth.reduce((acc, current) => {

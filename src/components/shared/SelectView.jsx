@@ -11,8 +11,7 @@ function SelectView({ history, location }) {
     updateSelectedView(e.target.value);
   };
 
-  // when mounted, get the current url and
-  // always update the selectedView
+  // when mounted, get the current url and always update the selectedView
   // it updates the state when user clicks on go back button in the browser
   useEffect(() => {
     const currentView = location.pathname.slice(1, location.pathname.length);

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
+import { mod } from '../../utils/utils';
 import AddNewTodoForm from '../shared/AddNewTodoForm';
 import TodoItem from '../shared/TodoItem';
 import * as MdIcons from 'react-icons/md';
@@ -31,10 +32,6 @@ function HomeMain() {
     setTodoIndex((prev) => (prev + 1) % todoToday.length);
   };
 
-  function mod(n, m) {
-    return ((n % m) + m) % m;
-  }
-
   const absoluteCenter = {
     position: 'absolute',
     top: '50%',
@@ -55,13 +52,12 @@ function HomeMain() {
         }
       }
     }
-  });
+  }, []);
 
   return (
     <>
       <div className="home-main-container">
         <div
-          className={'home-main flex center ' + (isAddNewTodoClicked ? 'z-index' : '')}
           className={`home-main flex center ${isAddNewTodoClicked ? 'z-index' : ''}`}
           ref={homeMainDivRef}
           style={homeMainDivTouching ? null : absoluteCenter}

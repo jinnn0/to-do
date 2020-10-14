@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import shortid from 'shortid';
-import NewTodo from '../AddNewTodoForm/NewTodo';
-import DateInput from '../AddNewTodoForm/DateInput';
+import NewTodo from '../todo-form/NewTodo';
+import DateInput from '../todo-form/DateInput';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function AddNewTodoForm() {
@@ -18,22 +18,19 @@ function AddNewTodoForm() {
       month: today.month,
       date: today.date,
       day: today.day,
-      hour: today.hour,
-      minute: today.minute
+      hour: new Date().getHours(),
+      minute: new Date().getMinutes()
     }
   });
 
   const handleInputChange = (e) => {
-    const value = e.target.value;
-
     setTodo({
       ...todo,
-      [e.target.name]: value
+      task: e.target.value
     });
   };
 
   const handleSubmit = (e) => {
-    console.log('todo submitted', isAddNewTodoClicked);
     e.preventDefault();
     const newTodo = {
       id: shortid.generate(),

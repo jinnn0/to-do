@@ -5,7 +5,7 @@ import TodoList from '../components/shared/TodoList.jsx';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today, hideAddNewTodoForm, sortedTodoList, sortValue } = useContext(GlobalContext);
+  const { today, sortedTodoList, sortValue, hideAddNewTodoForm } = useContext(GlobalContext);
 
   let thisWeek = [];
   for (let i = 0; i < 7; i++) {
@@ -61,10 +61,6 @@ function Weekly() {
 
     return message;
   }
-
-  const handleClick = (e) => {
-    console.log(e);
-  };
 
   return (
     <div className="weekly" onClick={hideAddNewTodoForm}>

@@ -20,7 +20,6 @@ function NewTodo({
         value={todo.task}
         placeholder="New task"
         className="text-input"
-        name="task"
       />
 
       <div className="select-type-container">

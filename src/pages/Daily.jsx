@@ -5,7 +5,7 @@ import HeaderShared from '../components/shared/HeaderShared';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Daily() {
-  const { today, hideAddNewTodoForm, sortedTodoList, sortValue } = useContext(GlobalContext);
+  const { today, sortedTodoList, sortValue, hideAddNewTodoForm } = useContext(GlobalContext);
   const TodosForEachDay = sortedTodoList.filter((todo) => {
     return (
       todo.dateInfo.year === today.year &&

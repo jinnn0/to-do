@@ -70,9 +70,22 @@ export const GlobalContextProvider = (props) => {
     setTodoList(updatedTodo);
   };
 
+  // isAddNewTodoClicked state
+  const [isAddNewTodoClicked, setIsAddNewTodoClicked] = useState(false);
+
+  const showAddNewTodoForm = () => {
+    setIsAddNewTodoClicked(!isAddNewTodoClicked);
+  };
+
+  const hideAddNewTodoForm = () => {
+    if (isAddNewTodoClicked) {
+      setIsAddNewTodoClicked(!isAddNewTodoClicked);
+    }
+  };
+
   // view state (daily / weekly / monthly)
-  const initialViewValue = JSON.parse(localStorage.getItem('selected-view')) || 'daily';
-  const [selectedView, setSelectedView] = useState(initialViewValue);
+  const initialView = JSON.parse(localStorage.getItem('selected-view')) || 'daily';
+  const [selectedView, setSelectedView] = useState(initialView);
 
   useEffect(() => {
     localStorage.setItem('selected-view', JSON.stringify(selectedView));
@@ -83,35 +96,22 @@ export const GlobalContextProvider = (props) => {
   };
 
   // sort state (recent / tag / oldest / completed / active)
-  const initialSortValue = JSON.parse(localStorage.getItem('sort-value')) || 'recent';
-  const [sortValue, setSortValue] = useState(initialSortValue);
+  const initialSort = JSON.parse(localStorage.getItem('sort-value')) || 'oldest';
+  const [selectedSort, setSelectedSort] = useState(initialSort);
 
   useEffect(() => {
-    localStorage.setItem('sort-value', JSON.stringify(sortValue));
-  }, [sortValue]);
+    localStorage.setItem('sort-value', JSON.stringify(selectedSort));
+  }, [selectedSort]);
 
-  const updateSortValue = (newSort) => {
-    setSortValue(newSort);
-  };
-
-  // add new todo button state
-  const [addNewTodoButtonClicked, setAddNewTodoButtonClicked] = useState(false);
-
-  const handleClickAddNewTodoButton = () => {
-    setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
-  };
-
-  const handleClickOutsideForm = () => {
-    if (addNewTodoButtonClicked) {
-      setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
-    }
+  const updateSelectedSort = (newSort) => {
+    setSelectedSort(newSort);
   };
 
   // sorted list
   let sortedTodoList = todoList;
-  if (sortValue === 'newest') {
+  if (selectedSort === 'newest') {
     sortedTodoList = todoList.reverse();
-  } else if (sortValue === 'tag') {
+  } else if (selectedSort === 'tag') {
     const ordering = {};
     const sortOrder = ['important', 'work', 'study', 'other'];
     for (let i = 0; i < sortOrder.length; i++) {
@@ -120,28 +120,28 @@ export const GlobalContextProvider = (props) => {
     sortedTodoList = todoList.sort((a, b) => {
       return ordering[a.type] - ordering[b.type];
     });
-  } else if (sortValue === 'completed') {
+  } else if (selectedSort === 'completed') {
     sortedTodoList = todoList.filter((todo) => todo.completed);
-  } else if (sortValue === 'active') {
+  } else if (selectedSort === 'active') {
     sortedTodoList = todoList.filter((todo) => !todo.completed);
   }
 
   // global states
   const value = {
-    today,
-    todoList,
-    addTodo,
-    removeTodo,
-    toggleComplete,
-    selectedView,
-    updateSelectedView,
-    sortValue,
-    updateSortValue,
-    addNewTodoButtonClicked,
-    setAddNewTodoButtonClicked,
-    handleClickAddNewTodoButton,
-    handleClickOutsideForm,
-    sortedTodoList
+    today, // HomeMain, TimeDisplay, Daily, Weekly, Monthly, AddNewTodoForm
+    todoList, // HomeMain, MonthlyList
+    addTodo, // AddNewTodoForm
+    removeTodo, // TodoItem, InnerList
+    toggleComplete, // TodoItem, InnerList
+    selectedView, // Nav, SelectView
+    updateSelectedView, // SelectView
+    setSelectedSort, // SelectSort, Daily, Weekly
+    updateSelectedSort, // SelectSort
+    isAddNewTodoClicked, // HomeMain, AddNewTodoForm
+    setIsAddNewTodoClicked, // AddNewTodoForm
+    showAddNewTodoForm, // HomeMain, HeaderShared, HeaderMonthly
+    hideAddNewTodoForm, // HomeMain, Daily, Weekly, Monthly, useUnmount.js
+    sortedTodoList // Daily, Weekly
   };
 
   return <GlobalContext.Provider value={value}>{props.children}</GlobalContext.Provider>;

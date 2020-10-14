@@ -6,7 +6,7 @@ import { FiPlus } from 'react-icons/fi';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function HeaderShared({ title }) {
-  const { handleClickAddNewTodoButton } = useContext(GlobalContext);
+  const { showAddNewTodoForm } = useContext(GlobalContext);
 
   return (
     <div className="header">
@@ -25,7 +25,7 @@ function HeaderShared({ title }) {
       </div>
 
       <div className="row-2-col-2">
-        <FiPlus className="add-new-todo-icon" onClick={handleClickAddNewTodoButton} />
+        <FiPlus className="add-new-todo-icon" onClick={showAddNewTodoForm} />
         <AddNewTodoForm />
       </div>
     </div>

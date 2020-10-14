@@ -5,7 +5,7 @@ import HeaderShared from '../components/shared/HeaderShared';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Daily() {
-  const { today, handleClickOutsideForm, sortedTodoList, sortValue } = useContext(GlobalContext);
+  const { today, hideAddNewTodoForm, sortedTodoList, sortValue } = useContext(GlobalContext);
   const TodosForEachDay = sortedTodoList.filter((todo) => {
     return (
       todo.dateInfo.year === today.year &&
@@ -28,7 +28,7 @@ function Daily() {
   }
 
   return (
-    <div className="daily" onClick={handleClickOutsideForm}>
+    <div className="daily" onClick={hideAddNewTodoForm}>
       <div className="main-display container">
         <HeaderShared title={'Today'} />
         <div className="list md">

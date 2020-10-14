@@ -5,7 +5,7 @@ import DateInput from '../AddNewTodoForm/DateInput';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function AddNewTodoForm() {
-  const { today, addNewTodoButtonClicked, setAddNewTodoButtonClicked, addTodo } = useContext(GlobalContext);
+  const { today, isAddNewTodoClicked, setIsAddNewTodoClicked, addTodo } = useContext(GlobalContext);
   const [colorBoxClicked, setColorBoxClicked] = useState(false);
   const [defaultColorType, setDefaultColorType] = useState('important');
   const [startDate, setStartDate] = useState(new Date());
@@ -33,6 +33,7 @@ function AddNewTodoForm() {
   };
 
   const handleSubmit = (e) => {
+    console.log('todo submitted', isAddNewTodoClicked);
     e.preventDefault();
     const newTodo = {
       id: shortid.generate(),
@@ -44,7 +45,7 @@ function AddNewTodoForm() {
       addTodo(newTodo);
     }
     setTodo({ ...todo, task: '' });
-    setAddNewTodoButtonClicked(!addNewTodoButtonClicked);
+    setIsAddNewTodoClicked(!isAddNewTodoClicked);
   };
 
   const handleDefaultSelect = () => {
@@ -81,7 +82,7 @@ function AddNewTodoForm() {
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={`add-new-todo-form ${addNewTodoButtonClicked ? ' show-add-new-todo-form' : ''}`}
+      className={`add-new-todo-form ${isAddNewTodoClicked ? ' show-add-new-todo-form' : ''}`}
     >
       <NewTodo
         handleInputChange={handleInputChange}

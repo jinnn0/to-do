@@ -6,7 +6,7 @@ import Calendar from '../components/monthly/Calendar';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Monthly() {
-  const { today, handleClickOutsideForm } = useContext(GlobalContext);
+  const { today, hideAddNewTodoForm } = useContext(GlobalContext);
 
   // prettier-ignore
   const [selectedYear, setSelectedYear] = useState(today.year);
@@ -37,7 +37,7 @@ function Monthly() {
   useUnmount();
 
   return (
-    <div className="monthly" onClick={handleClickOutsideForm}>
+    <div className="monthly" onClick={hideAddNewTodoForm}>
       <div className="main-display container">
         <HeaderMonthly
           currentMonthName={currentMonthName}

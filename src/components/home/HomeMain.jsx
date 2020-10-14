@@ -7,13 +7,9 @@ import homeAnimation from '../../animations/homeAnimation';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function HomeMain() {
-  const {
-    today,
-    todoList,
-    addNewTodoButtonClicked,
-    handleClickAddNewTodoButton,
-    handleClickOutsideForm
-  } = useContext(GlobalContext);
+  const { today, todoList, isAddNewTodoClicked, showAddNewTodoForm, hideAddNewTodoForm } = useContext(
+    GlobalContext
+  );
 
   const [todoIndex, setTodoIndex] = useState(0);
   const homeMainDivRef = useRef();
@@ -65,8 +61,8 @@ function HomeMain() {
     <>
       <div className="home-main-container">
         <div
-          className={'home-main flex center ' + (addNewTodoButtonClicked ? 'z-index' : '')}
-          className={`home-main flex center ${addNewTodoButtonClicked ? 'z-index' : ''}`}
+          className={'home-main flex center ' + (isAddNewTodoClicked ? 'z-index' : '')}
+          className={`home-main flex center ${isAddNewTodoClicked ? 'z-index' : ''}`}
           ref={homeMainDivRef}
           style={homeMainDivTouching ? null : absoluteCenter}
         >
@@ -81,8 +77,8 @@ function HomeMain() {
             </>
           ) : (
             <>
-              <InitialMessage handleClickAddNewTodoButton={handleClickAddNewTodoButton} />
-              {addNewTodoButtonClicked ? (
+              <InitialMessage showAddNewTodoForm={showAddNewTodoForm} />
+              {isAddNewTodoClicked ? (
                 <>
                   <AddNewTodoForm />
                 </>
@@ -92,8 +88,8 @@ function HomeMain() {
         </div>
       </div>
 
-      {addNewTodoButtonClicked && !focusOnThisTodo ? (
-        <div className="overlay" onClick={handleClickOutsideForm}></div>
+      {isAddNewTodoClicked && !focusOnThisTodo ? (
+        <div className="overlay" onClick={hideAddNewTodoForm}></div>
       ) : null}
     </>
   );
@@ -101,7 +97,7 @@ function HomeMain() {
 
 export default HomeMain;
 
-function InitialMessage({ handleClickAddNewTodoButton }) {
+function InitialMessage({ showAddNewTodoForm }) {
   useEffect(() => {
     homeAnimation();
   }, []);
@@ -109,7 +105,7 @@ function InitialMessage({ handleClickAddNewTodoButton }) {
   return (
     <div className="initial-message">
       <FaRegHandPointDown className="point-down-icon" />
-      <h1 className="title message" onClick={handleClickAddNewTodoButton}>
+      <h1 className="title message" onClick={showAddNewTodoForm}>
         What's your todo today?
       </h1>
     </div>

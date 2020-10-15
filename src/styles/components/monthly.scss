@@ -1,7 +1,6 @@
 .monthly,
 .main,
-.calendar-container,
-.calendar-main,
+.calendar,
 .monthly-list,
 .monthly-list * {
   // border: 1px solid rgba(0, 0, 0, 0.151);
@@ -11,6 +10,10 @@
 .row-1,
 .row-2-col-1,
 .row-2-col-2 {
+  // border: 1px solid rgba(0, 0, 0, 0.151);
+}
+
+.calendar * {
   // border: 1px solid rgba(0, 0, 0, 0.151);
 }
 
@@ -122,73 +125,83 @@
         margin-bottom: 5em;
       }
 
-      .calendar-container {
+      .calendar {
         flex: 1;
-        max-height: 350px; /* ocks the calendar height from flex:1 */
+        display: flex;
+        flex-direction: column;
 
         @media (min-width: 1100px) {
-          flex: 1.7;
+          flex: 1.1;
           max-height: inherit;
           margin-right: 3rem;
-
-          flex: 1;
         }
 
-        .calendar-main {
-          height: 100%;
+        &__header,
+        &__week {
+          width: 100%;
+          flex: 1;
+          font-weight: 500;
+          display: flex;
+          justify-content: space-between;
+        }
 
-          @media (min-width: 1100px) {
-            height: 100%;
+        /* days & date */
+        &__header span,
+        &__week .date {
+          display: inline-block;
+          font-size: 0.9em;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          cursor: pointer;
+
+          @media (min-width: 900px) {
+            width: 50px;
+            height: 50px;
           }
+        }
 
-          span {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+        &__header {
+          color: rgb(128, 128, 128);
+        }
+
+        &__week {
+          .no-todo-message::before {
+            content: 'No todo';
+            position: absolute;
+            left: 130%;
+            width: 80px;
+            height: 50px;
+            border-radius: 3px;
+            background-color: rgb(242, 242, 242);
+            color: rgb(123, 123, 123);
             display: flex;
-            justify-content: center;
             align-items: center;
-            position: relative;
-            cursor: pointer;
-
-            font-size: 0.9em;
-
-            @media (min-width: 900px) {
-              width: 50px;
-              height: 50px;
-            }
-
-            &:hover::before {
-              content: '';
-              position: absolute;
-              width: 32px;
-              height: 32px;
-              background-color: #00000005;
-              border-radius: 50%;
-
-              @media (min-width: 900px) {
-                width: 50px;
-                height: 50px;
-              }
-            }
+            justify-content: center;
+            z-index: 1;
           }
 
-          .days,
-          .week {
-            width: 100%;
-            height: 14.5%;
-            font-weight: 500;
-            display: flex;
-            justify-content: space-between;
+          /* small tail on the right border */
+          .no-todo-message:after {
+            content: '';
+            display: block;
+            width: 0;
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            border-color: rgba(0, 0, 0, 0) rgba(242, 242, 242, 0.762);
+            border-style: solid;
+            border-width: 15px;
+            border-left-width: 0;
           }
 
-          .days {
-            color: rgb(128, 128, 128);
-          }
-
-          .days-prev-month,
-          .days-next-month {
+          .date-prev-month,
+          .date-next-month {
             color: rgb(192, 192, 192);
           }
 
@@ -213,8 +226,6 @@
           margin-top: 0;
           padding-left: 3rem;
           padding-right: 1rem;
-
-          flex: 1;
         }
 
         form {

@@ -1,11 +1,18 @@
-import React from 'react';
-import CalendarMain from './CalendarMain';
-import { showCalendar } from '../../utils/calendarHelper';
+import React, { useState } from 'react';
+import showCalendar from '../../utils/showCalendar';
 
 function Calendar({ selectedYear, selectedMonth }) {
+  const daysArray = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+
   return (
-    <div className="calendar-container">
-      <CalendarMain showCalendar={showCalendar(selectedYear, selectedMonth)} />
+    <div className="calendar">
+      <div className="calendar__header">
+        {daysArray.map((day, index) => (
+          <span key={index}>{day}</span>
+        ))}
+      </div>
+
+      {showCalendar(selectedYear, selectedMonth)}
     </div>
   );
 }

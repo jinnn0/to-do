@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { CgCheck } from 'react-icons/cg';
 

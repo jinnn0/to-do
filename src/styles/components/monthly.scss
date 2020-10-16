@@ -230,15 +230,19 @@
 
         form {
           width: 96%;
-          height: var(--monthly-list-form-height);
+          height: 27px;
           display: flex;
           align-items: center;
           padding-left: 0.4em;
-          margin-bottom: var(--monthly-list-form-mg-bottom);
+          margin-bottom: 1.8em;
           background-color: rgb(241, 241, 243);
           border-radius: 5px;
           position: relative;
 
+          @media (min-width: 1550px) {
+            height: 35px;
+            margin-bottom: 1.6em;
+          }
           .search-icon {
             position: absolute;
             width: 12px;
@@ -274,11 +278,13 @@
         .title {
           color: rgba(0, 0, 0, 0.781);
           font-size: 1em;
-          margin-bottom: var(--monthly-list-title-mg-bottom);
-          height: var(--monthly-list-title-height);
+          height: 18px;
+          margin-bottom: 1.5em;
 
           @media (min-width: 1550px) {
             font-size: 1.5em;
+            height: 29px;
+            margin-bottom: 1.3em;
           }
 
           .todos-length {
@@ -292,24 +298,13 @@
           overflow-y: scroll;
           -webkit-overflow-scrolling: touch;
 
+          /* 100% - (form height + form mg bottom + monthlyList title height + monthly title mg bottom) */
           @media (min-width: 1100px) {
-            height: calc(
-              100% -
-                (
-                  var(--monthly-list-form-height) + var(--monthly-list-form-mg-bottom) +
-                    var(--monthly-list-title-height) + var(--monthly-list-title-mg-bottom)
-                )
-            );
+            height: calc(100% - 45px - 3.3em);
           }
 
           @media (min-width: 1550px) {
-            height: calc(
-              100% -
-                (
-                  var(--monthly-list-form-height) + var(--monthly-list-form-mg-bottom) +
-                    var(--monthly-list-title-height) + var(--monthly-list-title-mg-bottom)
-                )
-            );
+            height: calc(100% - 64px - 2.9em);
           }
 
           &__list {

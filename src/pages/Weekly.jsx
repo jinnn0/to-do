@@ -5,7 +5,7 @@ import TodoList from '../components/shared/TodoList.jsx';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today, sortedTodoList, sortValue, hideAddNewTodoForm } = useContext(GlobalContext);
+  const { today, sortedTodoList, selectedSort, hideAddNewTodoForm } = useContext(GlobalContext);
 
   let thisWeek = [];
   for (let i = 0; i < 7; i++) {
@@ -53,9 +53,9 @@ function Weekly() {
 
   function showNoTodoMessage(todos) {
     let message = "There's no todo";
-    if (sortValue === 'completed' && !todos.length) {
+    if (selectedSort === 'completed' && !todos.length) {
       message = 'No completed todos yet';
-    } else if (sortValue === 'active' && !todos.length) {
+    } else if (selectedSort === 'active' && !todos.length) {
       message = 'No active todo';
     }
 

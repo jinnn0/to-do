@@ -135,7 +135,7 @@ export const GlobalContextProvider = (props) => {
     toggleComplete, // TodoItem, InnerList
     selectedView, // Nav, SelectView
     updateSelectedView, // SelectView
-    setSelectedSort, // SelectSort, Daily, Weekly
+    selectedSort, // SelectSort, Daily, Weekly
     updateSelectedSort, // SelectSort
     isAddNewTodoClicked, // HomeMain, AddNewTodoForm
     setIsAddNewTodoClicked, // AddNewTodoForm

@@ -5,7 +5,7 @@ import HeaderShared from '../components/shared/HeaderShared';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Daily() {
-  const { today, sortedTodoList, sortValue, hideAddNewTodoForm } = useContext(GlobalContext);
+  const { today, sortedTodoList, selectedSort, hideAddNewTodoForm } = useContext(GlobalContext);
   const TodosForEachDay = sortedTodoList.filter((todo) => {
     return (
       todo.dateInfo.year === today.year &&
@@ -18,9 +18,9 @@ function Daily() {
 
   function showNoTodoMessage(todos) {
     let message = 'Add new todo at the top right';
-    if (sortValue === 'completed' && !todos.length) {
+    if (selectedSort === 'completed' && !todos.length) {
       message = 'No completed todos yet';
-    } else if (sortValue === 'active' && !todos.length) {
+    } else if (selectedSort === 'active' && !todos.length) {
       message = 'No active todo';
     }
 

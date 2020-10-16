@@ -3,7 +3,7 @@ import InnerList from './InnerList';
 
 function OuterList({ eachDay }) {
   return (
-    <li className="outer-ul__list">
+    <li className="outer-ul__list" data-id={eachDay[0].dateInfo.date}>
       <div className="row-1">
         <span className="date">{eachDay[0].dateInfo.date}</span>
         <span className="day">{eachDay[0].dateInfo.day}</span>

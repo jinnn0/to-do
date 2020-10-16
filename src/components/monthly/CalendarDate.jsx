@@ -5,7 +5,6 @@ import { GlobalContext } from '../../contexts/GlobalState';
 export default function CalendarDate({ date, dateInfo, className }) {
   const { todoList } = useContext(GlobalContext);
   const [selected, setSelected] = useState(false);
-  const dateRef = useRef();
   const todos = todoList.filter((todo) => {
     return (
       todo.dateInfo.year === dateInfo.year &&
@@ -14,6 +13,7 @@ export default function CalendarDate({ date, dateInfo, className }) {
     );
   });
 
+  const dateRef = useRef();
   const toggleSelected = () => {
     if (todos.length) return;
     setSelected(!selected);
@@ -24,6 +24,7 @@ export default function CalendarDate({ date, dateInfo, className }) {
   return (
     <span
       ref={dateRef}
+      data-id={dateInfo.date}
       className={`${className} ${selected ? 'no-todo-message' : ''}`}
       onClick={toggleSelected}
     >

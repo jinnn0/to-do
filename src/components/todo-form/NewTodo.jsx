@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext, useRef } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { CgCheck } from 'react-icons/cg';
 
@@ -11,10 +11,16 @@ function NewTodo({
   handleSelectType
 }) {
   const colorTypeList = ['important', 'work', 'study', 'other'];
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   return (
     <div className="new-task-box flex v-center">
       <input
+        ref={inputRef}
         type="text"
         onChange={handleInputChange}
         value={todo.task}

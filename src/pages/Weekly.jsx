@@ -5,19 +5,22 @@ import TodoList from '../components/shared/TodoList.jsx';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today, sortedTodoList, selectedSort, hideAddNewTodoForm } = useContext(GlobalContext);
+  const { today, todoList, sortedTodoList, selectedSort, hideAddNewTodoForm } = useContext(GlobalContext);
 
+  const generateTodos = (todos, counter) => {
+    return todos.filter(
+      (todo) =>
+        todo.dateInfo.year === today.year &&
+        todo.dateInfo.month === today.month &&
+        todo.dateInfo.date === today.date + counter
+    );
+  };
+
+  let unsortedTodosThisWeek = [];
+  let sortedTodosThisWeek = [];
   let thisWeek = [];
   for (let i = 0; i < 7; i++) {
     const nextDayConstructor = new Date(today.year, today.month, today.date + i);
-
-    const TodosForEachDay = sortedTodoList.filter((todo) => {
-      return (
-        todo.dateInfo.year === today.year &&
-        todo.dateInfo.month === today.month &&
-        todo.dateInfo.date === today.date + i
-      );
-    });
 
     const eachDay = {
       dateInfo: {
@@ -26,10 +29,12 @@ function Weekly() {
         date: nextDayConstructor.getDate(),
         day: nextDayConstructor.toLocaleString('default', { weekday: 'long' })
       },
-      todos: TodosForEachDay
+      todos: generateTodos(sortedTodoList, i)
     };
 
     thisWeek.push(eachDay);
+    unsortedTodosThisWeek.push(generateTodos(todoList, i));
+    sortedTodosThisWeek.push(generateTodos(sortedTodoList, i));
   }
 
   thisWeek[0].dateInfo.day = 'Today';
@@ -51,16 +56,18 @@ function Weekly() {
 
   useUnmount();
 
-  function showNoTodoMessage(todos) {
-    let message = "There's no todo";
-    if (selectedSort === 'completed' && !todos.length) {
+  const showNoTodoMessage = (eachDay, index) => {
+    let message;
+    if (!unsortedTodosThisWeek[index].length) {
+      message = 'Add new todo at the top right corner';
+    } else if (selectedSort === 'completed' && !eachDay.todos.length && unsortedTodosThisWeek[index].length) {
       message = 'No completed todos yet';
-    } else if (selectedSort === 'active' && !todos.length) {
-      message = 'No active todo';
+    } else if (selectedSort === 'active' && !eachDay.todos.length && unsortedTodosThisWeek[index].length) {
+      message = 'All todos are completed';
     }
 
     return message;
-  }
+  };
 
   return (
     <div className="weekly" onClick={hideAddNewTodoForm}>
@@ -68,17 +75,15 @@ function Weekly() {
         <HeaderShared title={'Weekly'} />
 
         <div className="weekly-list">
-          {thisWeek.map((eachDay) => (
+          {thisWeek.map((eachDay, index) => (
             <div key={eachDay.dateInfo.date} className="list sm">
               <h2>
                 {eachDay.dateInfo.day} <span className="date">{eachDay.dateInfo.date}</span>
                 <span className="date-ordinal">{getOrdinalNum(eachDay.dateInfo)}</span>
               </h2>
-              {eachDay.todos.length ? (
-                <TodoList today={today} todoForToday={eachDay.todos} />
-              ) : (
-                <span className="no-todo-message">{showNoTodoMessage(eachDay)}</span>
-              )}
+
+              <TodoList today={today} todoForToday={eachDay.todos} />
+              <span className="no-todo-message">{showNoTodoMessage(eachDay, index)}</span>
             </div>
           ))}
         </div>

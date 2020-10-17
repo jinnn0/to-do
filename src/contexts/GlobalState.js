@@ -129,7 +129,7 @@ export const GlobalContextProvider = (props) => {
   // global states
   const value = {
     today, // HomeMain, TimeDisplay, Daily, Weekly, Monthly, AddNewTodoForm
-    todoList, // HomeMain, MonthlyList
+    todoList, // HomeMain, MonthlyList, Daily
     addTodo, // AddNewTodoForm
     removeTodo, // TodoItem, InnerList
     toggleComplete, // TodoItem, InnerList

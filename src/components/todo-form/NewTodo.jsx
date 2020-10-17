@@ -5,12 +5,12 @@ import { CgCheck } from 'react-icons/cg';
 function NewTodo({
   handleInputChange,
   todo,
-  colorBoxClicked,
-  defaultColorType,
-  handleDefaultSelect,
+  isColorBoxClicked,
+  selectTypeColor,
+  showSelectTypeColorDropDown,
   handleSelectType
 }) {
-  const colorTypeList = ['important', 'work', 'study', 'other'];
+  const selectTypeColorList = ['important', 'work', 'study', 'other'];
   const inputRef = useRef();
 
   useEffect(() => {
@@ -29,9 +29,9 @@ function NewTodo({
       />
 
       <div className="select-type-container">
-        <ul className="select-type-default-ul" onClick={handleDefaultSelect}>
+        <ul className="select-type-default-ul" onClick={showSelectTypeColorDropDown}>
           <li>
-            <span className={`color-box ${defaultColorType}`}></span>
+            <span className={`color-box ${selectTypeColor}`}></span>
             <span className="arrow-down">
               <RiArrowDropDownLine />
             </span>
@@ -39,11 +39,11 @@ function NewTodo({
         </ul>
 
         <ul
-          className={`select-type-dropdown-ul ${colorBoxClicked ? 'show-dropdown' : ''}`}
+          className={`select-type-dropdown-ul ${isColorBoxClicked ? 'show-dropdown' : ''}`}
           onClick={handleSelectType}
         >
-          {colorTypeList.map((colorType) => (
-            <SelectColorTypeList key={colorType} defaultColorType={defaultColorType} colorType={colorType} />
+          {selectTypeColorList.map((colorType) => (
+            <SelectColorTypeList key={colorType} selectTypeColor={selectTypeColor} colorType={colorType} />
           ))}
         </ul>
       </div>
@@ -53,10 +53,10 @@ function NewTodo({
 
 export default NewTodo;
 
-function SelectColorTypeList({ defaultColorType, colorType }) {
+function SelectColorTypeList({ selectTypeColor, colorType }) {
   return (
     <li data-color-type={colorType}>
-      <span className="checked-icon-container">{defaultColorType === colorType ? <CgCheck /> : null}</span>
+      <span className="checked-icon-container">{selectTypeColor === colorType ? <CgCheck /> : null}</span>
       <span className={'color-box ' + colorType}></span>
       <span>{colorType}</span>
     </li>

@@ -6,12 +6,11 @@ import { GlobalContext } from '../../contexts/GlobalState';
 
 function AddNewTodoForm() {
   const { today, isAddNewTodoClicked, setIsAddNewTodoClicked, addTodo } = useContext(GlobalContext);
-  const [colorBoxClicked, setColorBoxClicked] = useState(false);
-  const [defaultColorType, setDefaultColorType] = useState('important');
+  const [isColorBoxClicked, setIsColorBoxClicked] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [todo, setTodo] = useState({
     task: '',
-    type: defaultColorType,
+    type: 'important',
     completed: false,
     dateInfo: {
       year: today.year,
@@ -30,28 +29,16 @@ function AddNewTodoForm() {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newTodo = {
-      id: shortid.generate(),
-      task: todo.task,
-      ...todo
-    };
-
-    if (todo.task.trim()) {
-      addTodo(newTodo);
-    }
-    setTodo({ ...todo, task: '' });
-    setIsAddNewTodoClicked(!isAddNewTodoClicked);
-  };
-
-  const handleDefaultSelect = () => {
-    setColorBoxClicked(!colorBoxClicked);
+  const showSelectTypeColorDropDown = () => {
+    setIsColorBoxClicked(!isColorBoxClicked);
   };
 
   const handleSelectType = (e) => {
-    setDefaultColorType(e.target.dataset.colorType);
-    setColorBoxClicked(!colorBoxClicked);
+    setIsColorBoxClicked(!isColorBoxClicked);
+    setTodo({
+      ...todo,
+      type: e.target.dataset.colorType
+    });
   };
 
   const handleDateChange = (e) => {
@@ -72,6 +59,21 @@ function AddNewTodoForm() {
     setStartDate(e);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newTodo = {
+      id: shortid.generate(),
+      task: todo.task,
+      ...todo
+    };
+
+    if (todo.task.trim()) {
+      addTodo(newTodo);
+    }
+    setTodo({ ...todo, task: '' });
+    setIsAddNewTodoClicked(!isAddNewTodoClicked);
+  };
+
   return (
     <form
       action=""
@@ -84,9 +86,9 @@ function AddNewTodoForm() {
       <NewTodo
         handleInputChange={handleInputChange}
         todo={todo}
-        colorBoxClicked={colorBoxClicked}
-        defaultColorType={defaultColorType}
-        handleDefaultSelect={handleDefaultSelect}
+        isColorBoxClicked={isColorBoxClicked}
+        selectTypeColor={todo.type}
+        showSelectTypeColorDropDown={showSelectTypeColorDropDown}
         handleSelectType={handleSelectType}
       />
       <DateInput

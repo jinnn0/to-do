@@ -2,6 +2,10 @@ import React from 'react';
 import CalendarDate from '../components/monthly/CalendarDate';
 
 export default (selectedYear, selectedMonth) => {
+  const renderDate = (date, dateInfo, className) => {
+    return <CalendarDate key={date} date={date} dateInfo={dateInfo} className={className} />;
+  };
+
   const today = new Date();
   let firstDay = new Date(selectedYear, selectedMonth).getDay() - 1; // starting on Mon as index 0
   if (firstDay === -1) firstDay = 6; // convert Sun index( 0-1 = -1 ) to 6
@@ -68,8 +72,4 @@ export default (selectedYear, selectedMonth) => {
   }
 
   return weeks;
-};
-
-const renderDate = (date, dateInfo, className) => {
-  return <CalendarDate key={date} date={date} dateInfo={dateInfo} className={className} />;
 };

@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import useOnClickOutside from '../../utils/useOnClickOutside';
 import { GlobalContext } from '../../contexts/GlobalState';
 
-export default function CalendarDate({ date, dateInfo, className }) {
+function CalendarDate({ date, dateInfo, className }) {
   const { todoList } = useContext(GlobalContext);
   const [selected, setSelected] = useState(false);
   const todos = todoList.filter((todo) => {
@@ -32,3 +32,5 @@ export default function CalendarDate({ date, dateInfo, className }) {
     </span>
   );
 }
+
+export default CalendarDate;

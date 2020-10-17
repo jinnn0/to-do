@@ -82,16 +82,11 @@ function Weekly() {
                 <span className="date-ordinal">{getOrdinalNum(eachDay.dateInfo)}</span>
               </h2>
 
-              <TodoList today={today} todoForToday={eachDay.todos} />
+              <TodoList today={today} todosToday={eachDay.todos} />
               <span className="no-todo-message">{showNoTodoMessage(eachDay, index)}</span>
             </div>
           ))}
         </div>
-
-        {/* needed for extra space at the end of weekly-list */}
-        <section>
-          <div></div>
-        </section>
       </div>
 
       <div className="side-display"></div>

@@ -23,9 +23,9 @@ function Daily() {
     let message;
     if (!unsortedTodosToday.length) {
       message = 'Add new todo at the top right corner';
-    } else if (selectedSort === 'completed' && unsortedTodosToday.length && !sortedTodosToday.length) {
+    } else if (selectedSort === 'completed' && !sortedTodosToday.length && unsortedTodosToday.length) {
       message = 'No completed todos yet';
-    } else if (selectedSort === 'active' && unsortedTodosToday.length && !sortedTodosToday.length) {
+    } else if (selectedSort === 'active' && !sortedTodosToday.length && unsortedTodosToday.length) {
       message = 'All todos are completed';
     }
 
@@ -39,7 +39,7 @@ function Daily() {
       <div className="main-display container">
         <HeaderShared title={'Today'} />
         <div className="list md">
-          <TodoList today={today} todoForToday={sortedTodosToday} />
+          <TodoList today={today} todosToday={sortedTodosToday} />
           <span className="no-todo-message">{showNoTodoMessage()}</span>
         </div>
       </div>

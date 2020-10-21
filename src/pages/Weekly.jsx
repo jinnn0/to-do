@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import useUnmount from '../utils/useUnmount';
 import HeaderShared from '../components/shared/HeaderShared';
 import TodoList from '../components/shared/TodoList.jsx';
+import { RiPushpin2Line } from 'react-icons/ri';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
@@ -16,8 +17,6 @@ function Weekly() {
     );
   };
 
-  let unsortedTodosThisWeek = [];
-  let sortedTodosThisWeek = [];
   let thisWeek = [];
   for (let i = 0; i < 7; i++) {
     const nextDayConstructor = new Date(today.year, today.month, today.date + i);
@@ -33,8 +32,6 @@ function Weekly() {
     };
 
     thisWeek.push(eachDay);
-    unsortedTodosThisWeek.push(generateTodos(todoList, i));
-    sortedTodosThisWeek.push(generateTodos(sortedTodoList, i));
   }
 
   thisWeek[0].dateInfo.day = 'Today';
@@ -55,19 +52,6 @@ function Weekly() {
   };
 
   useUnmount();
-
-  const showNoTodoMessage = (eachDay, index) => {
-    let message;
-    if (!unsortedTodosThisWeek[index].length) {
-      message = 'Add new todo at the top right corner';
-    } else if (selectedSort === 'completed' && !eachDay.todos.length && unsortedTodosThisWeek[index].length) {
-      message = 'No completed todos yet';
-    } else if (selectedSort === 'active' && !eachDay.todos.length && unsortedTodosThisWeek[index].length) {
-      message = 'All todos are completed';
-    }
-
-    return message;
-  };
 
   return (
     <div className="weekly" onClick={hideAddNewTodoForm}>

@@ -5,7 +5,9 @@ import HeaderShared from '../components/shared/HeaderShared';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Daily() {
-  const { today, todoList, sortedTodoList, selectedSort, hideAddNewTodoForm } = useContext(GlobalContext);
+  const { sortedTodosToday, overdueTodoList, sortedOverdueTodoList, hideAddNewTodoForm } = useContext(
+    GlobalContext
+  );
 
   const generateTodos = (todos) => {
     return todos.filter(
@@ -38,9 +40,16 @@ function Daily() {
     <div className="daily" onClick={hideAddNewTodoForm}>
       <div className="main-display container">
         <HeaderShared title={'Today'} />
+        {overdueTodoList.length ? (
+          <div className="list md overdue-list">
+            <h2>
+              Overdue <RiPushpin2Line className="pin-icon" />
+            </h2>
+            <TodoList todosToday={sortedOverdueTodoList} isOverdueList />
+          </div>
+        ) : null}
         <div className="list md">
-          <TodoList today={today} todosToday={sortedTodosToday} />
-          <span className="no-todo-message">{showNoTodoMessage()}</span>
+          <TodoList todosToday={sortedTodosToday} />
         </div>
       </div>
       <div className="side-display"></div>

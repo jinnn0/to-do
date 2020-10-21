@@ -90,6 +90,11 @@ export const GlobalContextProvider = (props) => {
   const unsortedTodosToday = generateTodos(todoList);
   const sortedTodosToday = generateTodos(sortedTodoList);
 
+  // overdue todolist state
+  const msMidnight = new Date(today.year, today.month, today.date, 0, 0, 0).getTime();
+  const overdueTodoList = todoList.filter((todo) => todo.timestamp < msMidnight);
+  const sortedOverdueTodoList = sortedTodoList.filter((todo) => todo.timestamp < msMidnight);
+
   // view state (daily / weekly / monthly)
   const initialView = JSON.parse(localStorage.getItem('selected-view')) || 'daily';
   const [selectedView, setSelectedView] = useState(initialView);
@@ -127,6 +132,8 @@ export const GlobalContextProvider = (props) => {
     sortedTodoList, // Daily, Weekly
     unsortedTodosToday, // TodoList
     sortedTodosToday, // Daily, TodoList
+    overdueTodoList, // Daily, Weekly, TodoList
+    sortedOverdueTodoList, // Daily, TodoList
     selectedView, // Nav, SelectView
     updateSelectedView, // SelectView
     isAddNewTodoClicked, // HomeMain, AddNewTodoForm

@@ -5,7 +5,7 @@ import TodoList from '../components/shared/TodoList.jsx';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today, todoList, sortedTodoList, selectedSort, hideAddNewTodoForm } = useContext(GlobalContext);
+  const { today, sortedTodoList, overdueTodoList, hideAddNewTodoForm } = useContext(GlobalContext);
 
   const generateTodos = (todos, counter) => {
     return todos.filter(
@@ -75,15 +75,24 @@ function Weekly() {
         <HeaderShared title={'Weekly'} />
 
         <div className="weekly-list">
-          {thisWeek.map((eachDay, index) => (
+          {overdueTodoList.length ? (
+            <div className="list sm overdue-list">
+              <h2>
+                Overdue <RiPushpin2Line className="pin-icon" />
+              </h2>
+
+              <TodoList todosToday={overdueTodoList} isOverdueList />
+            </div>
+          ) : null}
+
+          {thisWeek.map((eachDay) => (
             <div key={eachDay.dateInfo.date} className="list sm">
               <h2>
                 {eachDay.dateInfo.day} <span className="date">{eachDay.dateInfo.date}</span>
                 <span className="date-ordinal">{getOrdinalNum(eachDay.dateInfo)}</span>
               </h2>
 
-              <TodoList today={today} todosToday={eachDay.todos} />
-              <span className="no-todo-message">{showNoTodoMessage(eachDay, index)}</span>
+              <TodoList todosToday={eachDay.todos} />
             </div>
           ))}
         </div>

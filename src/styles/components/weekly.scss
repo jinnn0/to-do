@@ -27,14 +27,6 @@
 
       .list {
         h2 {
-          font-size: 1em;
-          margin-bottom: 2.3rem;
-
-          @media (min-width: 900px) {
-            font-size: 1.5em;
-            margin-bottom: 3rem;
-          }
-
           span {
             font-weight: lighter;
             font-size: 1rem;

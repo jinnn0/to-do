@@ -9,16 +9,16 @@ function AddNewTodoForm() {
   const [isColorBoxClicked, setIsColorBoxClicked] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [todo, setTodo] = useState({
+    id: null,
     task: '',
+    timestamp: null,
     type: 'important',
     completed: false,
     dateInfo: {
       year: today.year,
       month: today.month,
       date: today.date,
-      day: today.day,
-      hour: new Date().getHours(),
-      minute: new Date().getMinutes()
+      day: today.day
     }
   });
 
@@ -48,9 +48,7 @@ function AddNewTodoForm() {
         year: e.getFullYear(),
         month: e.getMonth(),
         date: e.getDate(),
-        day: e.toLocaleString('default', { weekday: 'long' }),
-        hour: e.getHours(),
-        minute: e.getMinutes()
+        day: e.toLocaleString('default', { weekday: 'long' })
       }
     });
   };
@@ -62,9 +60,10 @@ function AddNewTodoForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTodo = {
+      ...todo,
       id: shortid.generate(),
       task: todo.task,
-      ...todo
+      timestamp: new Date().getTime()
     };
 
     if (todo.task.trim()) {

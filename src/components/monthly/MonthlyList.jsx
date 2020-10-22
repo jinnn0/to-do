@@ -31,7 +31,7 @@ function MonthlyList({ currentMonthName, selectedYear, selectedMonth }) {
 
   return (
     <div className="monthly-list">
-      <form action="">
+      <form action="" onClick={(e) => e.preventDefault()}>
         <AiOutlineSearch className="search-icon" />
         <input type="text" placeholder="Search" />
       </form>

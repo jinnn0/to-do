@@ -17,7 +17,7 @@ function Nav() {
     // {
     //   path: '/inbox',
     //   icon: <FiInbox />
-    // },
+    // }
   ];
 
   return (
@@ -34,14 +34,14 @@ function Nav() {
 
       <ul className="right flex">
         <li>
-          <NavLink exact to="/search" className="icon flex center" activeClassName=" selected">
+          <div className="icon flex center">
             <AiIcons.AiOutlineSearch />
-          </NavLink>
+          </div>
         </li>
         <li>
-          <NavLink exact to="/adjust" className="icon flex center" activeClassName=" selected">
+          <div className="icon flex center">
             <Adjust />
-          </NavLink>
+          </div>
         </li>
       </ul>
     </nav>

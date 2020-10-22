@@ -6,7 +6,7 @@ import { FiPlus } from 'react-icons/fi';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function HeaderMonthly({ currentMonthName, selectedYear, moveToPrevMonth, moveToNextMonth, goBackToToday }) {
-  const { isAddNewTodoClicked, showAddNewTodoForm } = useContext(GlobalContext);
+  const { isAddNewTodoClicked, toggleIsAddNewTodoClicked } = useContext(GlobalContext);
 
   return (
     <div className="header">
@@ -26,7 +26,7 @@ function HeaderMonthly({ currentMonthName, selectedYear, moveToPrevMonth, moveTo
       </div>
 
       <div className="row-2-col-2">
-        <FiPlus className="add-new-todo-icon" onClick={showAddNewTodoForm} />
+        <FiPlus className="add-new-todo-icon" onClick={toggleIsAddNewTodoClicked} />
         {isAddNewTodoClicked ? <AddNewTodoForm /> : null}
       </div>
 

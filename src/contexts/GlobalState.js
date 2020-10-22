@@ -110,14 +110,8 @@ export const GlobalContextProvider = (props) => {
   // isAddNewTodoClicked state
   const [isAddNewTodoClicked, setIsAddNewTodoClicked] = useState(false);
 
-  const showAddNewTodoForm = () => {
+  const toggleIsAddNewTodoClicked = () => {
     setIsAddNewTodoClicked(!isAddNewTodoClicked);
-  };
-
-  const hideAddNewTodoForm = () => {
-    if (isAddNewTodoClicked) {
-      setIsAddNewTodoClicked(!isAddNewTodoClicked);
-    }
   };
 
   // global states
@@ -137,9 +131,7 @@ export const GlobalContextProvider = (props) => {
     selectedView, // Nav, SelectView
     updateSelectedView, // SelectView
     isAddNewTodoClicked, // HomeMain, AddNewTodoForm
-    setIsAddNewTodoClicked, // AddNewTodoForm
-    showAddNewTodoForm, // HomeMain, HeaderShared, HeaderMonthly
-    hideAddNewTodoForm // HomeMain, Daily, Weekly, Monthly, useUnmount.js
+    toggleIsAddNewTodoClicked // HomeMain, HeaderShared, HeaderMonthly, useOnClickOutside.js
   };
 
   return <GlobalContext.Provider value={value}>{props.children}</GlobalContext.Provider>;

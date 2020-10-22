@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
-import useUnmount from '../utils/useUnmount';
 import HeaderShared from '../components/shared/HeaderShared';
 import TodoList from '../components/shared/TodoList.jsx';
 import { RiPushpin2Line } from 'react-icons/ri';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today, sortedTodoList, overdueTodoList, hideAddNewTodoForm } = useContext(GlobalContext);
+  const { today, sortedTodoList, overdueTodoList } = useContext(GlobalContext);
 
   const generateTodos = (todos, counter) => {
     return todos.filter(
@@ -51,10 +50,8 @@ function Weekly() {
     }
   };
 
-  useUnmount();
-
   return (
-    <div className="weekly" onClick={hideAddNewTodoForm}>
+    <div className="weekly">
       <div className="main-display container">
         <HeaderShared title={'Weekly'} />
 

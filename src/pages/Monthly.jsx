@@ -1,12 +1,11 @@
 import React, { useState, useContext, useRef } from 'react';
-import useUnmount from '../utils/useUnmount';
 import HeaderMonthly from '../components/monthly/HeaderMonthly';
 import MonthlyList from '../components/monthly/MonthlyList';
 import Calendar from '../components/monthly/Calendar';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Monthly() {
-  const { today, hideAddNewTodoForm } = useContext(GlobalContext);
+  const { today } = useContext(GlobalContext);
   const [selectedYear, setSelectedYear] = useState(today.year);
   const [selectedMonth, setSelectedMonth] = useState(today.month);
   const currentMonthName = new Date(selectedYear, selectedMonth).toLocaleString('default', { month: 'long' });
@@ -43,10 +42,8 @@ function Monthly() {
     if (listToScroll) listToScroll.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useUnmount();
-
   return (
-    <div className="monthly" onClick={hideAddNewTodoForm}>
+    <div className="monthly">
       <div className="main-display container">
         <HeaderMonthly
           currentMonthName={currentMonthName}

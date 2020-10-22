@@ -8,9 +8,7 @@ import homeAnimation from '../../animations/homeAnimation';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function HomeMain() {
-  const { today, todoList, isAddNewTodoClicked, showAddNewTodoForm, hideAddNewTodoForm } = useContext(
-    GlobalContext
-  );
+  const { today, todoList, isAddNewTodoClicked, toggleIsAddNewTodoClicked } = useContext(GlobalContext);
 
   const [todoIndex, setTodoIndex] = useState(0);
   const homeMainDivRef = useRef();
@@ -73,7 +71,7 @@ function HomeMain() {
             </>
           ) : (
             <>
-              <InitialMessage showAddNewTodoForm={showAddNewTodoForm} />
+              <InitialMessage showAddNewTodoForm={toggleIsAddNewTodoClicked} />
               {isAddNewTodoClicked ? (
                 <>
                   <AddNewTodoForm />
@@ -84,9 +82,7 @@ function HomeMain() {
         </div>
       </div>
 
-      {isAddNewTodoClicked && !focusOnThisTodo ? (
-        <div className="overlay" onClick={hideAddNewTodoForm}></div>
-      ) : null}
+      {isAddNewTodoClicked && !focusOnThisTodo ? <div className="overlay"></div> : null}
     </>
   );
 }

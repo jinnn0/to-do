@@ -1,19 +1,14 @@
 import React, { useContext } from 'react';
-import useUnmount from '../utils/useUnmount';
 import TodoList from '../components/shared/TodoList.jsx';
 import HeaderShared from '../components/shared/HeaderShared';
 import { RiPushpin2Line } from 'react-icons/ri';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Daily() {
-  const { sortedTodosToday, overdueTodoList, sortedOverdueTodoList, hideAddNewTodoForm } = useContext(
-    GlobalContext
-  );
-
-  useUnmount();
+  const { sortedTodosToday, overdueTodoList, sortedOverdueTodoList } = useContext(GlobalContext);
 
   return (
-    <div className="daily" onClick={hideAddNewTodoForm}>
+    <div className="daily">
       <div className="main-display container">
         <HeaderShared title={'Today'} />
         {overdueTodoList.length ? (

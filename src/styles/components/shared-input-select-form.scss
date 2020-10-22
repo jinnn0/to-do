@@ -118,7 +118,7 @@ select::-ms-expand {
       border: 1px solid rgba(0, 0, 0, 0.062);
       display: none;
 
-      @media (min-width: 500px) {
+      @media (min-width: 750px) {
         left: 50px;
       }
 
@@ -152,10 +152,14 @@ select::-ms-expand {
     }
   }
 
+  .react-datepicker__header {
+    background-color: white;
+  }
+
   .submit {
     margin-top: auto;
     background-color: white;
-    border: 1px solid $purple;
+    border: 1px solid #c6c5ff;
     border-radius: 3px;
     padding: 0.5rem 0;
     color: $purple;
@@ -163,7 +167,8 @@ select::-ms-expand {
     cursor: pointer;
 
     &:hover {
-      background-color: $purple;
+      background-color: #7472ff;
+      border: none;
       color: white;
     }
   }

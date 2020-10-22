@@ -9,10 +9,9 @@ function DateInput({ startDate, handleDateSelect, handleDateChange }) {
         selected={startDate}
         onChange={handleDateChange}
         onSelect={handleDateSelect}
-        showTimeInput
+        onClick={() => console.log('clicked')}
         showWeekNumbers
-        shouldCloseOnSelect={false}
-        timeInputLabel="Time:"
+        minDate={new Date()}
       />
     </div>
   );

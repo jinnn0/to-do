@@ -1,21 +1,27 @@
 import React, { useEffect, useRef } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { CgCheck } from 'react-icons/cg';
+import useOnClickOutside from '../../utils/useOnClickOutside';
 
 function NewTodo({
   handleInputChange,
   todo,
   isColorBoxClicked,
+  setIsColorBoxClicked,
   selectTypeColor,
   showSelectTypeColorDropDown,
   handleSelectType
 }) {
   const selectTypeColorList = ['important', 'work', 'study', 'other'];
   const inputRef = useRef();
+  const selectTypeDivRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
   });
+
+  // hide the dropdown
+  useOnClickOutside(selectTypeDivRef, () => setIsColorBoxClicked(false));
 
   return (
     <div className="new-task-box flex v-center">
@@ -28,7 +34,7 @@ function NewTodo({
         className="text-input"
       />
 
-      <div className="select-type-container">
+      <div className="select-type-container" ref={selectTypeDivRef}>
         <ul className="select-type-default-ul" onClick={showSelectTypeColorDropDown}>
           <li>
             <span className={`color-box ${selectTypeColor}`}></span>

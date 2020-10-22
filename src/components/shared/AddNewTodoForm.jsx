@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import shortid from 'shortid';
 import NewTodo from '../todo-form/NewTodo';
 import DateInput from '../todo-form/DateInput';
+import useOnClickOutside from '../../utils/useOnClickOutside';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function AddNewTodoForm() {
-  const { today, isAddNewTodoClicked, setIsAddNewTodoClicked, addTodo } = useContext(GlobalContext);
+  const { today, isAddNewTodoClicked, toggleIsAddNewTodoClicked, addTodo } = useContext(GlobalContext);
   const [isColorBoxClicked, setIsColorBoxClicked] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [todo, setTodo] = useState({
@@ -21,6 +22,8 @@ function AddNewTodoForm() {
       day: today.day
     }
   });
+
+  const formmRef = useRef();
 
   const handleInputChange = (e) => {
     setTodo({
@@ -70,12 +73,15 @@ function AddNewTodoForm() {
       addTodo(newTodo);
     }
     setTodo({ ...todo, task: '' });
-    setIsAddNewTodoClicked(!isAddNewTodoClicked);
+    toggleIsAddNewTodoClicked();
   };
+
+  useOnClickOutside(formmRef, toggleIsAddNewTodoClicked);
 
   return (
     <form
       action=""
+      ref={formmRef}
       onSubmit={handleSubmit}
       onClick={(e) => {
         e.stopPropagation();
@@ -86,6 +92,7 @@ function AddNewTodoForm() {
         handleInputChange={handleInputChange}
         todo={todo}
         isColorBoxClicked={isColorBoxClicked}
+        setIsColorBoxClicked={setIsColorBoxClicked}
         selectTypeColor={todo.type}
         showSelectTypeColorDropDown={showSelectTypeColorDropDown}
         handleSelectType={handleSelectType}

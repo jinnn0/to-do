@@ -9,15 +9,15 @@ function Nav() {
   const { selectedView } = useContext(GlobalContext);
 
   const Links = [
+    { path: '/', icon: <AiIcons.AiOutlineStar /> },
     {
       path: `/${selectedView}`,
       icon: <AiIcons.AiOutlineUnorderedList />
-    },
-    {
-      path: '/inbox',
-      icon: <FiInbox />
-    },
-    { path: '/', icon: <AiIcons.AiOutlineStar /> }
+    }
+    // {
+    //   path: '/inbox',
+    //   icon: <FiInbox />
+    // },
   ];
 
   return (
@@ -34,13 +34,13 @@ function Nav() {
 
       <ul className="right flex">
         <li>
-          <NavLink exact to="/adjust" className="icon flex center" activeClassName=" selected">
-            <Adjust />
+          <NavLink exact to="/search" className="icon flex center" activeClassName=" selected">
+            <AiIcons.AiOutlineSearch />
           </NavLink>
         </li>
         <li>
-          <NavLink exact to="/search" className="icon flex center" activeClassName=" selected">
-            <AiIcons.AiOutlineSearch />
+          <NavLink exact to="/adjust" className="icon flex center" activeClassName=" selected">
+            <Adjust />
           </NavLink>
         </li>
       </ul>

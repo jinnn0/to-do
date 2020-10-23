@@ -1,22 +1,3 @@
-.monthly,
-.main,
-.calendar,
-.monthly-list,
-.monthly-list * {
-  // border: 1px solid rgba(0, 0, 0, 0.151);
-}
-
-/* HeaderMonthly */
-.row-1,
-.row-2-col-1,
-.row-2-col-2 {
-  // border: 1px solid rgba(0, 0, 0, 0.151);
-}
-
-.calendar * {
-  // border: 1px solid rgba(0, 0, 0, 0.151);
-}
-
 .monthly {
   height: auto;
 
@@ -243,6 +224,7 @@
             height: 35px;
             margin-bottom: 1.6em;
           }
+
           .search-icon {
             position: absolute;
             width: 12px;
@@ -258,6 +240,7 @@
             flex: 1;
             height: 100%;
             margin-left: 1.5em;
+            margin-left: 2em;
             border: none;
             background-color: transparent;
             outline: none;
@@ -268,7 +251,7 @@
               line-height: 17px;
 
               @media (min-width: 550px) {
-                font-size: 0.8em;
+                font-size: 0.83em;
                 line-height: 20px;
               }
             }

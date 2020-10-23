@@ -5,7 +5,7 @@ import { RiPushpin2Line } from 'react-icons/ri';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Weekly() {
-  const { today, sortedTodoList, overdueTodoList } = useContext(GlobalContext);
+  const { today, sortedTodoList, overdueTodoList, sortedOverdueTodoList } = useContext(GlobalContext);
 
   const generateTodos = (todos, counter) => {
     return todos.filter(
@@ -62,7 +62,7 @@ function Weekly() {
                 Overdue <RiPushpin2Line className="pin-icon" />
               </h2>
 
-              <TodoList todosToday={overdueTodoList} isOverdueList />
+              <TodoList todosToday={sortedOverdueTodoList} isOverdueList />
             </div>
           ) : null}
 

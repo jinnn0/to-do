@@ -57,6 +57,7 @@
   .no-todo-message {
     display: block;
     padding-bottom: 1rem;
+    padding-left: 1em;
     color: rgba(0, 0, 0, 0.24);
   }
 }
@@ -175,27 +176,4 @@
   position: absolute;
   right: 40px;
   top: 40px;
-}
-
-.daily,
-.weekly,
-.monthly,
-.header,
-.todo-list,
-.weekly-list,
-.weekly-list .list,
-.list h2 {
-  // border: 1px solid black;
-}
-
-.todo-list-pinned {
-  h2 {
-    font-size: 0.9em;
-    font-weight: 400;
-
-    @media (min-width: 900px) {
-      font-size: 1.1em;
-      height: 28px;
-    }
-  }
 }

@@ -81,18 +81,6 @@ export const GlobalContextProvider = (props) => {
     sortedTodoList = todoList.filter((todo) => !todo.completed);
   }
 
-  const generateTodos = (todos) => {
-    return todos.filter(
-      (todo) =>
-        todo.dateInfo.year === today.year &&
-        todo.dateInfo.month === today.month &&
-        todo.dateInfo.date === today.date
-    );
-  };
-
-  const unsortedTodosToday = generateTodos(todoList);
-  const sortedTodosToday = generateTodos(sortedTodoList);
-
   // overdue todolist state
   const msMidnight = new Date(today.year, today.month, today.date, 0, 0, 0).getTime();
   const overdueTodoList = todoList.filter((todo) => todo.timestamp < msMidnight);
@@ -127,8 +115,6 @@ export const GlobalContextProvider = (props) => {
     selectedSort, // SelectSort, Daily, Weekly
     updateSelectedSort, // SelectSort
     sortedTodoList, // Daily, Weekly
-    unsortedTodosToday, // TodoList
-    sortedTodosToday, // Daily, TodoList
     overdueTodoList, // Daily, Weekly, TodoList
     sortedOverdueTodoList, // Daily, TodoList
     selectedView, // Nav, SelectView

@@ -4,8 +4,8 @@ import { GlobalContext } from '../../contexts/GlobalState';
 function TimeDisplay() {
   const { today } = useContext(GlobalContext);
   const [currentTime, setCurrentTime] = useState({
-    hour: new Date().getHours(),
-    minute: new Date().getMinutes()
+    hour: today.hour,
+    minute: today.minute
   });
 
   useEffect(() => {

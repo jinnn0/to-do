@@ -1,28 +1,30 @@
 import React, { useState, useContext, useRef } from 'react';
 import shortid from 'shortid';
 import NewTodo from '../todo-form/NewTodo';
-import DateInput from '../todo-form/DateInput';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import useOnClickOutside from '../../utils/useOnClickOutside';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function AddNewTodoForm() {
   const { today, isAddNewTodoClicked, toggleIsAddNewTodoClicked, addTodo } = useContext(GlobalContext);
-  const [isColorBoxClicked, setIsColorBoxClicked] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
+  const [isColorBoxClicked, setIsColorBoxClicked] = useState(false);
   const [todo, setTodo] = useState({
     id: null,
     task: '',
-    timestamp: null,
+    timestamp: new Date().getTime(),
     type: 'important',
     completed: false,
     dateInfo: {
       year: today.year,
       month: today.month,
       date: today.date,
-      day: today.day
+      day: today.day,
+      hour: today.hour,
+      minute: today.minute
     }
   });
-
   const formmRef = useRef();
 
   const handleInputChange = (e) => {
@@ -44,20 +46,20 @@ function AddNewTodoForm() {
     });
   };
 
-  const handleDateChange = (e) => {
+  const handleDateSelect = (e) => {
+    setStartDate(e);
     setTodo({
       ...todo,
+      timestamp: new Date(e.getFullYear(), e.getMonth(), e.getDate(), e.getHours(), e.getMinutes()).getTime(),
       dateInfo: {
         year: e.getFullYear(),
         month: e.getMonth(),
         date: e.getDate(),
-        day: e.toLocaleString('default', { weekday: 'long' })
+        day: e.toLocaleString('default', { weekday: 'long' }),
+        hour: e.getHours(),
+        minute: e.getMinutes()
       }
     });
-  };
-
-  const handleDateSelect = (e) => {
-    setStartDate(e);
   };
 
   const handleSubmit = (e) => {
@@ -65,13 +67,13 @@ function AddNewTodoForm() {
     const newTodo = {
       ...todo,
       id: shortid.generate(),
-      task: todo.task,
-      timestamp: new Date().getTime()
+      task: todo.task
     };
 
     if (todo.task.trim()) {
       addTodo(newTodo);
     }
+
     setTodo({ ...todo, task: '' });
     toggleIsAddNewTodoClicked();
   };
@@ -97,10 +99,15 @@ function AddNewTodoForm() {
         showSelectTypeColorDropDown={showSelectTypeColorDropDown}
         handleSelectType={handleSelectType}
       />
-      <DateInput
-        startDate={startDate}
-        handleDateChange={handleDateChange}
-        handleDateSelect={handleDateSelect}
+
+      <DatePicker
+        selected={startDate}
+        onChange={handleDateSelect}
+        timeInputLabel="Time:"
+        showWeekNumbers
+        minDate={new Date()}
+        showTimeInput
+        shouldCloseOnSelect={false}
       />
 
       <button className="submit" type="submit">

@@ -27,7 +27,9 @@ export default sampleTasks.map((task, index) => {
       year: d.getFullYear(),
       month: d.getMonth(),
       date: randomDate,
-      day: new Date(d.getFullYear(), d.getMonth(), randomDate).toLocaleString('default', { weekday: 'long' })
+      day: new Date(d.getFullYear(), d.getMonth(), randomDate).toLocaleString('default', { weekday: 'long' }),
+      hour: d.getHours(),
+      minute: d.getMinutes()
     }
   };
 });

@@ -17,6 +17,8 @@
   }
 
   &.md.overdue-list {
+    padding-bottom: 2em;
+
     &::before {
       content: '';
       position: absolute;

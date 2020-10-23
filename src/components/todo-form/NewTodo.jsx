@@ -17,7 +17,10 @@ function NewTodo({
   const selectTypeDivRef = useRef();
 
   useEffect(() => {
-    inputRef.current.focus();
+    // when enabled, it takes away focus every time AddNewTodoForm gets re-render
+    // when changing time with arrow key
+    // needs fix in the future
+    // inputRef.current.focus();
   });
 
   // hide the dropdown

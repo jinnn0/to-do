@@ -5,12 +5,15 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = (props) => {
   // today
-  let today = {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
-    monthName: new Date().toLocaleString('default', { month: 'short' }),
-    date: new Date().getDate(),
-    day: new Date().toLocaleString('default', { weekday: 'short' })
+  const d = new Date();
+  const today = {
+    year: d.getFullYear(),
+    month: d.getMonth(),
+    monthName: d.toLocaleString('default', { month: 'short' }),
+    date: d.getDate(),
+    day: d.toLocaleString('default', { weekday: 'short' }),
+    hour: d.getHours(),
+    minute: d.getMinutes()
   };
 
   // todoList state

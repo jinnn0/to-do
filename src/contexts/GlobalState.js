@@ -1,5 +1,13 @@
-import React, { useState, useEffect, createContext } from 'react';
-import sampleTodoList from '../utils/sampleTodoList';
+import React, { useState, createContext } from 'react';
+import { db } from '../firebase/firebase';
+import { useTodoList, useSort, useView } from '../hooks/firebaseHooks';
+import useSortedTodoList from '../hooks/useSortedTodoList';
+// import sampleTodoList from '../utils/sampleTodoList';
+
+// // load sample todos to firestore
+// sampleTodoList.forEach((todo) => {
+//   db.collection('todo-list').add(todo);
+// });
 
 export const GlobalContext = createContext();
 
@@ -16,91 +24,41 @@ export const GlobalContextProvider = (props) => {
     minute: d.getMinutes()
   };
 
-  // todoList state
-  const initialTodoList = JSON.parse(localStorage.getItem('to-do-list')) || sampleTodoList;
-  const [todoList, setTodoList] = useState(initialTodoList);
+  const todoList = useTodoList();
+  const sortedTodoList = useSortedTodoList();
+  const selectedSort = useSort();
+  const selectedView = useView();
+  const [isAddNewTodoClicked, setIsAddNewTodoClicked] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem('to-do-list', JSON.stringify(todoList));
-  }, [todoList]);
-
-  const addTodo = (newTodo) => {
-    setTodoList([...todoList, newTodo]);
-  };
-
-  const removeTodo = (id) => {
-    const updatedTodo = todoList.filter((todo) => id !== todo.id);
-    setTodoList(updatedTodo);
-  };
-
-  const toggleComplete = (id) => {
-    const updatedTodo = todoList.map((todo) => {
-      if (id === todo.id) {
-        return { ...todo, completed: !todo.completed };
-      }
-      return todo;
-    });
-
-    setTodoList(updatedTodo);
-  };
-
-  // sort state (recent / tag / oldest / completed / active)
-  const initialSort = JSON.parse(localStorage.getItem('sort-value')) || 'oldest';
-  const [selectedSort, setSelectedSort] = useState(initialSort);
-
-  useEffect(() => {
-    localStorage.setItem('sort-value', JSON.stringify(selectedSort));
-  }, [selectedSort]);
-
-  const updateSelectedSort = (newSort) => {
-    setSelectedSort(newSort);
-  };
-
-  // sorted todoList
-  let sortedTodoList;
-  if (selectedSort === 'oldest') {
-    sortedTodoList = todoList.sort((a, b) => {
-      return a.timestamp - b.timestamp;
-    });
-  } else if (selectedSort === 'newest') {
-    sortedTodoList = todoList.sort((a, b) => {
-      return b.timestamp - a.timestamp;
-    });
-  } else if (selectedSort === 'tag') {
-    const ordering = {};
-    const sortOrder = ['important', 'work', 'study', 'other'];
-    for (let i = 0; i < sortOrder.length; i++) {
-      ordering[sortOrder[i]] = i;
-    }
-    sortedTodoList = todoList.sort((a, b) => {
-      return ordering[a.type] - ordering[b.type];
-    });
-  } else if (selectedSort === 'completed') {
-    sortedTodoList = todoList.filter((todo) => todo.completed);
-  } else if (selectedSort === 'active') {
-    sortedTodoList = todoList.filter((todo) => !todo.completed);
-  }
-
-  // overdue todolist state
+  // overdueTodolist
   const msMidnight = new Date(today.year, today.month, today.date, 0, 0, 0).getTime();
   const overdueTodoList = todoList.filter((todo) => todo.timestamp < msMidnight);
   const sortedOverdueTodoList = sortedTodoList.filter((todo) => todo.timestamp < msMidnight);
 
-  // view state (daily / weekly / monthly)
-  const initialView = JSON.parse(localStorage.getItem('selected-view')) || 'daily';
-  const [selectedView, setSelectedView] = useState(initialView);
-
-  useEffect(() => {
-    localStorage.setItem('selected-view', JSON.stringify(selectedView));
-  }, [selectedView]);
-
-  const updateSelectedView = (newValue) => {
-    setSelectedView(newValue);
+  // todoList
+  const addTodo = (newTodo) => {
+    db.collection('todo-list').add(newTodo);
   };
 
-  // isAddNewTodoClicked state
-  const [isAddNewTodoClicked, setIsAddNewTodoClicked] = useState(false);
+  const removeTodo = (id) => {
+    db.collection('todo-list').doc(id).delete();
+  };
 
+  const toggleComplete = (todo) => {
+    db.collection('todo-list').doc(todo.id).update({ completed: !todo.completed });
+  };
+
+  // sort (recent / tag / oldest / completed / active)
+  const updateSelectedSort = (newSort) => {
+    db.collection('selected-sort').doc('A7ftOcAem11mu3euKuIs').update({ sort: newSort });
+  };
+
+  // view state (daily / weekly / monthly)
+  const updateSelectedView = (newView) => {
+    db.collection('selected-view').doc('YkJEvAzlpeXKxbHJ9zfA').update({ view: newView });
+  };
+
+  // isAddNewTodoClicked
   const toggleIsAddNewTodoClicked = () => {
     setIsAddNewTodoClicked(!isAddNewTodoClicked);
   };

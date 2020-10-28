@@ -1,6 +1,3 @@
-import shortid from 'shortid';
-
-// sample todoList
 // prettier-ignore
 const sampleTasks = ["Daily web development", "Get groceries for dinner", "Home exercise at 6pm", "Call Daniel for meeting", "House cleaning", "Tennis practice", "Do lundary", "Email Noah for update", "Finish monthly growth report", "Send in cacenllation letter", "Figure out vacation destination", "Fill in scholarship application" ]
 const todoTypes = ['important', 'work', 'study', 'other'];
@@ -18,7 +15,6 @@ export default sampleTasks.map((task, index) => {
   }
 
   return {
-    id: shortid.generate(),
     task: task,
     timestamp: d.getTime(),
     type: randomType,

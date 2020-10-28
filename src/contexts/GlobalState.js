@@ -60,8 +60,8 @@ export const GlobalContextProvider = (props) => {
     localStorage.setItem('selected-view', JSON.stringify(selectedView));
   }, [selectedView]);
 
-  const updateSelectedView = (newValue) => {
-    setSelectedView(newValue);
+  const updateSelectedView = (newView) => {
+    setSelectedView(newView);
   };
 
   // isAddNewTodoClicked

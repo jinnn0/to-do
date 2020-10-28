@@ -1,6 +1,6 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { db } from '../firebase/firebase';
-import { useTodoList, useSort, useView } from '../hooks/firebaseHooks';
+import { useTodoList, useSort } from '../hooks/firebaseHooks';
 import useSortedTodoList from '../hooks/useSortedTodoList';
 // import sampleTodoList from '../utils/sampleTodoList';
 
@@ -12,6 +12,8 @@ import useSortedTodoList from '../hooks/useSortedTodoList';
 export const GlobalContext = createContext();
 
 export const GlobalContextProvider = (props) => {
+  const initialView = JSON.parse(localStorage.getItem('selected-view')) || 'daily';
+
   // today
   const d = new Date();
   const today = {
@@ -27,7 +29,7 @@ export const GlobalContextProvider = (props) => {
   const todoList = useTodoList();
   const sortedTodoList = useSortedTodoList();
   const selectedSort = useSort();
-  const selectedView = useView();
+  const [selectedView, setSelectedView] = useState(initialView);
   const [isAddNewTodoClicked, setIsAddNewTodoClicked] = useState(false);
 
   // overdueTodolist
@@ -53,9 +55,13 @@ export const GlobalContextProvider = (props) => {
     db.collection('selected-sort').doc('A7ftOcAem11mu3euKuIs').update({ sort: newSort });
   };
 
-  // view state (daily / weekly / monthly)
-  const updateSelectedView = (newView) => {
-    db.collection('selected-view').doc('YkJEvAzlpeXKxbHJ9zfA').update({ view: newView });
+  // view  (daily / weekly / monthly)
+  useEffect(() => {
+    localStorage.setItem('selected-view', JSON.stringify(selectedView));
+  }, [selectedView]);
+
+  const updateSelectedView = (newValue) => {
+    setSelectedView(newValue);
   };
 
   // isAddNewTodoClicked

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase';
 
-// used in GlobalContext.js - useTodoList, useSort, useView
+// used in GlobalContext.js - useTodoList, useSort
 const useTodoList = () => {
   const [todoList, setTodoList] = useState([]);
 
@@ -31,19 +31,4 @@ const useSort = () => {
 
   return selectedSort;
 };
-
-const useView = () => {
-  const [selectedView, setSelectedView] = useState('daily');
-
-  useEffect(() => {
-    const unSubscribe = db.collection('selected-view').onSnapshot((snap) => {
-      setSelectedView(snap.docs[0].data().view);
-    });
-
-    return () => unSubscribe();
-  }, []);
-
-  return selectedView;
-};
-
-export { useTodoList, useSort, useView };
+export { useTodoList, useSort };

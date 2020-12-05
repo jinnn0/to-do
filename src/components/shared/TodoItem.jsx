@@ -19,7 +19,7 @@ function TodoItem({ todo }) {
       <div>
         <span
           className={`checkbox ${todo.completed ? 'completed ' + todo.type : ''}`}
-          onClick={() => toggleComplete(todo)}
+          onClick={() => toggleComplete(todo.id)}
         ></span>
       </div>
       <div>

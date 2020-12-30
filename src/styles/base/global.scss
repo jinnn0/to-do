@@ -1,43 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --nav-height: 60px;
-  --header-height: 120px;
-  --time-display-height: 50px;
-  --mobile-100vh-fix: calc(var(--vh, 1vh) * 100);
-  --container-padding: 20px;
-  --header-margin-bottom: 2.5em;
-
-  @media (min-width: 750px) {
-    --header-margin-bottom: 4.5em;
-  }
-
-  @media (min-width: 900px) {
-    --nav-height: 72px;
-    --container-padding: 50px;
-  }
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  background-color: white;
-}
-
 .container {
   padding-left: var(--container-padding);
   padding-right: var(--container-padding);
-}
-
-.app {
-  min-width: 320px;
 }
 
 .flex {
@@ -51,8 +14,4 @@ body {
   &.v-center {
     align-items: center;
   }
-}
-
-ul {
-  list-style-type: none;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import GlovalStyle from './GlobalStyle';
 import use100vh from './hooks/use100vh';
 import './styles/App.scss';
 import Nav from './components/shared/Nav';
@@ -13,7 +14,8 @@ function App() {
   use100vh();
 
   return (
-    <div className="app">
+    <div className="App">
+      <GlovalStyle />
       <Nav />
       <Switch>
         <Route exact path="/" component={Home} />

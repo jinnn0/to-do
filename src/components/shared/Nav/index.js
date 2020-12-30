@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavContainer, NavList } from './styles';
+import { NavContainer, NavList } from './style';
 import { NavLink } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import { GlobalContext } from '../../../contexts/GlobalState';

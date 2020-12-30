@@ -1,5 +1,5 @@
 import React from 'react';
-import useResizeWindow from './hooks/useResizeWindow';
+import use100vh from './hooks/use100vh';
 import './styles/App.scss';
 import Nav from './components/shared/Nav';
 import Home from './pages/Home';
@@ -9,9 +9,8 @@ import Monthly from './pages/Monthly';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
-  // 1. Window resize
-  // 2. Fix for mobile 100vh
-  const [windowSize] = useResizeWindow();
+  // Fix for mobile 100vh
+  use100vh();
 
   return (
     <div className="app">

@@ -1,3 +1,10 @@
+/*
+Used in :
+  monthly/CalendarDate
+  shared/AddNewTodoForm
+  todo-form/NewTodo
+*/
+
 import React from 'react';
 
 export default function useOnClickOutside(ref, handler) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { CgCheck } from 'react-icons/cg';
-import useOnClickOutside from '../../utils/useOnClickOutside';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 function NewTodo({
   handleInputChange,

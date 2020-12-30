@@ -2,6 +2,7 @@
 .weekly,
 .monthly {
   height: calc(var(--mobile-100vh-fix) - var(--nav-height));
+  height: calc(100vh - var(--nav-height)); // fallback
   margin-top: var(--nav-height);
   display: flex;
   background-color: white;

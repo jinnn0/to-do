@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import useResizeWindow from './hooks/useResizeWindow';
 import './styles/App.scss';
 import Nav from './components/shared/Nav';
 import Home from './pages/Home';
@@ -8,29 +9,9 @@ import Monthly from './pages/Monthly';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
-  // window resize for all pages
-  let [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight
-  });
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    }
-
-    let vh = windowSize.height * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [windowSize]);
+  // 1. Window resize
+  // 2. Fix for mobile 100vh
+  const [windowSize] = useResizeWindow();
 
   return (
     <div className="app">

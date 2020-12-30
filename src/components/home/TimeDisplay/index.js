@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../contexts/GlobalState';
+import { TimeDisplayContainer, Time, Day } from './style';
+import { GlobalContext } from '../../../contexts/GlobalState';
 
 function TimeDisplay() {
   const { today } = useContext(GlobalContext);
@@ -22,17 +23,17 @@ function TimeDisplay() {
   }, [currentTime.minute]);
 
   return (
-    <div className="time-display">
-      <div className="time">
+    <TimeDisplayContainer>
+      <Time>
         {`${currentTime.hour < 10 ? '0' + currentTime.hour : currentTime.hour}:${
           currentTime.minute < 10 ? '0' + currentTime.minute : currentTime.minute
         }`}
-      </div>
-      <div className="day">
+      </Time>
+      <Day>
         {today.day}, {today.monthName}
         <span className="date">{today.date}</span>
-      </div>
-    </div>
+      </Day>
+    </TimeDisplayContainer>
   );
 }
 

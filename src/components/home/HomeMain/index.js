@@ -1,11 +1,20 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { mod } from '../../utils/utils';
-import AddNewTodoForm from '../shared/AddNewTodoForm';
-import TodoItem from '../shared/TodoItem';
+import {
+  HomeMainContainer,
+  HomeMainWrapper,
+  Title,
+  Arrows,
+  InitialMessageContainer,
+  Message,
+  Overlay
+} from './style';
+import { mod } from '../../../utils/utils';
+import AddNewTodoForm from '../../shared/AddNewTodoForm';
+import TodoItem from '../../shared/TodoItem';
 import * as MdIcons from 'react-icons/md';
 import { FaRegHandPointDown } from 'react-icons/fa';
-import homeAnimation from '../../animations/homeAnimation';
-import { GlobalContext } from '../../contexts/GlobalState';
+import homeAnimation from '../../../animations/homeAnimation';
+import { GlobalContext } from '../../../contexts/GlobalState';
 
 function HomeMain() {
   const { today, todoList, isAddNewTodoClicked, toggleIsAddNewTodoClicked } = useContext(GlobalContext);
@@ -54,20 +63,20 @@ function HomeMain() {
 
   return (
     <>
-      <div className="home-main-container">
-        <div
-          className={`home-main flex center ${isAddNewTodoClicked ? 'z-index' : ''}`}
+      <HomeMainContainer>
+        <HomeMainWrapper
+          className={` ${isAddNewTodoClicked ? 'z-index' : ''}`}
           ref={homeMainDivRef}
           style={homeMainDivTouching ? null : absoluteCenter}
         >
           {focusOnThisTodo ? (
             <>
-              <h1 className="title">Focus on this now</h1>
+              <Title>Focus on this now</Title>
               <TodoItem key={focusOnThisTodo.id} todo={focusOnThisTodo} />
-              <div className="arrows flex">
+              <Arrows>
                 <MdIcons.MdKeyboardArrowLeft className="arrow arrow-back" onClick={getPrevTodo} />
                 <MdIcons.MdKeyboardArrowRight className="arrow arrow-next" onClick={getNextTodo} />
-              </div>
+              </Arrows>
             </>
           ) : (
             <>
@@ -79,10 +88,10 @@ function HomeMain() {
               ) : null}
             </>
           )}
-        </div>
-      </div>
+        </HomeMainWrapper>
+      </HomeMainContainer>
 
-      {isAddNewTodoClicked && !focusOnThisTodo ? <div className="overlay"></div> : null}
+      {isAddNewTodoClicked && !focusOnThisTodo ? <Overlay></Overlay> : null}
     </>
   );
 }
@@ -95,11 +104,9 @@ function InitialMessage({ showAddNewTodoForm }) {
   }, []);
 
   return (
-    <div className="initial-message">
+    <InitialMessageContainer onClick={showAddNewTodoForm}>
       <FaRegHandPointDown className="point-down-icon" />
-      <h1 className="title message" onClick={showAddNewTodoForm}>
-        What's your todo today?
-      </h1>
-    </div>
+      <Message>What's your todo today?</Message>
+    </InitialMessageContainer>
   );
 }

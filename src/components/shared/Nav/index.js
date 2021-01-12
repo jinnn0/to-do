@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import { GlobalContext } from '../../../contexts/GlobalState';
 
-function Nav() {
+function Nav() { 
   const { selectedView } = useContext(GlobalContext);
 
-  const Links = [
+  const Links = [ 
     { path: '/', icon: <AiIcons.AiOutlineStar /> },
     {
       path: `/${selectedView}`,

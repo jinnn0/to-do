@@ -5,7 +5,7 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = (props) => {
   // today
-  const d = new Date();
+  const d = new Date(); 
   const today = {
     year: d.getFullYear(),
     month: d.getMonth(),

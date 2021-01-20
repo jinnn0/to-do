@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react';
-import useOnClickOutside from '../../utils/useOnClickOutside';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function CalendarDate({ date, dateInfo, className }) {

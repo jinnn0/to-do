@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import NewTodo from '../todo-form/NewTodo';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import useOnClickOutside from '../../utils/useOnClickOutside';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function AddNewTodoForm() {

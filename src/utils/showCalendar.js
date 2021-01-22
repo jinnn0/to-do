@@ -1,5 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 import CalendarDate from '../components/monthly/CalendarDate';
+
+const CalendarWeek = styled.div`
+    width: 100%;
+    flex: 1;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+
+`
 
 export default (selectedYear, selectedMonth) => {
   const renderDate = (date, dateInfo, className) => {
@@ -65,9 +75,9 @@ export default (selectedYear, selectedMonth) => {
     }
 
     weeks.push(
-      <div key={i} className={'calendar__week week-' + i}>
+      <CalendarWeek key={i} className={' week-' + i}>
         {row}
-      </div>
+      </CalendarWeek>
     );
   }
 

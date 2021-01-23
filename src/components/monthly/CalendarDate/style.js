@@ -60,3 +60,4 @@ const CalendarDateContainer = styled.span`
         color: rgb(123, 123, 123);
       }
 `
+export {CalendarDateContainer} 

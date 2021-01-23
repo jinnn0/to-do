@@ -11,6 +11,7 @@ const CalendarContainer = styled.div`
       max-height: inherit;
       margin-right: 3rem;
   }
+
 `
 
 const CalendarHeader = styled.div`

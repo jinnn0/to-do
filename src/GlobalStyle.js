@@ -1,7 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const colors = {
-  purple: '#6966ff'
+  purple: '#6966ff',
+  blue: '#75cdff',
+  pink: '#ffb8c0',
+  orange: '#ffaf75'
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -9,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
-    padding: 0; 
+    padding: 0;
     margin: 0;
   }
 

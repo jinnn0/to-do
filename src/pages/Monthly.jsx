@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from 'react';
-import HeaderMonthly from '../components/monthly/HeaderMonthly';
+import MonthlyHeader from '../components/monthly/MonthlyHeader';
 import MonthlyList from '../components/monthly/MonthlyList';
 import Calendar from '../components/monthly/Calendar';
 import { GlobalContext } from '../contexts/GlobalState';
@@ -45,7 +45,7 @@ function Monthly() {
   return (
     <div className="monthly">
       <div className="main-display container">
-        <HeaderMonthly
+        <MonthlyHeader
           currentMonthName={currentMonthName}
           selectedYear={selectedYear}
           moveToPrevMonth={moveToPrevMonth}

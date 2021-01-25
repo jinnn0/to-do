@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import { GlobalContext } from '../../contexts/GlobalState';
+import { GlobalContext } from '../contexts/GlobalState';
 
 function SelectView({ history, location }) {
   const { selectedView, updateSelectedView } = useContext(GlobalContext);

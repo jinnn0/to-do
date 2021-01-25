@@ -3,7 +3,7 @@ import SelectView from './SelectView';
 import SelectSort from './SelectSort';
 import AddNewTodoForm from './AddNewTodoForm';
 import { FiPlus } from 'react-icons/fi';
-import { GlobalContext } from '../../contexts/GlobalState';
+import { GlobalContext } from '../contexts/GlobalState';
 
 function HeaderShared({ title }) {
   const { isAddNewTodoClicked, toggleIsAddNewTodoClicked } = useContext(GlobalContext);

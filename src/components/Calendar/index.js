@@ -1,5 +1,5 @@
 import React from 'react';
-import showCalendar from '../../../utils/showCalendar';
+import showCalendar from '../../utils/showCalendar';
 import { CalendarContainer, CalendarHeader } from './style';
 
 function Calendar({ selectedYear, selectedMonth }) {

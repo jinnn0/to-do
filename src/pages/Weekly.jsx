@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import HeaderShared from '../components/shared/HeaderShared';
-import TodoList from '../components/shared/TodoList.jsx';
+import HeaderShared from '../components/HeaderShared.jsx';
+import TodoList from '../components/TodoList.jsx';
 import { RiPushpin2Line } from 'react-icons/ri';
 import { GlobalContext } from '../contexts/GlobalState';
 

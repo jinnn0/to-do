@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { GlobalContext } from '../../contexts/GlobalState';
+import { GlobalContext } from '../contexts/GlobalState';
 
 function SelectSort() {
   const { selectedSort, updateSelectedSort } = useContext(GlobalContext);

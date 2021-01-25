@@ -8,13 +8,13 @@ import {
   Message,
   Overlay
 } from './style';
-import { mod } from '../../../utils/utils';
-import AddNewTodoForm from '../../shared/AddNewTodoForm';
-import TodoItem from '../../shared/TodoItem';
+import { mod } from '../../utils/utils';
+import AddNewTodoForm from '../AddNewTodoForm';
+import TodoItem from '../TodoItem';
 import * as MdIcons from 'react-icons/md';
 import { FaRegHandPointDown } from 'react-icons/fa';
-import homeAnimation from '../../../animations/homeAnimation';
-import { GlobalContext } from '../../../contexts/GlobalState';
+import homeAnimation from '../../animations/homeAnimation';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function HomeMain() {
   const { today, todoList, isAddNewTodoClicked, toggleIsAddNewTodoClicked } = useContext(GlobalContext);

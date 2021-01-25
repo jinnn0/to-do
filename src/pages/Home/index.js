@@ -1,7 +1,7 @@
 import React from 'react';
 import { HomeContainer } from './style';
-import TimeDisplay from '../../components/home/TimeDisplay/index.js';
-import HomeMain from '../../components/home/HomeMain/index.js';
+import TimeDisplay from '../../components/TimeDisplay/index';
+import HomeMain from '../../components/HomeMain/index';
 
 function Home() {
   return (

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import SelectView from '../../shared/SelectView';
-import AddNewTodoForm from '../../shared/AddNewTodoForm.jsx';
+import SelectView from '../SelectView';
+import AddNewTodoForm from '../AddNewTodoForm.jsx';
 import * as MdIcons from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
-import { GlobalContext } from '../../../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
 import { MonthlyHeaderContainer, Row1, Row1_1, Row1_2, Row1_3, Row2Col2, Row2Col1 } from './style';
 
 function MonthlyHeader({ currentMonthName, selectedYear, moveToPrevMonth, moveToNextMonth, goBackToToday }) {

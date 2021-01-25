@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TimeDisplayContainer, Time, Day } from './style';
-import { GlobalContext } from '../../../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function TimeDisplay() {
   const { today } = useContext(GlobalContext);

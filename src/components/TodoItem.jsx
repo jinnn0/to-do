@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import todoListAnimation from '../../animations/todoListAnimation';
+import todoListAnimation from '../animations/todoListAnimation';
 import { CgTrash } from 'react-icons/cg';
 import { AiOutlineMore } from 'react-icons/ai';
-import { GlobalContext } from '../../contexts/GlobalState';
+import { GlobalContext } from '../contexts/GlobalState';
 
 function TodoItem({ todo }) {
   const { removeTodo, toggleComplete } = useContext(GlobalContext);

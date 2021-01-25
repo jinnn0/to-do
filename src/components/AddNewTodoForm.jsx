@@ -1,10 +1,10 @@
 import React, { useState, useContext, useRef } from 'react';
 import shortid from 'shortid';
-import NewTodo from '../todo-form/NewTodo';
+import NewTodo from './NewTodo';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import useOnClickOutside from '../../hooks/useOnClickOutside';
-import { GlobalContext } from '../../contexts/GlobalState';
+import useOnClickOutside from '../hooks/useOnClickOutside';
+import { GlobalContext } from '../contexts/GlobalState';
 
 function AddNewTodoForm() {
   const { today, isAddNewTodoClicked, toggleIsAddNewTodoClicked, addTodo } = useContext(GlobalContext);

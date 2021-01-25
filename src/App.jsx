@@ -2,7 +2,7 @@ import React from 'react';
 import GlovalStyle from './GlobalStyle';
 import use100vh from './hooks/use100vh';
 import './styles/App.scss';
-import Nav from './components/shared/Nav';
+import Nav from './components/Nav';
 import Home from './pages/Home';
 import Daily from './pages/Daily';
 import Weekly from './pages/Weekly';

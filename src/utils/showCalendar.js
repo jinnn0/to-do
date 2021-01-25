@@ -1,59 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
-import CalendarDate from '../components/monthly/CalendarDate';
+import CalendarDate from '../components/CalendarDate';
 
 const CalendarWeek = styled.div`
-    width: 100%;
-    flex: 1;
-    font-weight: 500;
+  width: 100%;
+  flex: 1;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+
+  .date-prev-month,
+  .date-next-month {
+    color: rgb(192, 192, 192);
+  }
+
+  .today {
+    background-color: rgba(255, 227, 184, 0.411);
+  }
+
+  .weekend {
+    color: rgb(123, 123, 123);
+  }
+
+  .no-todo-message::before {
+    content: 'No todo';
+    position: absolute;
+    left: 130%;
+    width: 80px;
+    height: 50px;
+    border-radius: 3px;
+    background-color: rgb(242, 242, 242);
+    color: rgb(123, 123, 123);
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
 
-    .date-prev-month,
-    .date-next-month {
-      color: rgb(192, 192, 192);
-    }
-
-    .today {
-      background-color: rgba(255, 227, 184, 0.411);
-    }
-
-    .weekend {
-      color: rgb(123, 123, 123);
-    }
-
-
-    .no-todo-message::before {
-        content: 'No todo';
-        position: absolute;
-        left: 130%;
-        width: 80px;
-        height: 50px;
-        border-radius: 3px;
-        background-color: rgb(242, 242, 242);
-        color: rgb(123, 123, 123);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
-      }
-
-     /* small tail on the right border */
-     .no-todo-message:after {
-        content: '';
-        display: block;
-        width: 0;
-        position: absolute;
-        top: 50%;
-        left: 100%;
-        transform: translateY(-50%);
-        border-color: rgba(0, 0, 0, 0) rgba(242, 242, 242, 0.762);
-        border-style: solid;
-        border-width: 15px;
-        border-left-width: 0;
-      }
-
-`
+  /* small tail on the right border */
+  .no-todo-message:after {
+    content: '';
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border-color: rgba(0, 0, 0, 0) rgba(242, 242, 242, 0.762);
+    border-style: solid;
+    border-width: 15px;
+    border-left-width: 0;
+  }
+`;
 
 export default (selectedYear, selectedMonth) => {
   const renderDate = (date, dateInfo, className) => {

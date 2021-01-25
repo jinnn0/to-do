@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import {MonthlyListContainer, SearchForm, MonthName, ListWrapper} from './style'
+import { MonthlyListContainer, SearchForm, MonthName, ListWrapper } from './style';
 import List from '../List';
 import { AiOutlineSearch } from 'react-icons/ai';
 import _ from 'lodash';
-import { GlobalContext } from '../../../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
 
 function MonthlyList({ currentMonthName, selectedYear, selectedMonth }) {
   const { todoList } = useContext(GlobalContext);
@@ -31,7 +31,7 @@ function MonthlyList({ currentMonthName, selectedYear, selectedMonth }) {
   //   }
 
   return (
-    <MonthlyListContainer >
+    <MonthlyListContainer>
       <SearchForm action="" onClick={(e) => e.preventDefault()}>
         <AiOutlineSearch className="search-icon" />
         <input type="text" placeholder="Search" />
@@ -47,7 +47,7 @@ function MonthlyList({ currentMonthName, selectedYear, selectedMonth }) {
           <List key={eachDay[0].id} eachDay={eachDay} />
         ))}
       </ListWrapper>
-    </MonthlyListContainer> 
+    </MonthlyListContainer>
   );
 }
 

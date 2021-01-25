@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef } from 'react';
-import MonthlyHeader from '../components/monthly/MonthlyHeader';
-import MonthlyList from '../components/monthly/MonthlyList';
-import Calendar from '../components/monthly/Calendar';
+import MonthlyHeader from '../components/MonthlyHeader';
+import MonthlyList from '../components/MonthlyList';
+import Calendar from '../components/Calendar';
 import { GlobalContext } from '../contexts/GlobalState';
 
 function Monthly() {

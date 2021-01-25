@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from 'react';
-import useOnClickOutside from '../../../hooks/useOnClickOutside';
-import { GlobalContext } from '../../../contexts/GlobalState';
-import {CalendarDateContainer} from './style'
+import useOnClickOutside from '../../hooks/useOnClickOutside';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { CalendarDateContainer } from './style';
 
 function CalendarDate({ date, dateInfo, className }) {
   const { todoList } = useContext(GlobalContext);
@@ -12,7 +12,7 @@ function CalendarDate({ date, dateInfo, className }) {
       todo.dateInfo.month === dateInfo.month &&
       todo.dateInfo.date === dateInfo.date
     );
-  }); 
+  });
 
   const dateRef = useRef();
   const toggleSelected = () => {

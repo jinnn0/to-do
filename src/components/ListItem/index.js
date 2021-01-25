@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CgTrash } from 'react-icons/cg';
 import { AiOutlineMore } from 'react-icons/ai';
-import { GlobalContext } from '../../../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
 import { ListItemContainer, Col1, Col2, Checkbox, Task, More } from './style';
 
 function ListItem({ todo }) {

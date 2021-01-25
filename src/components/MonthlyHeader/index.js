@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import SelectView from '../SelectView';
-import AddNewTodoForm from '../AddNewTodoForm.jsx';
+import AddNewTodoForm from '../AddNewTodoForm';
 import * as MdIcons from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 import { GlobalContext } from '../../contexts/GlobalState';

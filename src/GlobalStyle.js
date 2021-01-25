@@ -4,7 +4,9 @@ export const colors = {
   purple: '#6966ff',
   blue: '#75cdff',
   pink: '#ffb8c0',
-  orange: '#ffaf75'
+  orange: '#ffaf75',
+  lightBlack: 'rgba(0, 0, 0, 0.515)',
+  formBg: 'rgb(242, 242, 242)'
 };
 
 const GlobalStyle = createGlobalStyle`

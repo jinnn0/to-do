@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import { GlobalContext } from '../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { View } from './style';
 
 function SelectView({ history, location }) {
   const { selectedView, updateSelectedView } = useContext(GlobalContext);
@@ -19,11 +20,11 @@ function SelectView({ history, location }) {
   });
 
   return (
-    <select className="select-view" value={selectedView} onChange={handleSelectedViewChange}>
+    <View value={selectedView} onChange={handleSelectedViewChange}>
       <option value="daily">Day</option>
       <option value="weekly">Week</option>
       <option value="monthly">Month</option>
-    </select>
+    </View>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { GlobalContext } from '../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { SelectSortContainer, SortByText, Sort } from './style';
 
 function SelectSort() {
   const { selectedSort, updateSelectedSort } = useContext(GlobalContext);
@@ -8,16 +9,16 @@ function SelectSort() {
   };
 
   return (
-    <div className="select-sort-container">
-      <span className="sort-by-text">sort by</span>
-      <select className="select-sort" value={selectedSort} onChange={handleSelectedSortChange}>
+    <SelectSortContainer>
+      <SortByText>sort by</SortByText>
+      <Sort value={selectedSort} onChange={handleSelectedSortChange}>
         <option value="oldest">oldest</option>
         <option value="newest">newest</option>
         <option value="tag">tag</option>
         <option value="completed">completed</option>
         <option value="active">active</option>
-      </select>
-    </div>
+      </Sort>
+    </SelectSortContainer>
   );
 }
 

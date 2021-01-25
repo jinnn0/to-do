@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import TodoList from '../components/TodoList.jsx';
-import HeaderShared from '../components/HeaderShared.jsx';
+import Header from '../components/Header';
 import { RiPushpin2Line } from 'react-icons/ri';
 import { GlobalContext } from '../contexts/GlobalState';
 
@@ -45,7 +45,7 @@ function Daily() {
   return (
     <div className="daily">
       <div className="main-display container">
-        <HeaderShared title={'Today'} />
+        <Header title={'Today'} />
         {overdueTodoList.length ? (
           <div className="list md overdue-list">
             <h2>

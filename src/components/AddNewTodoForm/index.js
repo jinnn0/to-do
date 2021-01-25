@@ -1,10 +1,11 @@
 import React, { useState, useContext, useRef } from 'react';
 import shortid from 'shortid';
-import NewTodo from './NewTodo';
+import NewTodo from '../NewTodo';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import useOnClickOutside from '../hooks/useOnClickOutside';
-import { GlobalContext } from '../contexts/GlobalState';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { AddNewTodoFormContainer, SubmitButton } from './style';
 
 function AddNewTodoForm() {
   const { today, isAddNewTodoClicked, toggleIsAddNewTodoClicked, addTodo } = useContext(GlobalContext);
@@ -81,14 +82,14 @@ function AddNewTodoForm() {
   useOnClickOutside(formmRef, toggleIsAddNewTodoClicked);
 
   return (
-    <form
+    <AddNewTodoFormContainer
       action=""
       ref={formmRef}
       onSubmit={handleSubmit}
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={`add-new-todo-form ${isAddNewTodoClicked ? ' show-add-new-todo-form' : ''}`}
+      className={`${isAddNewTodoClicked ? ' show-add-new-todo-form' : ''}`}
     >
       <NewTodo
         handleInputChange={handleInputChange}
@@ -110,10 +111,8 @@ function AddNewTodoForm() {
         shouldCloseOnSelect={false}
       />
 
-      <button className="submit" type="submit">
-        Add new task
-      </button>
-    </form>
+      <SubmitButton type="submit">Add new task</SubmitButton>
+    </AddNewTodoFormContainer>
   );
 }
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../GlobalStyle';
+import { colors } from '../../styles/GlobalStyle';
 
 const NavContainer = styled.nav`
   width: 100%;

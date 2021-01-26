@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../GlobalStyle';
-import { Select } from '../SelectSort/style';
+import { Select } from '../../styles/shared';
 
 const View = styled(Select)`
   width: 70px;

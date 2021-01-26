@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import Header from '../components/Header';
-import TodoList from '../components/TodoList';
+import Header from '../../components/Header';
+import TodoList from '../../components/TodoList';
 import { RiPushpin2Line } from 'react-icons/ri';
-import { GlobalContext } from '../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { MainContainer, Main, Side, ListWrapper } from '../../styles/shared';
+import { WeeklyList, ListHeading } from './style';
 
 function Weekly() {
   const { today, sortedTodoList, overdueTodoList, sortedOverdueTodoList } = useContext(GlobalContext);
@@ -51,36 +53,36 @@ function Weekly() {
   };
 
   return (
-    <div className="weekly">
-      <div className="main-display container">
+    <MainContainer className="weekly">
+      <Main>
         <Header title={'Weekly'} />
 
-        <div className="weekly-list">
+        <WeeklyList>
           {overdueTodoList.length ? (
-            <div className="list sm overdue-list">
-              <h2>
-                Overdue <RiPushpin2Line className="pin-icon" />
-              </h2>
+            <ListWrapper sm overdue>
+              <ListHeading>
+                Overdue <RiPushpin2Line />
+              </ListHeading>
 
               <TodoList todosToday={sortedOverdueTodoList} isOverdueList />
-            </div>
+            </ListWrapper>
           ) : null}
 
           {thisWeek.map((eachDay) => (
-            <div key={eachDay.dateInfo.date} className="list sm">
-              <h2>
+            <ListWrapper key={eachDay.dateInfo.date} sm>
+              <ListHeading>
                 {eachDay.dateInfo.day} <span className="date">{eachDay.dateInfo.date}</span>
                 <span className="date-ordinal">{getOrdinalNum(eachDay.dateInfo)}</span>
-              </h2>
+              </ListHeading>
 
               <TodoList todosToday={eachDay.todos} />
-            </div>
+            </ListWrapper>
           ))}
-        </div>
-      </div>
+        </WeeklyList>
+      </Main>
 
-      <div className="side-display"></div>
-    </div>
+      <Side></Side>
+    </MainContainer>
   );
 }
 

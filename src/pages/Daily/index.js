@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import TodoList from '../components/TodoList';
-import Header from '../components/Header';
+import TodoList from '../../components/TodoList';
+import Header from '../../components/Header';
 import { RiPushpin2Line } from 'react-icons/ri';
-import { GlobalContext } from '../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { MainContainer, Main, Side, ListWrapper, Heading } from '../../styles/shared';
+import { NoTodoMessage } from './style';
 
 function Daily() {
   const {
@@ -43,25 +45,26 @@ function Daily() {
   };
 
   return (
-    <div className="daily">
-      <div className="main-display container">
+    <MainContainer className="daily">
+      <Main>
         <Header title={'Today'} />
         {overdueTodoList.length ? (
-          <div className="list md overdue-list">
-            <h2>
-              Overdue <RiPushpin2Line className="pin-icon" />
-            </h2>
+          <ListWrapper md overdueMd>
+            <Heading>
+              Overdue <RiPushpin2Line />
+            </Heading>
             <TodoList todosToday={sortedOverdueTodoList} isOverdueList />
-            <span className="no-todo-message">{showNoTodoMessage(true)}</span>
-          </div>
+            <NoTodoMessage>{showNoTodoMessage(true)}</NoTodoMessage>
+          </ListWrapper>
         ) : null}
-        <div className="list md">
+
+        <ListWrapper md>
           <TodoList todosToday={sortedTodosToday} />
-          <span className="no-todo-message">{showNoTodoMessage()}</span>
-        </div>
-      </div>
-      <div className="side-display"></div>
-    </div>
+          <NoTodoMessage>{showNoTodoMessage()}</NoTodoMessage>
+        </ListWrapper>
+      </Main>
+      <Side></Side>
+    </MainContainer>
   );
 }
 

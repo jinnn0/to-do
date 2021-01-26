@@ -1,8 +1,10 @@
 import React, { useState, useContext, useRef } from 'react';
-import MonthlyHeader from '../components/MonthlyHeader';
-import MonthlyList from '../components/MonthlyList';
-import Calendar from '../components/Calendar';
-import { GlobalContext } from '../contexts/GlobalState';
+import MonthlyHeader from '../../components/MonthlyHeader';
+import MonthlyList from '../../components/MonthlyList';
+import Calendar from '../../components/Calendar';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { MainContainer, Main, Side } from '../../styles/shared';
+import { CalendarWrapper } from './style';
 
 function Monthly() {
   const { today } = useContext(GlobalContext);
@@ -43,8 +45,8 @@ function Monthly() {
   };
 
   return (
-    <div className="monthly">
-      <div className="main-display container">
+    <MainContainer className="monthly">
+      <Main>
         <MonthlyHeader
           currentMonthName={currentMonthName}
           selectedYear={selectedYear}
@@ -52,17 +54,17 @@ function Monthly() {
           moveToNextMonth={moveToNextMonth}
           goBackToToday={goBackToToday}
         />
-        <div className="main" ref={parent} onClick={handleDateScroll}>
+        <CalendarWrapper ref={parent} onClick={handleDateScroll}>
           <Calendar selectedYear={selectedYear} selectedMonth={selectedMonth} />
           <MonthlyList
             currentMonthName={currentMonthName}
             selectedYear={selectedYear}
             selectedMonth={selectedMonth}
           />
-        </div>
-      </div>
-      <div className="side-display"></div>
-    </div>
+        </CalendarWrapper>
+      </Main>
+      <Side></Side>
+    </MainContainer>
   );
 }
 

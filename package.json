@@ -17,6 +17,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "shortid": "^2.2.15",
+    "styled-components": "^5.2.1",
     "uuidv4": "^6.2.3"
   },
   "scripts": {

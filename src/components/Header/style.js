@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../../GlobalStyle';
 
 const HeaderContainer = styled.header`
   height: var(--header-height);

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import TodoList from '../components/TodoList.jsx';
+import TodoList from '../components/TodoList';
 import Header from '../components/Header';
 import { RiPushpin2Line } from 'react-icons/ri';
 import { GlobalContext } from '../contexts/GlobalState';

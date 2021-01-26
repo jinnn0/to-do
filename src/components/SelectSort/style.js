@@ -3,6 +3,7 @@ import { colors } from '../../GlobalStyle';
 
 const SelectSortContainer = styled.div`
   width: 150px;
+  display: flex;
 `;
 
 const SortByText = styled.span`

@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import todoListAnimation from '../animations/todoListAnimation';
+import todoListAnimation from '../../animations/todoListAnimation';
 import { CgTrash } from 'react-icons/cg';
 import { AiOutlineMore } from 'react-icons/ai';
-import { GlobalContext } from '../contexts/GlobalState';
+import { GlobalContext } from '../../contexts/GlobalState';
+import { TodoItemContainer, TypeBar, Checkbox, Task, More } from './style';
 
 function TodoItem({ todo }) {
   const { removeTodo, toggleComplete } = useContext(GlobalContext);
@@ -12,24 +13,24 @@ function TodoItem({ todo }) {
   }, [todo]);
 
   return (
-    <li className="todo-item flex v-center">
+    <TodoItemContainer className="todo-item">
       <div>
-        <span className={`type-bar ${todo.type}`}></span>
+        <TypeBar className={`${todo.type}`}></TypeBar>
       </div>
       <div>
-        <span
-          className={`checkbox ${todo.completed ? 'completed ' + todo.type : ''}`}
+        <Checkbox
+          className={`${todo.completed ? 'completed ' + todo.type : ''}`}
           onClick={() => toggleComplete(todo.id)}
-        ></span>
+        ></Checkbox>
       </div>
       <div>
-        <span className="task">{todo.task}</span>
+        <Task>{todo.task}</Task>
       </div>
-      <div className="more">
+      <More>
         <CgTrash onClick={() => removeTodo(todo.id)} />
         <AiOutlineMore />
-      </div>
-    </li>
+      </More>
+    </TodoItemContainer>
   );
 }
 

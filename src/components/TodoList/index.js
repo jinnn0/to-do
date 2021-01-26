@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoItem from './TodoItem.jsx';
+import TodoItem from '../TodoItem';
 
 function TodoList({ size, todosToday }) {
   return (

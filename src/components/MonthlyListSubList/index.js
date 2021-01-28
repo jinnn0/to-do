@@ -1,8 +1,8 @@
 import React from 'react';
-import ListItem from '../ListItem';
-import {ListContainer, ListHeader, ListItemWrapper} from './style'
- 
-function List({ eachDay }) {
+import MonthlyListSubListItem from '../MonthlyListSubListItem';
+import { ListContainer, ListHeader, ListItemWrapper } from './style';
+
+function MonthlyListSubList({ eachDay }) {
   return (
     <ListContainer data-id={eachDay[0].dateInfo.date}>
       <ListHeader>
@@ -12,11 +12,11 @@ function List({ eachDay }) {
 
       <ListItemWrapper>
         {eachDay.map((todo) => (
-          <ListItem key={todo.id} todo={todo} />
+          <MonthlyListSubListItem key={todo.id} todo={todo} />
         ))}
       </ListItemWrapper>
     </ListContainer>
   );
 }
 
-export default List;
+export default MonthlyListSubList;

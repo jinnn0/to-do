@@ -7,4 +7,4 @@ const NoTodoMessage = styled.span`
   color: rgba(0, 0, 0, 0.24);
 `;
 
-export { Heading, NoTodoMessage };
+export { NoTodoMessage };

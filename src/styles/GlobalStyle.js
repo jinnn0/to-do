@@ -49,6 +49,7 @@ const GlobalStyle = createGlobalStyle`
     min-width: 320px;
   }
 
+
   ul {
     list-style-type: none;
   }

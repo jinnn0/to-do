@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MonthlyListContainer, SearchForm, MonthName, ListWrapper } from './style';
-import List from '../List';
+import MonthlyListSubList from '../MonthlyListSubList';
 import { AiOutlineSearch } from 'react-icons/ai';
 import _ from 'lodash';
 import { GlobalContext } from '../../contexts/GlobalState';
@@ -44,7 +44,7 @@ function MonthlyList({ currentMonthName, selectedYear, selectedMonth }) {
 
       <ListWrapper className="list-wrapper">
         {todosEachDay.map((eachDay) => (
-          <List key={eachDay[0].id} eachDay={eachDay} />
+          <MonthlyListSubList key={eachDay[0].id} eachDay={eachDay} />
         ))}
       </ListWrapper>
     </MonthlyListContainer>

@@ -17,7 +17,8 @@ function App() {
       <GlovalStyle />
       <Nav />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Daily} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/daily" component={Daily} />
         <Route exact path="/weekly" component={Weekly} />
         <Route exact path="/monthly" component={Monthly} />

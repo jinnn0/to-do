@@ -8,7 +8,7 @@ function Nav() {
   const { selectedView } = useContext(GlobalContext);
 
   const Links = [
-    { path: '/', icon: <AiIcons.AiOutlineStar /> },
+    { path: '/home', icon: <AiIcons.AiOutlineStar /> },
     {
       path: `/${selectedView}`,
       icon: <AiIcons.AiOutlineUnorderedList />

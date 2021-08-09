@@ -6,7 +6,7 @@
 - [ ] Edit the task
 - [ ] Statistic dashboard on side display
 - [ ] Finger swipe motion on Home to navigate previous or next todo item on mobile
-- [ ] Expand todo list for related tasks
+- [ ] Expand / grouping todo list for related tasks
 
 ## Screenshots
 

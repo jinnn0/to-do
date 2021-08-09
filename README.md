@@ -1,11 +1,12 @@
 ## Possible **features** to add
 
 - [x] Show a friendly message when there's no todo
-- [ ] Show an animation for horizontal scroll navigation gesture on weekly todo list
+- [ ] Show an animation guide for horizontal scroll navigation gesture on weekly todo list
 - [ ] Drag & move to change the order of the list
 - [ ] Edit the task
 - [ ] Statistic dashboard on side display
 - [ ] Finger swipe motion on Home to navigate previous or next todo item on mobile
+- [ ] Expand todo list for related tasks
 
 ## Screenshots
 

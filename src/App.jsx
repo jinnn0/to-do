@@ -11,6 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 function App() {
   // Fix for mobile 100vh
   use100vh();
+  
 
   return (
     <div className="App">

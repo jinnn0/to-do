@@ -1,14 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalState';
 import { View } from './style';
 
-function SelectView({ history, location }) {
+function SelectView() {
   const { selectedView, updateSelectedView } = useContext(GlobalContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // history.push : change the page and url
+  // navigate : change the page and url
   const handleSelectedViewChange = (e) => {
-    history.push(`/${e.target.value}`);
+    navigate(`/${e.target.value}`);
     updateSelectedView(e.target.value);
   };
 
@@ -28,4 +30,4 @@ function SelectView({ history, location }) {
   );
 }
 
-export default withRouter(SelectView);
+export default SelectView;

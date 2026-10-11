@@ -2,6 +2,7 @@ import React, { useState, useContext, useRef } from 'react';
 import shortid from 'shortid';
 import NewTodo from '../NewTodo';
 import DatePicker from 'react-datepicker';
+import { getWeek } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { GlobalContext } from '../../contexts/GlobalState';
@@ -106,6 +107,10 @@ function AddNewTodoForm() {
         onChange={handleDateSelect}
         timeInputLabel="Time:"
         showWeekNumbers
+        // Sunday-start week numbers, as react-datepicker showed before version 4 (it now uses ISO weeks).
+        formatWeekNumber={(date) => getWeek(date)}
+        // Aligned to the input's left edge, react-datepicker's old default (it now centres the popup).
+        popperPlacement="bottom-start"
         minDate={new Date()}
         showTimeInput
         shouldCloseOnSelect={false}

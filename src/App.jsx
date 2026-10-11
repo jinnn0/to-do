@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Daily from './pages/Daily';
 import Weekly from './pages/Weekly';
 import Monthly from './pages/Monthly';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   // Fix for mobile 100vh
@@ -16,13 +16,13 @@ function App() {
     <div className="App">
       <GlovalStyle />
       <Nav />
-      <Switch>
-        <Route exact path="/" component={Daily} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/daily" component={Daily} />
-        <Route exact path="/weekly" component={Weekly} />
-        <Route exact path="/monthly" component={Monthly} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Daily />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/daily" element={<Daily />} />
+        <Route path="/weekly" element={<Weekly />} />
+        <Route path="/monthly" element={<Monthly />} />
+      </Routes>
     </div>
   );
 }

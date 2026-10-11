@@ -20,7 +20,7 @@ function Nav() {
       <NavList>
         {Links.map((link) => (
           <li key={link.path}>
-            <NavLink exact to={link.path} activeClassName=" selected">
+            <NavLink end to={link.path} className={({ isActive }) => (isActive ? ' selected' : '')}>
               {link.icon}
             </NavLink>
           </li>

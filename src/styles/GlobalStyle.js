@@ -26,6 +26,25 @@ const GlobalStyle = createGlobalStyle`
     --container-padding: 20px;
     --header-margin-bottom: 2.5em;
 
+    /* Colours and sizes for the month calendar and its task list. */
+    --surface: #ffffff;
+    --surface-2: #f1f1f5;
+    --surface-hover: #ececf2;
+    --border: rgba(20, 20, 43, 0.08);
+    --border-strong: rgba(20, 20, 43, 0.14);
+    --text: #17171f;
+    --text-2: #5d5d6c;
+    --text-3: #6e6e7d;
+    --accent: ${colors.purple};
+    --accent-soft: rgba(105, 102, 255, 0.12);
+    --accent-text: #4f4ce0;
+    --danger: #d93036;
+    --danger-soft: rgba(229, 72, 77, 0.1);
+    --shadow-sm: 0 1px 2px rgba(20, 20, 43, 0.05);
+    --shadow: 0 1px 2px rgba(20, 20, 43, 0.04), 0 4px 16px rgba(20, 20, 43, 0.05);
+    --radius: 12px;
+    --radius-lg: 16px;
+
     @media (min-width: 750px) {
       --header-margin-bottom: 4.5em;
     }

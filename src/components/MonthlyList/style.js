@@ -1,99 +1,98 @@
 import styled from 'styled-components';
+import { Card } from '../../styles/shared';
 
-const MonthlyListContainer = styled.section`
-    flex: 1.2;
-    margin-top: 6rem;
-    position: relative;
+const MonthlyListContainer = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 16px;
 
-    @media (min-width: 1100px) {
-        flex: 1;
-        border-left: 1px solid rgba(0, 0, 0, 0.118);
-        margin-top: 0;
-        padding-left: 3rem;
-        padding-right: 1rem;
-    }
-`
+  @media (min-width: 1000px) {
+    max-height: calc(100dvh - var(--nav-height) - 220px);
+    min-height: 420px;
+  }
+`;
 
-const SearchForm = styled.form`
-    width: 96%;
-    height: 27px;
-    display: flex;
-    align-items: center;
-    padding-left: 0.4em;
-    margin-bottom: 1.8em;
-    background-color: rgb(241, 241, 243);
-    border-radius: 5px;
-    position: relative;
-
-    @media (min-width: 1550px) {
-        height: 35px;
-        margin-bottom: 1.6em;
-    }
-
-    .search-icon {
-        position: absolute;
-        width: 12px;
-        height: 12px;
-
-        @media (min-width: 1550px) {
-        width: 16px;
-        height: 16px;
-        }
-    }
-
-    input {
-        flex: 1;
-        height: 100%;
-        margin-left: 1.5em;
-        margin-left: 2em;
-        border: none;
-        background-color: transparent;
-        outline: none;
-        padding-bottom: 2px;
-
-        &::placeholder {
-        font-size: 1em;
-        line-height: 17px;
-
-        @media (min-width: 550px) {
-            font-size: 0.83em;
-            line-height: 20px;
-        }
-        }
-    }
-`
+const ListHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+`;
 
 const MonthName = styled.h2`
-    color: rgba(0, 0, 0, 0.781);
-    font-size: 1em;
-    height: 18px;
-    margin-bottom: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+`;
 
-    @media (min-width: 1550px) {
-        font-size: 1.5em;
-        height: 29px;
-        margin-bottom: 1.3em;
+const SearchField = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 6px 0 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text-3);
+  transition: border-color 0.15s, background-color 0.15s;
+
+  &:focus-within {
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--text);
+
+    &::placeholder {
+      color: var(--text-3);
     }
 
-    .todos-length {
-        margin-left: 5px;
+    &::-webkit-search-cancel-button {
+      display: none;
     }
-`
+  }
 
-const ListWrapper = styled.ul`
-    height: 500px;
-    padding-right: 1em;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+  button {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-3);
 
-    /* 100% - (form height + form mg bottom + monthlyList title height + monthly title mg bottom) */
-    @media (min-width: 1100px) {
-        height: calc(100% - 45px - 3.3em);
+    &:hover {
+      background: var(--surface-hover);
+      color: var(--text);
     }
+  }
+`;
 
-    @media (min-width: 1550px) {
-        height: calc(100% - 64px - 2.9em);
-    }
-`
+const ListWrapper = styled.div`
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 6px;
+  scroll-padding-top: 8px;
+`;
 
-export {MonthlyListContainer, SearchForm, MonthName, ListWrapper}
+const Note = styled.p`
+  padding: 14px 4px 4px;
+  font-size: 13px;
+  color: var(--text-3);
+`;
+
+export { MonthlyListContainer, ListHeader, MonthName, SearchField, ListWrapper, Note };

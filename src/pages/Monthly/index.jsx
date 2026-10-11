@@ -1,47 +1,29 @@
-import React, { useState, useContext, useRef } from 'react';
+import { useState } from 'react';
 import MonthlyHeader from '../../components/MonthlyHeader';
 import MonthlyList from '../../components/MonthlyList';
 import Calendar from '../../components/Calendar';
-import { GlobalContext } from '../../contexts/GlobalState';
 import { MainContainer, Main, Side } from '../../styles/shared';
 import { CalendarWrapper } from './style';
 
+const firstOfMonth = (date) => new Date(date.getFullYear(), date.getMonth(), 1);
+
 function Monthly() {
-  const { today } = useContext(GlobalContext);
-  const [selectedYear, setSelectedYear] = useState(today.year);
-  const [selectedMonth, setSelectedMonth] = useState(today.month);
-  const currentMonthName = new Date(selectedYear, selectedMonth).toLocaleString('default', { month: 'long' });
-  const parent = useRef();
+  const [month, setMonth] = useState(() => firstOfMonth(new Date()));
+  const [selectedDay, setSelectedDay] = useState(null);
+  const selectedYear = month.getFullYear();
+  const selectedMonth = month.getMonth();
+  const currentMonthName = month.toLocaleString('default', { month: 'long' });
 
-  const moveToPrevMonth = () => {
-    if (selectedMonth === 0) {
-      setSelectedYear((prev) => prev - 1);
-      setSelectedMonth(12);
-    }
-    setSelectedMonth((prev) => prev - 1);
+  const showMonth = (date) => {
+    setMonth(firstOfMonth(date));
+    setSelectedDay(null);
   };
 
-  const moveToNextMonth = () => {
-    if (selectedMonth === 11) {
-      setSelectedYear((prev) => prev + 1);
-    }
-
-    setSelectedMonth((prev) => (prev + 1) % 12);
-  };
-
-  const goBackToToday = () => {
-    setSelectedYear(today.year);
-    setSelectedMonth(today.month);
-  };
-
-  const handleDateScroll = (e) => {
-    const HTMLCollection = parent.current.childNodes[1].childNodes[2].children;
-    const refList = [...HTMLCollection];
-    const listToScroll = refList.find(
-      (list) => list.getAttribute('data-id') === e.target.getAttribute('data-id')
-    );
-
-    if (listToScroll) listToScroll.scrollIntoView({ behavior: 'smooth' });
+  // Selecting a day highlights it and scrolls the list to it; picking a day from a
+  // neighbouring month moves to that month. Selecting it again clears the selection.
+  const selectDay = (day) => {
+    if (day.getMonth() !== selectedMonth) setMonth(firstOfMonth(day));
+    setSelectedDay((current) => (current?.toDateString() === day.toDateString() ? null : day));
   };
 
   return (
@@ -50,16 +32,22 @@ function Monthly() {
         <MonthlyHeader
           currentMonthName={currentMonthName}
           selectedYear={selectedYear}
-          moveToPrevMonth={moveToPrevMonth}
-          moveToNextMonth={moveToNextMonth}
-          goBackToToday={goBackToToday}
+          moveToPrevMonth={() => showMonth(new Date(selectedYear, selectedMonth - 1))}
+          moveToNextMonth={() => showMonth(new Date(selectedYear, selectedMonth + 1))}
+          goBackToToday={() => showMonth(new Date())}
         />
-        <CalendarWrapper ref={parent} onClick={handleDateScroll}>
-          <Calendar selectedYear={selectedYear} selectedMonth={selectedMonth} />
+        <CalendarWrapper>
+          <Calendar
+            selectedYear={selectedYear}
+            selectedMonth={selectedMonth}
+            selectedDay={selectedDay}
+            onSelectDay={selectDay}
+          />
           <MonthlyList
             currentMonthName={currentMonthName}
             selectedYear={selectedYear}
             selectedMonth={selectedMonth}
+            selectedDay={selectedDay}
           />
         </CalendarWrapper>
       </Main>

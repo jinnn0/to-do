@@ -1,90 +1,146 @@
-import styled from 'styled-components';
-import { colors } from '../../styles/GlobalStyle';
+import styled, { css, keyframes } from 'styled-components';
+import { IconButton } from '../../styles/shared';
 
-const ListItemContainer = styled.li`
-  font-size: 16px;
+const enter = keyframes`
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+`;
+
+const Delete = styled(IconButton)`
+  flex-shrink: 0;
+  opacity: 0;
+
+  &:hover {
+    background: var(--danger-soft);
+    color: var(--danger);
+  }
+
+  &:focus-visible {
+    opacity: 1;
+  }
+
+  /* Touch screens can't hover, so keep it visible there. */
+  @media (hover: none) {
+    opacity: 1;
+  }
+`;
+
+const Item = styled.li`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  padding: 0.7rem 1.1rem 0.7rem 0.1rem;
+  gap: 12px;
+  padding: ${(p) => (p.$compact ? '10px 8px 10px 12px' : '12px 10px 12px 14px')};
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  animation: ${enter} 0.32s ease-out both;
+  animation-delay: calc(var(--i, 0) * 30ms);
+  transition: border-color 0.15s, box-shadow 0.15s;
 
-  @media (min-width: 1550px) {
-    font-size: 1.1em;
+  & + & {
+    margin-top: 8px;
+  }
+
+  &:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow);
+  }
+
+  &:hover ${Delete} {
+    opacity: 1;
   }
 `;
 
-const Col1 = styled.div`
-  flex-basis: 13%;
-`;
+// A round checkbox in the tag's colour; filled with a tick when done.
+const Check = styled.button`
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 2px solid ${(p) => p.$color};
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  transition: background-color 0.15s, transform 0.1s;
 
-const Col2 = styled.div`
-  flex-basis: 87%;
-  display: flex;
-`;
-
-const Checkbox = styled.span`
-  display: block;
-  width: 0.9em;
-  height: 0.9em;
-  border-radius: 0.35em;
-  margin-right: 0.5em;
-  transition: background-color 0.05s linear;
-  cursor: pointer;
-
-  &.completed {
-    background-color: ${colors.purple};
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M13.613%2027.068l-7.94-7.28q-.285-.267-.442-.613t-.172-.7.11-.71.394-.638q.52-.583%201.3-.614T8.225%2017l6.13%205.626%208.79-17q.363-.693%201.104-.93t1.433.118.93%201.103-.126%201.442L16.56%2026.55q-.204.394-.558.654t-.78.34q-.063.015-.118.023t-.11.008-.102%200q-.74%200-1.276-.504z%22%20fill%3D%22%23FFF%22/%3E%3C/svg%3E');
-    background-size: 0.625em;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-
-  &.important {
-    background-color: ${colors.purple};
-  }
-
-  &.work {
-    background-color: ${colors.blue};
-  }
-
-  &.study {
-    background-color: ${colors.pink};
-  }
-
-  &.other {
-    background-color: ${colors.orange};
-  }
-`;
-
-const Task = styled.span`
-  font-size: 0.73em;
-  font-weight: 600;
-  word-break: break-all;
-
-  &.grey-out {
-    color: rgba(0, 0, 0, 0.461);
-  }
-`;
-
-const More = styled.div`
-  margin-left: auto;
-  display: flex;
-  cursor: pointer;
-
-  /* bin / more icons */
   svg {
-    margin: 0 1rem;
-    color: rgba(0, 0, 0, 0.699);
+    font-size: 12px;
+    stroke-width: 3.5;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.15s, transform 0.15s;
   }
 
-  svg:hover {
-    color: ${colors.purple};
-    transition: background-color 0.08s ease-in-out;
+  &:hover {
+    background: color-mix(in srgb, ${(p) => p.$color} 15%, transparent);
   }
 
-  svg:last-child {
-    margin: 0;
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &[aria-checked='true'] {
+    background: ${(p) => p.$color};
+
+    svg {
+      opacity: 1;
+      transform: none;
+    }
   }
 `;
 
-export { ListItemContainer, Col1, Col2, Checkbox, Task, More };
+const Body = styled.div`
+  flex: 1;
+  min-width: 0;
+`;
+
+const Task = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  transition: color 0.15s;
+
+  ${(p) =>
+    p.$completed &&
+    css`
+      color: var(--text-3);
+      text-decoration: line-through;
+    `}
+`;
+
+const Meta = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-3);
+`;
+
+const When = styled.time`
+  ${(p) =>
+    p.$overdue &&
+    css`
+      color: var(--danger);
+      font-weight: 500;
+    `}
+`;
+
+const Tag = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+const Dot = styled.span`
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: ${(p) => p.$color};
+`;
+
+export { Item, Check, Body, Task, Meta, When, Tag, Dot, Delete };

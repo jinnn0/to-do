@@ -142,4 +142,49 @@ const Heading = styled.h2`
   }
 `;
 
-export { MainContainer, Main, Side, Select, ListWrapper, Heading };
+// A white panel with a soft border (the month calendar and its task list).
+const Card = styled.section`
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+`;
+
+const Count = styled.span`
+  min-width: 22px;
+  height: 20px;
+  padding: 0 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 600;
+`;
+
+const IconButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+  }
+
+  svg {
+    font-size: 17px;
+  }
+`;
+
+export { MainContainer, Main, Side, Select, ListWrapper, Heading, Card, Count, IconButton };

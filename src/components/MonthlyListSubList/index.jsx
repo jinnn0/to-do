@@ -1,20 +1,24 @@
-import React from 'react';
 import MonthlyListSubListItem from '../MonthlyListSubListItem';
-import { ListContainer, ListHeader, ListItemWrapper } from './style';
+import { toDate } from '../../utils/date';
+import { ListContainer, ListHeader, DateNumber, DayName, TodayBadge } from './style';
 
-function MonthlyListSubList({ eachDay }) {
+// One day's tasks in the month list.
+function MonthlyListSubList({ todos, isSelected, ref }) {
+  const date = toDate(todos[0].dateInfo);
+  const isToday = date.toDateString() === new Date().toDateString();
+
   return (
-    <ListContainer data-id={eachDay[0].dateInfo.date}>
+    <ListContainer ref={ref} $selected={isSelected}>
       <ListHeader>
-        <span className="date">{eachDay[0].dateInfo.date}</span>
-        <span className="day">{eachDay[0].dateInfo.day}</span>
+        <DateNumber>{date.getDate()}</DateNumber>
+        <DayName>{date.toLocaleDateString('default', { weekday: 'long' })}</DayName>
+        {isToday && <TodayBadge>Today</TodayBadge>}
       </ListHeader>
-
-      <ListItemWrapper>
-        {eachDay.map((todo) => (
-          <MonthlyListSubListItem key={todo.id} todo={todo} />
+      <ul>
+        {todos.map((todo, index) => (
+          <MonthlyListSubListItem key={todo.id} todo={todo} index={index} />
         ))}
-      </ListItemWrapper>
+      </ul>
     </ListContainer>
   );
 }

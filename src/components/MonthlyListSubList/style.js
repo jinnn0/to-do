@@ -1,36 +1,42 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const ListContainer = styled.li`
-  margin-bottom: 2em;
+const ListContainer = styled.section`
+  padding: 12px 8px;
+  border-radius: var(--radius);
+  transition: background-color 0.3s;
+
+  ${(p) =>
+    p.$selected &&
+    css`
+      background: var(--accent-soft);
+    `}
 `;
 
 const ListHeader = styled.div`
   display: flex;
-  margin-bottom: 1em;
-
-  .date {
-    font-size: 1.2em;
-    font-weight: bold;
-    line-height: 15px;
-    flex-basis: 13%;
-
-    @media (min-width: 1550px) {
-      font-size: 1.5em;
-      line-height: 23px;
-    }
-  }
-
-  .day {
-    flex-basis: 87%;
-    font-size: 0.8em;
-    color: rgba(0, 0, 0, 0.349);
-    border-top: 1px solid rgba(0, 0, 0, 0.118);
-    padding-top: 0.45rem;
-  }
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
 `;
 
-const ListItemWrapper = styled.ul`
-  height: 100%;
+const DateNumber = styled.span`
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 `;
 
-export { ListContainer, ListHeader, ListItemWrapper };
+const DayName = styled.span`
+  font-size: 13px;
+  color: var(--text-3);
+`;
+
+const TodayBadge = styled.span`
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 11px;
+  font-weight: 600;
+`;
+
+export { ListContainer, ListHeader, DateNumber, DayName, TodayBadge };

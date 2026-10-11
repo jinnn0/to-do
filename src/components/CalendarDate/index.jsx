@@ -1,36 +1,35 @@
-import React, { useState, useRef, useContext } from 'react';
-import useOnClickOutside from '../../hooks/useOnClickOutside';
-import { GlobalContext } from '../../contexts/GlobalState';
-import { CalendarDateContainer } from './style';
+import { todoTypes } from '../../utils/todo';
+import { formatShortDate } from '../../utils/date';
+import { DateButton, DayNumber, Dots, Dot } from './style';
 
-function CalendarDate({ date, dateInfo, className }) {
-  const { todoList } = useContext(GlobalContext);
-  const [selected, setSelected] = useState(false);
-  const todos = todoList.filter((todo) => {
-    return (
-      todo.dateInfo.year === dateInfo.year &&
-      todo.dateInfo.month === dateInfo.month &&
-      todo.dateInfo.date === dateInfo.date
-    );
-  });
+const colorOf = Object.fromEntries(todoTypes.map((type) => [type.value, type.color]));
 
-  const dateRef = useRef();
-  const toggleSelected = () => {
-    if (todos.length) return;
-    setSelected(!selected);
-  };
-
-  useOnClickOutside(dateRef, () => setSelected(false));
+// One day in the month calendar, with a dot per tag that has open tasks that day (up to three).
+function CalendarDate({ date, todos, inMonth, isToday, isSelected, onSelect }) {
+  const openTags = [...new Set(todos.filter((todo) => !todo.completed).map((todo) => todo.type))].slice(0, 3);
+  const weekday = (date.getDay() + 6) % 7;
+  const label = `${formatShortDate(date)}, ${todos.length ? `${todos.length} task${todos.length > 1 ? 's' : ''}` : 'no tasks'}`;
 
   return (
-    <CalendarDateContainer
-      ref={dateRef}
-      data-id={dateInfo.date}
-      className={`${className} ${selected ? 'no-todo-message' : ''}`}
-      onClick={toggleSelected}
+    <DateButton
+      type="button"
+      aria-label={label}
+      aria-pressed={isSelected}
+      aria-current={isToday ? 'date' : undefined}
+      $inMonth={inMonth}
+      $weekend={weekday > 4}
+      $today={isToday}
+      $selected={isSelected}
+      onClick={() => onSelect(date)}
     >
-      {date}
-    </CalendarDateContainer>
+      <DayNumber>{date.getDate()}</DayNumber>
+      <Dots aria-hidden="true">
+        {openTags.map((tag) => (
+          <Dot key={tag} $color={colorOf[tag]} />
+        ))}
+        {!openTags.length && todos.length > 0 && <Dot $color="var(--text-3)" />}
+      </Dots>
+    </DateButton>
   );
 }
 

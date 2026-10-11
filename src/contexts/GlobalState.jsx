@@ -98,16 +98,15 @@ export const GlobalContextProvider = (props) => {
     setSelectedView(newValue);
   };
 
-  // isAddNewTodoClicked state
-  const [isAddNewTodoClicked, setIsAddNewTodoClicked] = useState(false);
-
-  const toggleIsAddNewTodoClicked = () => {
-    setIsAddNewTodoClicked(!isAddNewTodoClicked);
-  };
+  // whether the add-task form is open
+  const [isAddTodoOpen, setIsAddTodoOpen] = useState(false);
+  const openAddTodo = () => setIsAddTodoOpen(true);
+  const closeAddTodo = () => setIsAddTodoOpen(false);
+  const toggleAddTodo = () => setIsAddTodoOpen((open) => !open);
 
   // global states
   const value = {
-    today, // HomeMain, TimeDisplay, Daily, Weekly, Monthly, AddNewTodoForm
+    today, // HomeMain, TimeDisplay, Daily, Weekly, Monthly
     todoList, // HomeMain, MonthlyList, Daily
     addTodo, // AddNewTodoForm
     removeTodo, // TodoItem, InnerList
@@ -119,8 +118,10 @@ export const GlobalContextProvider = (props) => {
     sortedOverdueTodoList, // Daily, TodoList
     selectedView, // Nav, SelectView
     updateSelectedView, // SelectView
-    isAddNewTodoClicked, // HomeMain, AddNewTodoForm
-    toggleIsAddNewTodoClicked // HomeMain, HeaderShared, HeaderMonthly, useOnClickOutside.js
+    isAddTodoOpen, // HomeMain, AddTodo
+    openAddTodo, // HomeMain
+    closeAddTodo, // HomeMain, AddNewTodoForm
+    toggleAddTodo // AddTodo
   };
 
   return <GlobalContext.Provider value={value}>{props.children}</GlobalContext.Provider>;

@@ -1,29 +1,21 @@
-/*
-Used in :
-  monthly/CalendarDate
-  shared/AddNewTodoForm
-  todo-form/NewTodo
-*/
+import { useEffect, useRef } from 'react';
 
-import React from 'react';
-
+// Calls handler when the pointer goes down outside the element in ref.
+// Used by CalendarDate and AddNewTodoForm.
 export default function useOnClickOutside(ref, handler) {
-  React.useEffect(() => {
+  // Keep the latest handler without re-subscribing on every render.
+  const handlerRef = useRef(handler);
+  useEffect(() => {
+    handlerRef.current = handler;
+  });
+
+  useEffect(() => {
     const listener = (e) => {
-      // Do nothing if clicking ref's element or descendent elements
-      if (!ref.current || ref.current.contains(e.target)) {
-        return;
-      }
-
-      handler(e);
+      if (!ref.current || ref.current.contains(e.target)) return;
+      handlerRef.current(e);
     };
 
-    document.addEventListener('mousedown', listener);
-    document.addEventListener('touchstart', listener);
-
-    return () => {
-      document.removeEventListener('mousedown', listener);
-      document.removeEventListener('touchstart', listener);
-    };
-  }, [ref, handler]);
+    document.addEventListener('pointerdown', listener);
+    return () => document.removeEventListener('pointerdown', listener);
+  }, [ref]);
 }

@@ -17,7 +17,7 @@ import homeAnimation from '../../animations/homeAnimation';
 import { GlobalContext } from '../../contexts/GlobalState';
 
 function HomeMain() {
-  const { today, todoList, isAddNewTodoClicked, toggleIsAddNewTodoClicked } = useContext(GlobalContext);
+  const { today, todoList, isAddTodoOpen, openAddTodo } = useContext(GlobalContext);
 
   const [todoIndex, setTodoIndex] = useState(0);
   const homeMainDivRef = useRef();
@@ -65,7 +65,7 @@ function HomeMain() {
     <>
       <HomeMainContainer>
         <HomeMainWrapper
-          className={` ${isAddNewTodoClicked ? 'z-index' : ''}`}
+          className={` ${isAddTodoOpen ? 'z-index' : ''}`}
           ref={homeMainDivRef}
           style={homeMainDivTouching ? null : absoluteCenter}
         >
@@ -80,18 +80,14 @@ function HomeMain() {
             </>
           ) : (
             <>
-              <InitialMessage showAddNewTodoForm={toggleIsAddNewTodoClicked} />
-              {isAddNewTodoClicked ? (
-                <>
-                  <AddNewTodoForm />
-                </>
-              ) : null}
+              <InitialMessage showAddNewTodoForm={openAddTodo} />
+              {isAddTodoOpen && <AddNewTodoForm placement="center" />}
             </>
           )}
         </HomeMainWrapper>
       </HomeMainContainer>
 
-      {isAddNewTodoClicked && !focusOnThisTodo ? <Overlay></Overlay> : null}
+      {isAddTodoOpen && !focusOnThisTodo ? <Overlay></Overlay> : null}
     </>
   );
 }

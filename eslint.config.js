@@ -15,10 +15,12 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } }
     },
     // Warnings rather than errors, as under Create React App, while the existing code is tidied
-    // up separately (unused imports, setState inside effects).
+    // up separately (unused imports, setState inside effects, files mixing components with other
+    // exports, which only affects hot reloading).
     rules: {
       'no-unused-vars': 'warn',
-      'react-hooks/set-state-in-effect': 'warn'
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-refresh/only-export-components': 'warn'
     }
   }
 ]);
